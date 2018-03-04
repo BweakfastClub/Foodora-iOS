@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  ProfileViewController.swift
 //  Foodora
 //
 //  Created by Brandon Danis on 2018-03-04.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class HomeViewController : UIViewController {
+class ProfileViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

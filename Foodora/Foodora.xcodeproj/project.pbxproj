@@ -14,6 +14,9 @@
 		CAFD2C85204C980A0006F00B /* FoodoraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2C84204C980A0006F00B /* FoodoraTests.swift */; };
 		CAFD2C90204C980A0006F00B /* FoodoraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2C8F204C980A0006F00B /* FoodoraUITests.swift */; };
 		CAFD2C9E204C9CF50006F00B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2C9D204C9CF50006F00B /* HomeViewController.swift */; };
+		CAFD2CA0204C9E8B0006F00B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2C9F204C9E8B0006F00B /* SearchViewController.swift */; };
+		CAFD2CA2204CA1740006F00B /* MealPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2CA1204CA1740006F00B /* MealPlanViewController.swift */; };
+		CAFD2CA4204CA2940006F00B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2CA3204CA2940006F00B /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		CAFD2C8F204C980A0006F00B /* FoodoraUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodoraUITests.swift; sourceTree = "<group>"; };
 		CAFD2C91204C980A0006F00B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CAFD2C9D204C9CF50006F00B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		CAFD2C9F204C9E8B0006F00B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		CAFD2CA1204CA1740006F00B /* MealPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealPlanViewController.swift; sourceTree = "<group>"; };
+		CAFD2CA3204CA2940006F00B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +106,9 @@
 				CAFD2C6F204C980A0006F00B /* AppDelegate.swift */,
 				CAFD2C71204C980A0006F00B /* ViewController.swift */,
 				CAFD2C9D204C9CF50006F00B /* HomeViewController.swift */,
+				CAFD2C9F204C9E8B0006F00B /* SearchViewController.swift */,
+				CAFD2CA3204CA2940006F00B /* ProfileViewController.swift */,
+				CAFD2CA1204CA1740006F00B /* MealPlanViewController.swift */,
 				CAFD2C76204C980A0006F00B /* Assets.xcassets */,
 				CAFD2C78204C980A0006F00B /* LaunchScreen.storyboard */,
 				CAFD2C7B204C980A0006F00B /* Info.plist */,
@@ -258,8 +267,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAFD2CA4204CA2940006F00B /* ProfileViewController.swift in Sources */,
 				CAFD2C72204C980A0006F00B /* ViewController.swift in Sources */,
 				CAFD2C70204C980A0006F00B /* AppDelegate.swift in Sources */,
+				CAFD2CA2204CA1740006F00B /* MealPlanViewController.swift in Sources */,
+				CAFD2CA0204C9E8B0006F00B /* SearchViewController.swift in Sources */,
 				CAFD2C9E204C9CF50006F00B /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

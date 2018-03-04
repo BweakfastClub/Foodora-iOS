@@ -19,7 +19,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        window?.rootViewController = ViewController()
+        // root tab controller init
+        let rootTabController = UITabBarController()
+        
+        let homeNavigationController = UINavigationController()
+        homeNavigationController.viewControllers = [HomeViewController()]
+        
+        let searchNavigationController = UINavigationController()
+        searchNavigationController.viewControllers = [SearchViewController()]
+        
+        let mealPlanNavigationController = UINavigationController()
+        mealPlanNavigationController.viewControllers = [MealPlanViewController()]
+        
+        let profileNavigationController = UINavigationController()
+        profileNavigationController.viewControllers = [ProfileViewController()]
+        
+        rootTabController.viewControllers = [
+            homeNavigationController,
+            searchNavigationController,
+            mealPlanNavigationController,
+            profileNavigationController
+        ]
+        
+        let tabBarItems = rootTabController.tabBar.items! as [UITabBarItem]
+//        rootTabController.tabBar.tintColor = Style.mainColor
+        tabBarItems[0].title = "Home"
+        tabBarItems[1].title = "Search"
+        tabBarItems[2].title = "Plan"
+        tabBarItems[3].title = "Profile"
+        
+        window?.rootViewController = rootTabController
         window?.makeKeyAndVisible()
         
         return true
