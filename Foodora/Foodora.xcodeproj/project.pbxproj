@@ -1,0 +1,563 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CAFD2C70204C980A0006F00B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2C6F204C980A0006F00B /* AppDelegate.swift */; };
+		CAFD2C72204C980A0006F00B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2C71204C980A0006F00B /* ViewController.swift */; };
+		CAFD2C75204C980A0006F00B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAFD2C73204C980A0006F00B /* Main.storyboard */; };
+		CAFD2C77204C980A0006F00B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAFD2C76204C980A0006F00B /* Assets.xcassets */; };
+		CAFD2C7A204C980A0006F00B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAFD2C78204C980A0006F00B /* LaunchScreen.storyboard */; };
+		CAFD2C85204C980A0006F00B /* FoodoraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2C84204C980A0006F00B /* FoodoraTests.swift */; };
+		CAFD2C90204C980A0006F00B /* FoodoraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2C8F204C980A0006F00B /* FoodoraUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CAFD2C81204C980A0006F00B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CAFD2C64204C980A0006F00B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CAFD2C6B204C980A0006F00B;
+			remoteInfo = Foodora;
+		};
+		CAFD2C8C204C980A0006F00B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CAFD2C64204C980A0006F00B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CAFD2C6B204C980A0006F00B;
+			remoteInfo = Foodora;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CAFD2C6C204C980A0006F00B /* Foodora.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foodora.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CAFD2C6F204C980A0006F00B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CAFD2C71204C980A0006F00B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CAFD2C74204C980A0006F00B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CAFD2C76204C980A0006F00B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CAFD2C79204C980A0006F00B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CAFD2C7B204C980A0006F00B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CAFD2C80204C980A0006F00B /* FoodoraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodoraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CAFD2C84204C980A0006F00B /* FoodoraTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodoraTests.swift; sourceTree = "<group>"; };
+		CAFD2C86204C980A0006F00B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CAFD2C8B204C980A0006F00B /* FoodoraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodoraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CAFD2C8F204C980A0006F00B /* FoodoraUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodoraUITests.swift; sourceTree = "<group>"; };
+		CAFD2C91204C980A0006F00B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CAFD2C69204C980A0006F00B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CAFD2C7D204C980A0006F00B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CAFD2C88204C980A0006F00B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CAFD2C63204C980A0006F00B = {
+			isa = PBXGroup;
+			children = (
+				CAFD2C6E204C980A0006F00B /* Foodora */,
+				CAFD2C83204C980A0006F00B /* FoodoraTests */,
+				CAFD2C8E204C980A0006F00B /* FoodoraUITests */,
+				CAFD2C6D204C980A0006F00B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CAFD2C6D204C980A0006F00B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CAFD2C6C204C980A0006F00B /* Foodora.app */,
+				CAFD2C80204C980A0006F00B /* FoodoraTests.xctest */,
+				CAFD2C8B204C980A0006F00B /* FoodoraUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CAFD2C6E204C980A0006F00B /* Foodora */ = {
+			isa = PBXGroup;
+			children = (
+				CAFD2C6F204C980A0006F00B /* AppDelegate.swift */,
+				CAFD2C71204C980A0006F00B /* ViewController.swift */,
+				CAFD2C73204C980A0006F00B /* Main.storyboard */,
+				CAFD2C76204C980A0006F00B /* Assets.xcassets */,
+				CAFD2C78204C980A0006F00B /* LaunchScreen.storyboard */,
+				CAFD2C7B204C980A0006F00B /* Info.plist */,
+			);
+			path = Foodora;
+			sourceTree = "<group>";
+		};
+		CAFD2C83204C980A0006F00B /* FoodoraTests */ = {
+			isa = PBXGroup;
+			children = (
+				CAFD2C84204C980A0006F00B /* FoodoraTests.swift */,
+				CAFD2C86204C980A0006F00B /* Info.plist */,
+			);
+			path = FoodoraTests;
+			sourceTree = "<group>";
+		};
+		CAFD2C8E204C980A0006F00B /* FoodoraUITests */ = {
+			isa = PBXGroup;
+			children = (
+				CAFD2C8F204C980A0006F00B /* FoodoraUITests.swift */,
+				CAFD2C91204C980A0006F00B /* Info.plist */,
+			);
+			path = FoodoraUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CAFD2C6B204C980A0006F00B /* Foodora */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CAFD2C94204C980A0006F00B /* Build configuration list for PBXNativeTarget "Foodora" */;
+			buildPhases = (
+				CAFD2C68204C980A0006F00B /* Sources */,
+				CAFD2C69204C980A0006F00B /* Frameworks */,
+				CAFD2C6A204C980A0006F00B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Foodora;
+			productName = Foodora;
+			productReference = CAFD2C6C204C980A0006F00B /* Foodora.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CAFD2C7F204C980A0006F00B /* FoodoraTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CAFD2C97204C980A0006F00B /* Build configuration list for PBXNativeTarget "FoodoraTests" */;
+			buildPhases = (
+				CAFD2C7C204C980A0006F00B /* Sources */,
+				CAFD2C7D204C980A0006F00B /* Frameworks */,
+				CAFD2C7E204C980A0006F00B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CAFD2C82204C980A0006F00B /* PBXTargetDependency */,
+			);
+			name = FoodoraTests;
+			productName = FoodoraTests;
+			productReference = CAFD2C80204C980A0006F00B /* FoodoraTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CAFD2C8A204C980A0006F00B /* FoodoraUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CAFD2C9A204C980A0006F00B /* Build configuration list for PBXNativeTarget "FoodoraUITests" */;
+			buildPhases = (
+				CAFD2C87204C980A0006F00B /* Sources */,
+				CAFD2C88204C980A0006F00B /* Frameworks */,
+				CAFD2C89204C980A0006F00B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CAFD2C8D204C980A0006F00B /* PBXTargetDependency */,
+			);
+			name = FoodoraUITests;
+			productName = FoodoraUITests;
+			productReference = CAFD2C8B204C980A0006F00B /* FoodoraUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CAFD2C64204C980A0006F00B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = FoodoraInc;
+				TargetAttributes = {
+					CAFD2C6B204C980A0006F00B = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					CAFD2C7F204C980A0006F00B = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = CAFD2C6B204C980A0006F00B;
+					};
+					CAFD2C8A204C980A0006F00B = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = CAFD2C6B204C980A0006F00B;
+					};
+				};
+			};
+			buildConfigurationList = CAFD2C67204C980A0006F00B /* Build configuration list for PBXProject "Foodora" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CAFD2C63204C980A0006F00B;
+			productRefGroup = CAFD2C6D204C980A0006F00B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CAFD2C6B204C980A0006F00B /* Foodora */,
+				CAFD2C7F204C980A0006F00B /* FoodoraTests */,
+				CAFD2C8A204C980A0006F00B /* FoodoraUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CAFD2C6A204C980A0006F00B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CAFD2C7A204C980A0006F00B /* LaunchScreen.storyboard in Resources */,
+				CAFD2C77204C980A0006F00B /* Assets.xcassets in Resources */,
+				CAFD2C75204C980A0006F00B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CAFD2C7E204C980A0006F00B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CAFD2C89204C980A0006F00B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CAFD2C68204C980A0006F00B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CAFD2C72204C980A0006F00B /* ViewController.swift in Sources */,
+				CAFD2C70204C980A0006F00B /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CAFD2C7C204C980A0006F00B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CAFD2C85204C980A0006F00B /* FoodoraTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CAFD2C87204C980A0006F00B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CAFD2C90204C980A0006F00B /* FoodoraUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CAFD2C82204C980A0006F00B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CAFD2C6B204C980A0006F00B /* Foodora */;
+			targetProxy = CAFD2C81204C980A0006F00B /* PBXContainerItemProxy */;
+		};
+		CAFD2C8D204C980A0006F00B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CAFD2C6B204C980A0006F00B /* Foodora */;
+			targetProxy = CAFD2C8C204C980A0006F00B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CAFD2C73204C980A0006F00B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CAFD2C74204C980A0006F00B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		CAFD2C78204C980A0006F00B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CAFD2C79204C980A0006F00B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CAFD2C92204C980A0006F00B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CAFD2C93204C980A0006F00B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CAFD2C95204C980A0006F00B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G3KGQDJHJS;
+				INFOPLIST_FILE = Foodora/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = FD.Foodora;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CAFD2C96204C980A0006F00B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G3KGQDJHJS;
+				INFOPLIST_FILE = Foodora/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = FD.Foodora;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CAFD2C98204C980A0006F00B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G3KGQDJHJS;
+				INFOPLIST_FILE = FoodoraTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = FD.FoodoraTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Foodora.app/Foodora";
+			};
+			name = Debug;
+		};
+		CAFD2C99204C980A0006F00B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G3KGQDJHJS;
+				INFOPLIST_FILE = FoodoraTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = FD.FoodoraTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Foodora.app/Foodora";
+			};
+			name = Release;
+		};
+		CAFD2C9B204C980A0006F00B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G3KGQDJHJS;
+				INFOPLIST_FILE = FoodoraUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = FD.FoodoraUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Foodora;
+			};
+			name = Debug;
+		};
+		CAFD2C9C204C980A0006F00B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G3KGQDJHJS;
+				INFOPLIST_FILE = FoodoraUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = FD.FoodoraUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Foodora;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CAFD2C67204C980A0006F00B /* Build configuration list for PBXProject "Foodora" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CAFD2C92204C980A0006F00B /* Debug */,
+				CAFD2C93204C980A0006F00B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CAFD2C94204C980A0006F00B /* Build configuration list for PBXNativeTarget "Foodora" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CAFD2C95204C980A0006F00B /* Debug */,
+				CAFD2C96204C980A0006F00B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CAFD2C97204C980A0006F00B /* Build configuration list for PBXNativeTarget "FoodoraTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CAFD2C98204C980A0006F00B /* Debug */,
+				CAFD2C99204C980A0006F00B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CAFD2C9A204C980A0006F00B /* Build configuration list for PBXNativeTarget "FoodoraUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CAFD2C9B204C980A0006F00B /* Debug */,
+				CAFD2C9C204C980A0006F00B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CAFD2C64204C980A0006F00B /* Project object */;
+}
