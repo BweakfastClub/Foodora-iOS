@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		CAFD2C70204C980A0006F00B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2C6F204C980A0006F00B /* AppDelegate.swift */; };
 		CAFD2C72204C980A0006F00B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2C71204C980A0006F00B /* ViewController.swift */; };
-		CAFD2C75204C980A0006F00B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAFD2C73204C980A0006F00B /* Main.storyboard */; };
 		CAFD2C77204C980A0006F00B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAFD2C76204C980A0006F00B /* Assets.xcassets */; };
 		CAFD2C7A204C980A0006F00B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAFD2C78204C980A0006F00B /* LaunchScreen.storyboard */; };
 		CAFD2C85204C980A0006F00B /* FoodoraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2C84204C980A0006F00B /* FoodoraTests.swift */; };
 		CAFD2C90204C980A0006F00B /* FoodoraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2C8F204C980A0006F00B /* FoodoraUITests.swift */; };
+		CAFD2C9E204C9CF50006F00B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2C9D204C9CF50006F00B /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +37,6 @@
 		CAFD2C6C204C980A0006F00B /* Foodora.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foodora.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAFD2C6F204C980A0006F00B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAFD2C71204C980A0006F00B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		CAFD2C74204C980A0006F00B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CAFD2C76204C980A0006F00B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CAFD2C79204C980A0006F00B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CAFD2C7B204C980A0006F00B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,6 +46,7 @@
 		CAFD2C8B204C980A0006F00B /* FoodoraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodoraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAFD2C8F204C980A0006F00B /* FoodoraUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodoraUITests.swift; sourceTree = "<group>"; };
 		CAFD2C91204C980A0006F00B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CAFD2C9D204C9CF50006F00B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +99,7 @@
 			children = (
 				CAFD2C6F204C980A0006F00B /* AppDelegate.swift */,
 				CAFD2C71204C980A0006F00B /* ViewController.swift */,
-				CAFD2C73204C980A0006F00B /* Main.storyboard */,
+				CAFD2C9D204C9CF50006F00B /* HomeViewController.swift */,
 				CAFD2C76204C980A0006F00B /* Assets.xcassets */,
 				CAFD2C78204C980A0006F00B /* LaunchScreen.storyboard */,
 				CAFD2C7B204C980A0006F00B /* Info.plist */,
@@ -234,7 +234,6 @@
 			files = (
 				CAFD2C7A204C980A0006F00B /* LaunchScreen.storyboard in Resources */,
 				CAFD2C77204C980A0006F00B /* Assets.xcassets in Resources */,
-				CAFD2C75204C980A0006F00B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +260,7 @@
 			files = (
 				CAFD2C72204C980A0006F00B /* ViewController.swift in Sources */,
 				CAFD2C70204C980A0006F00B /* AppDelegate.swift in Sources */,
+				CAFD2C9E204C9CF50006F00B /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,14 +296,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		CAFD2C73204C980A0006F00B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CAFD2C74204C980A0006F00B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		CAFD2C78204C980A0006F00B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
