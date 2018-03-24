@@ -10,6 +10,9 @@
 		CA9AE5582066D0A600005733 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE5572066D0A600005733 /* NetworkManager.swift */; };
 		CA9AE55B2066D32100005733 /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE55A2066D32100005733 /* BrowseViewController.swift */; };
 		CA9AE55D2066D97300005733 /* BrowseOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE55C2066D97300005733 /* BrowseOptionView.swift */; };
+		CA9AE56020670AE500005733 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE55F20670AE500005733 /* Meal.swift */; };
+		CA9AE5622067116000005733 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE5612067116000005733 /* Ingredient.swift */; };
+		CA9AE5642067141D00005733 /* NutritionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE5632067141D00005733 /* NutritionInfo.swift */; };
 		CAFD2C70204C980A0006F00B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2C6F204C980A0006F00B /* AppDelegate.swift */; };
 		CAFD2C72204C980A0006F00B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2C71204C980A0006F00B /* ViewController.swift */; };
 		CAFD2C77204C980A0006F00B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAFD2C76204C980A0006F00B /* Assets.xcassets */; };
@@ -43,6 +46,9 @@
 		CA9AE5572066D0A600005733 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CA9AE55A2066D32100005733 /* BrowseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
 		CA9AE55C2066D97300005733 /* BrowseOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseOptionView.swift; sourceTree = "<group>"; };
+		CA9AE55F20670AE500005733 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
+		CA9AE5612067116000005733 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
+		CA9AE5632067141D00005733 /* NutritionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionInfo.swift; sourceTree = "<group>"; };
 		CAFD2C6C204C980A0006F00B /* Foodora.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foodora.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAFD2C6F204C980A0006F00B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAFD2C71204C980A0006F00B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +100,16 @@
 			path = "Custom Elements";
 			sourceTree = "<group>";
 		};
+		CA9AE55E20670A1D00005733 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CA9AE55F20670AE500005733 /* Meal.swift */,
+				CA9AE5612067116000005733 /* Ingredient.swift */,
+				CA9AE5632067141D00005733 /* NutritionInfo.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		CAFD2C63204C980A0006F00B = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +133,7 @@
 		CAFD2C6E204C980A0006F00B /* Foodora */ = {
 			isa = PBXGroup;
 			children = (
+				CA9AE55E20670A1D00005733 /* Models */,
 				CA9AE5592066D27A00005733 /* Custom Elements */,
 				CAFD2C6F204C980A0006F00B /* AppDelegate.swift */,
 				CAFD2C71204C980A0006F00B /* ViewController.swift */,
@@ -284,15 +301,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA9AE56020670AE500005733 /* Meal.swift in Sources */,
 				CAFD2CA4204CA2940006F00B /* ProfileViewController.swift in Sources */,
 				CA9AE55D2066D97300005733 /* BrowseOptionView.swift in Sources */,
 				CAFD2C72204C980A0006F00B /* ViewController.swift in Sources */,
 				CAFD2C70204C980A0006F00B /* AppDelegate.swift in Sources */,
 				CA9AE5582066D0A600005733 /* NetworkManager.swift in Sources */,
+				CA9AE5642067141D00005733 /* NutritionInfo.swift in Sources */,
 				CAFD2CA2204CA1740006F00B /* MealPlanViewController.swift in Sources */,
 				CAFD2CA0204C9E8B0006F00B /* SearchViewController.swift in Sources */,
 				CA9AE55B2066D32100005733 /* BrowseViewController.swift in Sources */,
 				CAFD2C9E204C9CF50006F00B /* HomeViewController.swift in Sources */,
+				CA9AE5622067116000005733 /* Ingredient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
