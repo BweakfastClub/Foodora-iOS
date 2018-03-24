@@ -26,6 +26,8 @@ class HomeViewController : UIViewController {
         
         view.backgroundColor = .white
         
+        navigationController?.navigationBar.topItem?.title = "HOME"
+        
         view.addSubview(titleLabel)
         ApplyConstraints()
     }

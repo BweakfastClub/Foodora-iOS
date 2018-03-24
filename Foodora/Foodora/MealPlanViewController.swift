@@ -26,6 +26,8 @@ class MealPlanViewController : UIViewController {
         
         view.backgroundColor = .white
         
+        navigationController?.navigationBar.topItem?.title = "MEAL PLAN"
+        
         view.addSubview(titleLabel)
         ApplyConstraints()
     }

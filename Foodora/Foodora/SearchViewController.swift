@@ -26,7 +26,10 @@ class SearchViewController : UIViewController {
         
         view.backgroundColor = .white
         
+        navigationController?.navigationBar.topItem?.title = "SEARCH"
+        
         view.addSubview(titleLabel)
+        
         ApplyConstraints()
     }
     
@@ -44,6 +47,7 @@ class SearchViewController : UIViewController {
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             titleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
+        
     }
     
 }

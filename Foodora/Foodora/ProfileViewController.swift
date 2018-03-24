@@ -26,6 +26,8 @@ class ProfileViewController : UIViewController {
         
         view.backgroundColor = .white
         
+        navigationController?.navigationBar.topItem?.title = "PROFILE"
+        
         view.addSubview(titleLabel)
         ApplyConstraints()
     }
