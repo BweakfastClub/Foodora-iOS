@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CA9AE5582066D0A600005733 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE5572066D0A600005733 /* NetworkManager.swift */; };
+		CA9AE55B2066D32100005733 /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE55A2066D32100005733 /* BrowseViewController.swift */; };
 		CAFD2C70204C980A0006F00B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2C6F204C980A0006F00B /* AppDelegate.swift */; };
 		CAFD2C72204C980A0006F00B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2C71204C980A0006F00B /* ViewController.swift */; };
 		CAFD2C77204C980A0006F00B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAFD2C76204C980A0006F00B /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		CA9AE5572066D0A600005733 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		CA9AE55A2066D32100005733 /* BrowseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
 		CAFD2C6C204C980A0006F00B /* Foodora.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foodora.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAFD2C6F204C980A0006F00B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAFD2C71204C980A0006F00B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +84,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CA9AE5592066D27A00005733 /* Custom Elements */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Custom Elements";
+			sourceTree = "<group>";
+		};
 		CAFD2C63204C980A0006F00B = {
 			isa = PBXGroup;
 			children = (
@@ -105,10 +114,12 @@
 		CAFD2C6E204C980A0006F00B /* Foodora */ = {
 			isa = PBXGroup;
 			children = (
+				CA9AE5592066D27A00005733 /* Custom Elements */,
 				CAFD2C6F204C980A0006F00B /* AppDelegate.swift */,
 				CAFD2C71204C980A0006F00B /* ViewController.swift */,
 				CAFD2C9D204C9CF50006F00B /* HomeViewController.swift */,
 				CAFD2C9F204C9E8B0006F00B /* SearchViewController.swift */,
+				CA9AE55A2066D32100005733 /* BrowseViewController.swift */,
 				CAFD2CA3204CA2940006F00B /* ProfileViewController.swift */,
 				CAFD2CA1204CA1740006F00B /* MealPlanViewController.swift */,
 				CAFD2C76204C980A0006F00B /* Assets.xcassets */,
@@ -276,6 +287,7 @@
 				CA9AE5582066D0A600005733 /* NetworkManager.swift in Sources */,
 				CAFD2CA2204CA1740006F00B /* MealPlanViewController.swift in Sources */,
 				CAFD2CA0204C9E8B0006F00B /* SearchViewController.swift in Sources */,
+				CA9AE55B2066D32100005733 /* BrowseViewController.swift in Sources */,
 				CAFD2C9E204C9CF50006F00B /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

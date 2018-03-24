@@ -25,6 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let homeNavigationController = UINavigationController()
         homeNavigationController.viewControllers = [HomeViewController()]
         
+        let browseNavigationController = UINavigationController()
+        browseNavigationController.viewControllers = [BrowseViewController()]
+        
         let searchNavigationController = UINavigationController()
         searchNavigationController.viewControllers = [SearchViewController()]
         
@@ -36,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         rootTabController.viewControllers = [
             homeNavigationController,
+            browseNavigationController,
             searchNavigationController,
             mealPlanNavigationController,
             profileNavigationController
@@ -44,9 +48,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBarItems = rootTabController.tabBar.items! as [UITabBarItem]
 //        rootTabController.tabBar.tintColor = Style.mainColor
         tabBarItems[0].title = "Home"
-        tabBarItems[1].title = "Search"
-        tabBarItems[2].title = "Plan"
-        tabBarItems[3].title = "Profile"
+        tabBarItems[1].title = "Browse"
+        tabBarItems[2].title = "Search"
+        tabBarItems[3].title = "Plan"
+        tabBarItems[4].title = "Profile"
         
         window?.rootViewController = rootTabController
         window?.makeKeyAndVisible()
