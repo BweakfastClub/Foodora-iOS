@@ -48,10 +48,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBarItems = rootTabController.tabBar.items! as [UITabBarItem]
 //        rootTabController.tabBar.tintColor = Style.mainColor
         tabBarItems[0].title = "Home"
+        tabBarItems[0].image = #imageLiteral(resourceName: "home")
         tabBarItems[1].title = "Browse"
+        tabBarItems[1].image = #imageLiteral(resourceName: "apple")
         tabBarItems[2].title = "Search"
+        tabBarItems[2].image = #imageLiteral(resourceName: "search")
         tabBarItems[3].title = "Plan"
+        tabBarItems[3].image = #imageLiteral(resourceName: "food")
         tabBarItems[4].title = "Profile"
+        tabBarItems[4].image = #imageLiteral(resourceName: "user")
         
         window?.rootViewController = rootTabController
         window?.makeKeyAndVisible()
