@@ -11,14 +11,17 @@ import UIKit
 
 class BrowseViewController : UIViewController {
     
-    let titleLabel : UILabel = {
-        let label = UILabel()
-        label.attributedText = NSAttributedString(string: "Browse View", attributes: [
-            NSAttributedStringKey.font: UIFont(name: "Avenir Next", size: 34)!,
-            NSAttributedStringKey.foregroundColor: UIColor.black
-            ])
-        label.textAlignment = .center
-        return label
+    private var breakfastCell: BrowseOptionView!
+    private var lunchCell: BrowseOptionView!
+    private var dinnerCell: BrowseOptionView!
+    private var snacksCell: BrowseOptionView!
+    
+    private let mainStack: UIStackView = {
+        let view = UIStackView()
+        view.spacing = 10.0
+        view.distribution = .fillEqually
+        view.axis = .vertical
+        return view
     }()
     
     override func viewDidLoad() {
@@ -28,7 +31,19 @@ class BrowseViewController : UIViewController {
         
         navigationController?.navigationBar.topItem?.title = "BROWSE"
         
-        view.addSubview(titleLabel)
+        view.addSubview(mainStack)
+        
+        breakfastCell = BrowseOptionView("https://images5.alphacoders.com/432/432498.jpg", "BREAKFAST")
+        mainStack.addArrangedSubview(breakfastCell)
+
+        lunchCell = BrowseOptionView("https://images6.alphacoders.com/609/609345.jpg", "LUNCH")
+        mainStack.addArrangedSubview(lunchCell)
+        
+        dinnerCell = BrowseOptionView("https://imgur.com/yQbH8Yk.png", "DINNER")
+        mainStack.addArrangedSubview(dinnerCell)
+        
+        snacksCell = BrowseOptionView("https://imgur.com/x7nGYB8.png", "SNACKS")
+        mainStack.addArrangedSubview(snacksCell)
         
         ApplyConstraints()
     }
@@ -38,16 +53,15 @@ class BrowseViewController : UIViewController {
     }
     
     private func ApplyConstraints() {
-        let safeArea = view.safeAreaLayoutGuide
+        let safeMargin = view.safeAreaLayoutGuide
         
-        // Title label constraints
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        mainStack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
-            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            titleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            mainStack.topAnchor.constraint(equalTo: safeMargin.topAnchor, constant: 10),
+            mainStack.bottomAnchor.constraint(equalTo: safeMargin.bottomAnchor, constant: -10),
+            mainStack.leftAnchor.constraint(equalTo: safeMargin.leftAnchor, constant: 20),
+            mainStack.rightAnchor.constraint(equalTo: safeMargin.rightAnchor, constant: -20)
         ])
-        
     }
     
 }
