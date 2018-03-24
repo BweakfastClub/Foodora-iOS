@@ -37,6 +37,7 @@ class BrowseOptionView : UIView {
     
     private let backgroundImage : UIImageView = {
         let view = UIImageView()
+        view.image = #imageLiteral(resourceName: "placeholder")
         view.contentMode = .scaleAspectFill
         return view
     }()
