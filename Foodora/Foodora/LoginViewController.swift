@@ -82,12 +82,13 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         // Setup basic view attributes
-        gradientLayer.frame = self.view.bounds
-        gradientLayer.colors = [Style.SOFT_BLUE.cgColor, Style.SOFT_PURPLE.cgColor]
-        gradientLayer.locations = [0.0, 1.1]
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
-        gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
-        self.view.layer.addSublayer(gradientLayer)
+//        gradientLayer.frame = self.view.bounds
+//        gradientLayer.colors = [Style.SOFT_BLUE.cgColor, Style.SOFT_PURPLE.cgColor]
+//        gradientLayer.locations = [0.0, 1.1]
+//        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+//        gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
+//        self.view.layer.addSublayer(gradientLayer)
+        view.backgroundColor = Style.main_color
         
         view.addSubview(mainStackView)
         
@@ -151,7 +152,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction private func RegisterButtonClicked(sender: UIButton) {
-//        self.navigationController?.pushViewController(RegisterViewController(), animated: true)
+        self.navigationController?.pushViewController(RegisterViewController(), animated: true)
     }
     
     public func DisplayMessageModally(msg: String) {
