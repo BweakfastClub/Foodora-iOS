@@ -11,7 +11,7 @@ import UIKit
 
 class UnderlinedTextField : UITextField, UITextFieldDelegate {
     
-    private let ERROR_COLOR = UIColor.red
+    private let ERROR_COLOR = Style.main_color
     
     private var activeColor : UIColor = .white
     // used for icon and underline
