@@ -16,6 +16,7 @@
 		CA9AE5662067180100005733 /* MealCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE5652067180100005733 /* MealCollectionViewCell.swift */; };
 		CA9AE5682067187100005733 /* MealSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE5672067187100005733 /* MealSelectionViewController.swift */; };
 		CA9AE56A2068169D00005733 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE5692068169D00005733 /* Style.swift */; };
+		CAD9998C2068224B00C2EEE5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD9998B2068224B00C2EEE5 /* LoginViewController.swift */; };
 		CAFD2C70204C980A0006F00B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2C6F204C980A0006F00B /* AppDelegate.swift */; };
 		CAFD2C72204C980A0006F00B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2C71204C980A0006F00B /* ViewController.swift */; };
 		CAFD2C77204C980A0006F00B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAFD2C76204C980A0006F00B /* Assets.xcassets */; };
@@ -55,6 +56,7 @@
 		CA9AE5652067180100005733 /* MealCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA9AE5672067187100005733 /* MealSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealSelectionViewController.swift; sourceTree = "<group>"; };
 		CA9AE5692068169D00005733 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		CAD9998B2068224B00C2EEE5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CAFD2C6C204C980A0006F00B /* Foodora.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foodora.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAFD2C6F204C980A0006F00B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAFD2C71204C980A0006F00B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				CAFD2C7B204C980A0006F00B /* Info.plist */,
 				CA9AE5572066D0A600005733 /* NetworkManager.swift */,
 				CA9AE5692068169D00005733 /* Style.swift */,
+				CAD9998B2068224B00C2EEE5 /* LoginViewController.swift */,
 			);
 			path = Foodora;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				CA9AE5682067187100005733 /* MealSelectionViewController.swift in Sources */,
 				CAFD2CA2204CA1740006F00B /* MealPlanViewController.swift in Sources */,
 				CAFD2CA0204C9E8B0006F00B /* SearchViewController.swift in Sources */,
+				CAD9998C2068224B00C2EEE5 /* LoginViewController.swift in Sources */,
 				CA9AE55B2066D32100005733 /* BrowseViewController.swift in Sources */,
 				CAFD2C9E204C9CF50006F00B /* HomeViewController.swift in Sources */,
 				CA9AE5622067116000005733 /* Ingredient.swift in Sources */,
