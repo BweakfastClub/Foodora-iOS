@@ -16,7 +16,7 @@ class MealPlanViewController : UIViewController {
         label.attributedText = NSAttributedString(string: "Meal Plan View", attributes: [
             NSAttributedStringKey.font: UIFont(name: "Avenir Next", size: 34)!,
             NSAttributedStringKey.foregroundColor: UIColor.black
-            ])
+        ])
         label.textAlignment = .center
         return label
     }()
@@ -45,7 +45,7 @@ class MealPlanViewController : UIViewController {
             titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             titleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-            ])
+        ])
     }
     
 }

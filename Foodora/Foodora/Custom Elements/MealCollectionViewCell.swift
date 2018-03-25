@@ -11,7 +11,7 @@ import UIKit
 
 class MealCollectionViewCell: UICollectionViewCell {
     
-    private var meal: Meal? {
+    public var meal: Meal? {
         didSet {
             UpdateCell()
         }
@@ -46,7 +46,13 @@ class MealCollectionViewCell: UICollectionViewCell {
     }
     
     private func UpdateCell() {
-        
+        if meal != nil {
+            NetworkManager.GetImageByUrl(meal!.imageUrl) { (image) in
+                DispatchQueue.main.async {
+                    self.backgroundImage.image = image
+                }
+            }
+        }
     }
     
     private func ApplyConstraints() {
