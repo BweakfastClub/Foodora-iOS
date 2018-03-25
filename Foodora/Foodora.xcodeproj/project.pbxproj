@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA11A6E92068254B009FF29B /* fontawesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA11A6E82068254A009FF29B /* fontawesome.ttf */; };
 		CA9AE5582066D0A600005733 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE5572066D0A600005733 /* NetworkManager.swift */; };
 		CA9AE55B2066D32100005733 /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE55A2066D32100005733 /* BrowseViewController.swift */; };
 		CA9AE55D2066D97300005733 /* BrowseOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE55C2066D97300005733 /* BrowseOptionView.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CA11A6E82068254A009FF29B /* fontawesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fontawesome.ttf; sourceTree = "<group>"; };
 		CA9AE5572066D0A600005733 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CA9AE55A2066D32100005733 /* BrowseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
 		CA9AE55C2066D97300005733 /* BrowseOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseOptionView.swift; sourceTree = "<group>"; };
@@ -125,6 +127,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		CAD999912068248000C2EEE5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CA11A6E82068254A009FF29B /* fontawesome.ttf */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		CAFD2C63204C980A0006F00B = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +158,7 @@
 		CAFD2C6E204C980A0006F00B /* Foodora */ = {
 			isa = PBXGroup;
 			children = (
+				CAD999912068248000C2EEE5 /* Resources */,
 				CA9AE55E20670A1D00005733 /* Models */,
 				CA9AE5592066D27A00005733 /* Custom Elements */,
 				CAFD2C6F204C980A0006F00B /* AppDelegate.swift */,
@@ -293,6 +304,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA11A6E92068254B009FF29B /* fontawesome.ttf in Resources */,
 				CAFD2C7A204C980A0006F00B /* LaunchScreen.storyboard in Resources */,
 				CAFD2C77204C980A0006F00B /* Assets.xcassets in Resources */,
 			);
