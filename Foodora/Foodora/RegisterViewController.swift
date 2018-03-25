@@ -157,33 +157,6 @@ class RegisterViewController : UIViewController {
         guard email != "" else { self.registerButton.shake(); self.emailTextField.Error(); return }
         guard password != "" else { self.registerButton.shake(); self.passwordTextField.Error(); return }
         
-//        NetworkManager.shared.RegisterAccount(name: "Brandon Danis", username: username!, email: email!, password: password!) { err, res in
-//
-//            if err != nil {
-//                //Display error message?
-//                self.registerButton.shake()
-//                return
-//            }
-//
-//            if let err = res?.error, let errCode = err.code { //currently error is never null, but rather empty {}. This will be fixed soon
-//                // TODO: Display error to user
-//                print("Failed to create user. Error code: \(errCode). Title: \(err.title!). Detail: \(err.detail!)")
-//                self.registerButton.shake()
-//                return
-//            }
-//
-//            if let data = res?.data {
-//                // TODO: Push to login screen and display a modal popup saying user created
-//                print("User created! ID: \(data.id) Name: \(data.name) Username: \(data.username)")
-//
-//                if let parentVc = self.parent as? LoginViewController {
-//                    parentVc.DisplayMessageModally(msg: "User created!")
-//                }
-//
-//                self.dismiss(animated: true, completion: nil)
-//            }
-//
-//        }
     }
     
     private func SetupConstraints() {
