@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         browseNavigationController.viewControllers = [BrowseViewController()]
         
         let searchNavigationController = UINavigationController()
-        searchNavigationController.viewControllers = [SearchViewController()]
+        searchNavigationController.viewControllers = [MealSelectionViewController()]
         
         let mealPlanNavigationController = UINavigationController()
         mealPlanNavigationController.viewControllers = [MealPlanViewController()]

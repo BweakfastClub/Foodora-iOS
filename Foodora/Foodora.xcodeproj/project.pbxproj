@@ -13,6 +13,8 @@
 		CA9AE56020670AE500005733 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE55F20670AE500005733 /* Meal.swift */; };
 		CA9AE5622067116000005733 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE5612067116000005733 /* Ingredient.swift */; };
 		CA9AE5642067141D00005733 /* NutritionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE5632067141D00005733 /* NutritionInfo.swift */; };
+		CA9AE5662067180100005733 /* MealCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE5652067180100005733 /* MealCollectionViewCell.swift */; };
+		CA9AE5682067187100005733 /* MealSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE5672067187100005733 /* MealSelectionViewController.swift */; };
 		CAFD2C70204C980A0006F00B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2C6F204C980A0006F00B /* AppDelegate.swift */; };
 		CAFD2C72204C980A0006F00B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2C71204C980A0006F00B /* ViewController.swift */; };
 		CAFD2C77204C980A0006F00B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAFD2C76204C980A0006F00B /* Assets.xcassets */; };
@@ -49,6 +51,8 @@
 		CA9AE55F20670AE500005733 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		CA9AE5612067116000005733 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		CA9AE5632067141D00005733 /* NutritionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionInfo.swift; sourceTree = "<group>"; };
+		CA9AE5652067180100005733 /* MealCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCollectionViewCell.swift; sourceTree = "<group>"; };
+		CA9AE5672067187100005733 /* MealSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealSelectionViewController.swift; sourceTree = "<group>"; };
 		CAFD2C6C204C980A0006F00B /* Foodora.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foodora.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAFD2C6F204C980A0006F00B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAFD2C71204C980A0006F00B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				CA9AE55C2066D97300005733 /* BrowseOptionView.swift */,
+				CA9AE5652067180100005733 /* MealCollectionViewCell.swift */,
 			);
 			path = "Custom Elements";
 			sourceTree = "<group>";
@@ -139,6 +144,7 @@
 				CAFD2C71204C980A0006F00B /* ViewController.swift */,
 				CAFD2C9D204C9CF50006F00B /* HomeViewController.swift */,
 				CAFD2C9F204C9E8B0006F00B /* SearchViewController.swift */,
+				CA9AE5672067187100005733 /* MealSelectionViewController.swift */,
 				CA9AE55A2066D32100005733 /* BrowseViewController.swift */,
 				CAFD2CA3204CA2940006F00B /* ProfileViewController.swift */,
 				CAFD2CA1204CA1740006F00B /* MealPlanViewController.swift */,
@@ -303,11 +309,13 @@
 			files = (
 				CA9AE56020670AE500005733 /* Meal.swift in Sources */,
 				CAFD2CA4204CA2940006F00B /* ProfileViewController.swift in Sources */,
+				CA9AE5662067180100005733 /* MealCollectionViewCell.swift in Sources */,
 				CA9AE55D2066D97300005733 /* BrowseOptionView.swift in Sources */,
 				CAFD2C72204C980A0006F00B /* ViewController.swift in Sources */,
 				CAFD2C70204C980A0006F00B /* AppDelegate.swift in Sources */,
 				CA9AE5582066D0A600005733 /* NetworkManager.swift in Sources */,
 				CA9AE5642067141D00005733 /* NutritionInfo.swift in Sources */,
+				CA9AE5682067187100005733 /* MealSelectionViewController.swift in Sources */,
 				CAFD2CA2204CA1740006F00B /* MealPlanViewController.swift in Sources */,
 				CAFD2CA0204C9E8B0006F00B /* SearchViewController.swift in Sources */,
 				CA9AE55B2066D32100005733 /* BrowseViewController.swift in Sources */,
