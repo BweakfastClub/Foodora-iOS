@@ -38,13 +38,13 @@ class LoginViewController: UIViewController {
     }()
     
     var usernameTextField : UnderlinedTextField = {
-        let field = UnderlinedTextField(icon: "\u{f007}", placeholderText: "Username", placeholderColor: Colors.LIGHT_WHITE, textColor: .white, elementsColor: Colors.LIGHT_WHITE, activeColor: .white)
+        let field = UnderlinedTextField(icon: "\u{f007}", placeholderText: "Username", placeholderColor: Style.LIGHT_WHITE, textColor: .white, elementsColor: Style.LIGHT_WHITE, activeColor: .white)
         field.autocapitalizationType = .none
         return field
     }()
     
     var passwordTextField : UnderlinedTextField = {
-        let field = UnderlinedTextField(icon: "\u{f023}", placeholderText: "Password", placeholderColor: Colors.LIGHT_WHITE, textColor: .white, elementsColor: Colors.LIGHT_WHITE, activeColor: .white)
+        let field = UnderlinedTextField(icon: "\u{f023}", placeholderText: "Password", placeholderColor: Style.LIGHT_WHITE, textColor: .white, elementsColor: Style.LIGHT_WHITE, activeColor: .white)
         field.autocapitalizationType = .none
         return field
     }()
@@ -122,24 +122,24 @@ class LoginViewController: UIViewController {
         guard username != "" else { self.loginButton.shake(); self.usernameTextField.Error(); return }
         guard password != "" else { self.loginButton.shake(); self.passwordTextField.Error(); return }
         
-        NetworkManager.shared.Login(username: username!, password: password!) { (err, res) in
-            if err != nil {
-                // TODO: Display error in modal
-                self.loginButton.shake()
-                return
-            }
-            
-            if let netErr = res?.error {
-                // TODO: Display error in modal
-                print("Failed to login. Status: \(netErr.code). Reason: \(netErr.title)")
-                self.loginButton.shake()
-            }
-            
-            if let sessionKey = res?.data {
-                print("LOGGED IN!")
-                print("Session: \(sessionKey)")
-            }
-        }
+//        NetworkManager.shared.Login(username: username!, password: password!) { (err, res) in
+//            if err != nil {
+//                // TODO: Display error in modal
+//                self.loginButton.shake()
+//                return
+//            }
+//
+//            if let netErr = res?.error {
+//                // TODO: Display error in modal
+//                print("Failed to login. Status: \(netErr.code). Reason: \(netErr.title)")
+//                self.loginButton.shake()
+//            }
+//
+//            if let sessionKey = res?.data {
+//                print("LOGGED IN!")
+//                print("Session: \(sessionKey)")
+//            }
+//        }
     }
     
     @IBAction private func RegisterButtonClicked(sender: UIButton) {

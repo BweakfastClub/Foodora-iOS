@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         mealPlanNavigationController.viewControllers = [MealPlanViewController()]
         
         let profileNavigationController = UINavigationController()
-        profileNavigationController.viewControllers = [ProfileViewController()]
+        profileNavigationController.viewControllers = [LoginViewController()]
         
         rootTabController.viewControllers = [
             homeNavigationController,
