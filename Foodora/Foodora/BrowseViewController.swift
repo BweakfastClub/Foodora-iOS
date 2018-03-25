@@ -33,16 +33,24 @@ class BrowseViewController : UIViewController {
         
         view.addSubview(mainStack)
         
+        let breakfastTap = UITapGestureRecognizer(target: self, action: #selector(self.touchTapped(_:)))
         breakfastCell = BrowseOptionView("https://images5.alphacoders.com/432/432498.jpg", "BREAKFAST")
+        breakfastCell.addGestureRecognizer(breakfastTap)
         mainStack.addArrangedSubview(breakfastCell)
 
+        let lunchTap = UITapGestureRecognizer(target: self, action: #selector(self.touchTapped(_:)))
         lunchCell = BrowseOptionView("https://images6.alphacoders.com/609/609345.jpg", "LUNCH")
+        lunchCell.addGestureRecognizer(lunchTap)
         mainStack.addArrangedSubview(lunchCell)
         
+        let dinnerTap = UITapGestureRecognizer(target: self, action: #selector(self.touchTapped(_:)))
         dinnerCell = BrowseOptionView("https://imgur.com/yQbH8Yk.png", "DINNER")
+        dinnerCell.addGestureRecognizer(dinnerTap)
         mainStack.addArrangedSubview(dinnerCell)
         
+        let snackTap = UITapGestureRecognizer(target: self, action: #selector(self.touchTapped(_:)))
         snacksCell = BrowseOptionView("https://imgur.com/x7nGYB8.png", "SNACKS")
+        snacksCell.addGestureRecognizer(snackTap)
         mainStack.addArrangedSubview(snacksCell)
         
         ApplyConstraints()
@@ -62,6 +70,13 @@ class BrowseViewController : UIViewController {
             mainStack.leftAnchor.constraint(equalTo: safeMargin.leftAnchor, constant: 20),
             mainStack.rightAnchor.constraint(equalTo: safeMargin.rightAnchor, constant: -20)
         ])
+    }
+    
+    @objc func touchTapped(_ sender: UITapGestureRecognizer) {
+        let view = sender.view as! BrowseOptionView
+        let vc = MealSelectionViewController()
+        vc.title = view.GetTitle()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }

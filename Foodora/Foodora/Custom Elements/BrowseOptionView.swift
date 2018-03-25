@@ -79,6 +79,10 @@ class BrowseOptionView : UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public func GetTitle() -> String {
+        return cellString
+    }
+    
     private func ApplyConstraints() {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
