@@ -31,12 +31,29 @@ class MealCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
+    private let dimmerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.4)
+        return view
+    }()
+    
+    private let containerLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "AvenirNext", size: 40)
+        label.textColor = .white
+        label.textAlignment = .center
+        label.numberOfLines = 2
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .clear
         
         contentView.addSubview(containerView)
         containerView.addSubview(backgroundImage)
+        containerView.addSubview(dimmerView)
+        containerView.addSubview(containerLabel)
         
         ApplyConstraints()
     }
@@ -47,6 +64,7 @@ class MealCollectionViewCell: UICollectionViewCell {
     
     private func UpdateCell() {
         if meal != nil {
+            containerLabel.text = meal!.title
             NetworkManager.GetImageByUrl(meal!.imageUrl) { (image) in
                 DispatchQueue.main.async {
                     self.backgroundImage.image = image
@@ -70,6 +88,22 @@ class MealCollectionViewCell: UICollectionViewCell {
             backgroundImage.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
             backgroundImage.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
             backgroundImage.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
+        ])
+        
+        dimmerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            dimmerView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            dimmerView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+            dimmerView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            dimmerView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
+        ])
+        
+        containerLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            containerLabel.topAnchor.constraint(equalTo: containerView.topAnchor),
+            containerLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+            containerLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            containerLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
         ])
     }
     

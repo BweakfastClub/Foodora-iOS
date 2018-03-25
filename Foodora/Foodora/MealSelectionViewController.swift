@@ -44,24 +44,18 @@ class MealSelectionViewController : UIViewController {
     }
     
     private func PopulateMeals() {
-        meals.append(Meal(id: 0, title: "MEAL 1", nutritionInformation: [:], ingredients: [], servings: 0, prepMinutes: 0, cookMinutes: 0, readyMinutes: 0, imageUrl: "https://4.bp.blogspot.com/-qXlf-A0Pwx8/UXiCteiPs2I/AAAAAAAAs4I/Boe1rU198o8/s1600/Food+HD+Wallpapers+(2).jpg"))
-        meals.append(Meal(id: 0, title: "MEAL 1", nutritionInformation: [:], ingredients: [], servings: 0, prepMinutes: 0, cookMinutes: 0, readyMinutes: 0, imageUrl: "https://wallpapersdsc.net/wp-content/uploads/2016/09/Junk-Food-Pictures.jpg"))
-        meals.append(Meal(id: 0, title: "MEAL 1", nutritionInformation: [:], ingredients: [], servings: 0, prepMinutes: 0, cookMinutes: 0, readyMinutes: 0, imageUrl: "https://s-media-cache-ak0.pinimg.com/originals/f9/d1/94/f9d194edc227bc3f3881c5530c5c7624.jpg"))
-        meals.append(Meal(id: 0, title: "MEAL 1", nutritionInformation: [:], ingredients: [], servings: 0, prepMinutes: 0, cookMinutes: 0, readyMinutes: 0, imageUrl: "https://cdn.wallpapersafari.com/82/16/jI26l9.jpg"))
         
-        meals.append(Meal(id: 0, title: "MEAL 1", nutritionInformation: [:], ingredients: [], servings: 0, prepMinutes: 0, cookMinutes: 0, readyMinutes: 0, imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm4cY1hUSW3VC9EzzZhy8SKj-L-TRSZoaoTctNohbjkgbcg57a"))
-        meals.append(Meal(id: 0, title: "MEAL 1", nutritionInformation: [:], ingredients: [], servings: 0, prepMinutes: 0, cookMinutes: 0, readyMinutes: 0, imageUrl: "https://s3.amazonaws.com/etntmedia/media/images/ext/842849976/greasy-fast-food.jpg"))
-        meals.append(Meal(id: 0, title: "MEAL 1", nutritionInformation: [:], ingredients: [], servings: 0, prepMinutes: 0, cookMinutes: 0, readyMinutes: 0, imageUrl: "https://www.popsci.com/sites/popsci.com/files/styles/1000_1x_/public/images/2017/11/chocolate_cake.jpg?itok=s7oiyPuG&fc=50,50"))
-        meals.append(Meal(id: 0, title: "MEAL 1", nutritionInformation: [:], ingredients: [], servings: 0, prepMinutes: 0, cookMinutes: 0, readyMinutes: 0, imageUrl: "https://fthmb.tqn.com/JdhMTBO9_i1Z7pmL74t7VyKiUFM=/3604x2766/filters:fill(auto,1)/GettyImages-184989995-56b38fd03df78cf7385cbcbb.jpg"))
-        meals.append(Meal(id: 0, title: "MEAL 1", nutritionInformation: [:], ingredients: [], servings: 0, prepMinutes: 0, cookMinutes: 0, readyMinutes: 0, imageUrl: "https://4.bp.blogspot.com/-qXlf-A0Pwx8/UXiCteiPs2I/AAAAAAAAs4I/Boe1rU198o8/s1600/Food+HD+Wallpapers+(2).jpg"))
-        meals.append(Meal(id: 0, title: "MEAL 1", nutritionInformation: [:], ingredients: [], servings: 0, prepMinutes: 0, cookMinutes: 0, readyMinutes: 0, imageUrl: "https://wallpapersdsc.net/wp-content/uploads/2016/09/Junk-Food-Pictures.jpg"))
-        meals.append(Meal(id: 0, title: "MEAL 1", nutritionInformation: [:], ingredients: [], servings: 0, prepMinutes: 0, cookMinutes: 0, readyMinutes: 0, imageUrl: "https://s-media-cache-ak0.pinimg.com/originals/f9/d1/94/f9d194edc227bc3f3881c5530c5c7624.jpg"))
-        meals.append(Meal(id: 0, title: "MEAL 1", nutritionInformation: [:], ingredients: [], servings: 0, prepMinutes: 0, cookMinutes: 0, readyMinutes: 0, imageUrl: "https://cdn.wallpapersafari.com/82/16/jI26l9.jpg"))
-        
-        meals.append(Meal(id: 0, title: "MEAL 1", nutritionInformation: [:], ingredients: [], servings: 0, prepMinutes: 0, cookMinutes: 0, readyMinutes: 0, imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm4cY1hUSW3VC9EzzZhy8SKj-L-TRSZoaoTctNohbjkgbcg57a"))
-        meals.append(Meal(id: 0, title: "MEAL 1", nutritionInformation: [:], ingredients: [], servings: 0, prepMinutes: 0, cookMinutes: 0, readyMinutes: 0, imageUrl: "https://s3.amazonaws.com/etntmedia/media/images/ext/842849976/greasy-fast-food.jpg"))
-        meals.append(Meal(id: 0, title: "MEAL 1", nutritionInformation: [:], ingredients: [], servings: 0, prepMinutes: 0, cookMinutes: 0, readyMinutes: 0, imageUrl: "https://www.popsci.com/sites/popsci.com/files/styles/1000_1x_/public/images/2017/11/chocolate_cake.jpg?itok=s7oiyPuG&fc=50,50"))
-        meals.append(Meal(id: 0, title: "MEAL 1", nutritionInformation: [:], ingredients: [], servings: 0, prepMinutes: 0, cookMinutes: 0, readyMinutes: 0, imageUrl: "https://fthmb.tqn.com/JdhMTBO9_i1Z7pmL74t7VyKiUFM=/3604x2766/filters:fill(auto,1)/GettyImages-184989995-56b38fd03df78cf7385cbcbb.jpg"))
+        meals.append(Meal("Chicken Tetrazzini", "https://images.media-allrecipes.com/userphotos/466448.jpg"))
+        meals.append(Meal("Chicken Marsala Over White Rice", "https://images.media-allrecipes.com/userphotos/1448794.jpg"))
+        meals.append(Meal("Moroccan Chicken Tagine with Caramelized Pears", "https://images.media-allrecipes.com/userphotos/4731893.jpg"))
+        meals.append(Meal("Rice with other stuff", "https://fthmb.tqn.com/JdhMTBO9_i1Z7pmL74t7VyKiUFM=/3604x2766/filters:fill(auto,1)/GettyImages-184989995-56b38fd03df78cf7385cbcbb.jpg"))
+        meals.append(Meal("Tender Italian Baked Chicken", "https://images.media-allrecipes.com/userphotos/4536524.jpg"))
+        meals.append(Meal("Roast Chicken with Thyme and Onions", "https://images.media-allrecipes.com/userphotos/211414.jpg"))
+        meals.append(Meal("Chicken Divan Casserole", "https://images.media-allrecipes.com/userphotos/4588683.jpg"))
+        meals.append(Meal("Thai Chicken with Basil Stir Fry", "https://images.media-allrecipes.com/userphotos/2677.jpg"))
+        meals.append(Meal("Chicken Pot Pie", "https://images.media-allrecipes.com/userphotos/4535759.jpg"))
+        meals.append(Meal("Slow Cooker Chicken and Dumplings", "https://images.media-allrecipes.com/userphotos/806223.jpg"))
+        meals.append(Meal("Baked Teriyaki Chicken", "https://images.media-allrecipes.com/userphotos/4530047.jpg"))
     }
     
     private func SetupCollectionView() {

@@ -20,4 +20,16 @@ struct Meal : Codable {
     var readyMinutes: Int
     var imageUrl: String
 
+    init(_ title: String, _ imageUrl: String) {
+        self.id = 0
+        self.title = title
+        self.nutritionInformation = [:]
+        self.ingredients = []
+        self.servings = 0
+        self.prepMinutes = 0
+        self.cookMinutes = 0
+        self.readyMinutes = 0
+        self.imageUrl = imageUrl
+    }
+    
 }
