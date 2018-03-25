@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ]
         
         let tabBarItems = rootTabController.tabBar.items! as [UITabBarItem]
-//        rootTabController.tabBar.tintColor = Style.mainColor
+        rootTabController.tabBar.tintColor = Style.main_color
         tabBarItems[0].title = "Home"
         tabBarItems[0].image = #imageLiteral(resourceName: "home")
         tabBarItems[1].title = "Browse"
@@ -62,6 +62,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.rootViewController = rootTabController
         window?.makeKeyAndVisible()
+        
+        // Remove the name of previous view from navigation bar next to back button
+        let BarButtonItemAppearance = UIBarButtonItem.appearance()
+        BarButtonItemAppearance.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.clear], for: .normal)
         
         return true
     }
