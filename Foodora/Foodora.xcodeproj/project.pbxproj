@@ -16,6 +16,7 @@
 		CA9AE5662067180100005733 /* MealCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE5652067180100005733 /* MealCollectionViewCell.swift */; };
 		CA9AE5682067187100005733 /* MealSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE5672067187100005733 /* MealSelectionViewController.swift */; };
 		CA9AE56A2068169D00005733 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE5692068169D00005733 /* Style.swift */; };
+		CA9AE56C20681A7800005733 /* MealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE56B20681A7800005733 /* MealViewController.swift */; };
 		CAFD2C70204C980A0006F00B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2C6F204C980A0006F00B /* AppDelegate.swift */; };
 		CAFD2C72204C980A0006F00B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2C71204C980A0006F00B /* ViewController.swift */; };
 		CAFD2C77204C980A0006F00B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAFD2C76204C980A0006F00B /* Assets.xcassets */; };
@@ -55,6 +56,7 @@
 		CA9AE5652067180100005733 /* MealCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA9AE5672067187100005733 /* MealSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealSelectionViewController.swift; sourceTree = "<group>"; };
 		CA9AE5692068169D00005733 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		CA9AE56B20681A7800005733 /* MealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewController.swift; sourceTree = "<group>"; };
 		CAFD2C6C204C980A0006F00B /* Foodora.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foodora.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAFD2C6F204C980A0006F00B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAFD2C71204C980A0006F00B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				CA9AE55A2066D32100005733 /* BrowseViewController.swift */,
 				CAFD2CA3204CA2940006F00B /* ProfileViewController.swift */,
 				CAFD2CA1204CA1740006F00B /* MealPlanViewController.swift */,
+				CA9AE56B20681A7800005733 /* MealViewController.swift */,
 				CAFD2C76204C980A0006F00B /* Assets.xcassets */,
 				CAFD2C78204C980A0006F00B /* LaunchScreen.storyboard */,
 				CAFD2C7B204C980A0006F00B /* Info.plist */,
@@ -311,6 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA9AE56020670AE500005733 /* Meal.swift in Sources */,
+				CA9AE56C20681A7800005733 /* MealViewController.swift in Sources */,
 				CAFD2CA4204CA2940006F00B /* ProfileViewController.swift in Sources */,
 				CA9AE5662067180100005733 /* MealCollectionViewCell.swift in Sources */,
 				CA9AE55D2066D97300005733 /* BrowseOptionView.swift in Sources */,
