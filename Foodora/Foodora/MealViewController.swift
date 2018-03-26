@@ -28,17 +28,20 @@ class MealViewController : UIViewController {
     private let mealTitle: UILabel = {
         let label = UILabel()
         label.text = "Meal"
-        label.font = UIFont(name: "AvenirNext-DemiBold", size: 28)!
+        label.font = UIFont(name: "AvenirNext-DemiBold", size: 24)!
         label.textColor = .black
+        label.textAlignment = .center
         label.numberOfLines = 2
         return label
     }()
     
-    private let lineView: UIView = {
+    private var firstLine: UIView!
+    private var secondLine: UIView!
+    private func lineView() -> UIView {
         let view = UIView()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.1)
         return view
-    }()
+    }
     
     private let nutritionStack: UIStackView = {
         let stack = UIStackView()
@@ -58,7 +61,11 @@ class MealViewController : UIViewController {
         
         view.addSubview(imageView)
         view.addSubview(mealTitle)
-        view.addSubview(lineView)
+        
+        firstLine = lineView()
+        secondLine = lineView()
+        view.addSubview(firstLine)
+        view.addSubview(secondLine)
         
         view.addSubview(nutritionStack)
         nutritionStack.addArrangedSubview(calorieView)
@@ -148,20 +155,28 @@ class MealViewController : UIViewController {
             
         ])
         
-        lineView.translatesAutoresizingMaskIntoConstraints = false
+        firstLine.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            lineView.heightAnchor.constraint(equalToConstant: 1),
-            lineView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
-            lineView.topAnchor.constraint(equalTo: mealTitle.bottomAnchor, constant: 10),
-            lineView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            firstLine.heightAnchor.constraint(equalToConstant: 1),
+            firstLine.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
+            firstLine.topAnchor.constraint(equalTo: mealTitle.bottomAnchor, constant: 10),
+            firstLine.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         
         nutritionStack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            nutritionStack.topAnchor.constraint(equalTo: lineView.bottomAnchor, constant: 10),
+            nutritionStack.topAnchor.constraint(equalTo: firstLine.bottomAnchor, constant: 10),
             nutritionStack.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
             nutritionStack.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
             nutritionStack.heightAnchor.constraint(equalToConstant: 50)
+        ])
+        
+        secondLine.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            secondLine.heightAnchor.constraint(equalToConstant: 1),
+            secondLine.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
+            secondLine.topAnchor.constraint(equalTo: nutritionStack.bottomAnchor, constant: 10),
+            secondLine.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         
     }
