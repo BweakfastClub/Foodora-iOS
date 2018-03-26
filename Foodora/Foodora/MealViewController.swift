@@ -25,12 +25,21 @@ class MealViewController : UIViewController {
         return view
     }()
     
+    private let mealTitle: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "AvenirNext-UltraLight", size: 28)!
+        label.textColor = .black
+        label.numberOfLines = 2
+        return label
+    }()
+    
     convenience init(meal: Meal) {
         self.init(nibName: nil, bundle: nil)
         view.backgroundColor = .white
         self.meal = meal
         
         view.addSubview(imageView)
+        view.addSubview(mealTitle)
         
         gradient.frame = view.bounds
         gradient.colors = [UIColor.black.cgColor, UIColor.black.withAlphaComponent(0.6).cgColor, UIColor.clear.cgColor]
@@ -76,6 +85,7 @@ class MealViewController : UIViewController {
                     self.imageView.image = image
                 }
             }
+            mealTitle.text = meal!.title
         }
     }
     
@@ -87,6 +97,15 @@ class MealViewController : UIViewController {
             imageView.rightAnchor.constraint(equalTo: view.rightAnchor),
             imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.35)
         ])
+        
+        mealTitle.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            mealTitle.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -20),
+            mealTitle.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
+            mealTitle.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10),
+            
+        ])
+        
     }
     
 }
