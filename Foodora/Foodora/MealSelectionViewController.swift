@@ -99,4 +99,10 @@ extension MealSelectionViewController: UICollectionViewDelegate, UICollectionVie
         return CGSize(width: size, height: size)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let meal = meals[indexPath.row]
+        let mealVC = MealViewController(meal: meal)
+        navigationController?.pushViewController(mealVC, animated: true)
+    }
+    
 }
