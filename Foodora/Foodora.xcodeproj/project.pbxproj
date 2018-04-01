@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA11A6E92068254B009FF29B /* fontawesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA11A6E82068254A009FF29B /* fontawesome.ttf */; };
+		CA11A6EB206829C9009FF29B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA11A6EA206829C9009FF29B /* RegisterViewController.swift */; };
 		CA9AE5582066D0A600005733 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE5572066D0A600005733 /* NetworkManager.swift */; };
 		CA9AE55B2066D32100005733 /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE55A2066D32100005733 /* BrowseViewController.swift */; };
 		CA9AE55D2066D97300005733 /* BrowseOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE55C2066D97300005733 /* BrowseOptionView.swift */; };
@@ -16,6 +18,9 @@
 		CA9AE5662067180100005733 /* MealCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE5652067180100005733 /* MealCollectionViewCell.swift */; };
 		CA9AE5682067187100005733 /* MealSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE5672067187100005733 /* MealSelectionViewController.swift */; };
 		CA9AE56A2068169D00005733 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE5692068169D00005733 /* Style.swift */; };
+		CAD9998C2068224B00C2EEE5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD9998B2068224B00C2EEE5 /* LoginViewController.swift */; };
+		CAD9998E2068231400C2EEE5 /* BetterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD9998D2068231400C2EEE5 /* BetterButton.swift */; };
+		CAD999902068236E00C2EEE5 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD9998F2068236E00C2EEE5 /* UnderlinedTextField.swift */; };
 		CAFD2C70204C980A0006F00B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2C6F204C980A0006F00B /* AppDelegate.swift */; };
 		CAFD2C72204C980A0006F00B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2C71204C980A0006F00B /* ViewController.swift */; };
 		CAFD2C77204C980A0006F00B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAFD2C76204C980A0006F00B /* Assets.xcassets */; };
@@ -46,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CA11A6E82068254A009FF29B /* fontawesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fontawesome.ttf; sourceTree = "<group>"; };
+		CA11A6EA206829C9009FF29B /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		CA9AE5572066D0A600005733 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CA9AE55A2066D32100005733 /* BrowseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
 		CA9AE55C2066D97300005733 /* BrowseOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseOptionView.swift; sourceTree = "<group>"; };
@@ -55,6 +62,9 @@
 		CA9AE5652067180100005733 /* MealCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA9AE5672067187100005733 /* MealSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealSelectionViewController.swift; sourceTree = "<group>"; };
 		CA9AE5692068169D00005733 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		CAD9998B2068224B00C2EEE5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		CAD9998D2068231400C2EEE5 /* BetterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterButton.swift; sourceTree = "<group>"; };
+		CAD9998F2068236E00C2EEE5 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 		CAFD2C6C204C980A0006F00B /* Foodora.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foodora.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAFD2C6F204C980A0006F00B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAFD2C71204C980A0006F00B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +113,8 @@
 			children = (
 				CA9AE55C2066D97300005733 /* BrowseOptionView.swift */,
 				CA9AE5652067180100005733 /* MealCollectionViewCell.swift */,
+				CAD9998D2068231400C2EEE5 /* BetterButton.swift */,
+				CAD9998F2068236E00C2EEE5 /* UnderlinedTextField.swift */,
 			);
 			path = "Custom Elements";
 			sourceTree = "<group>";
@@ -115,6 +127,14 @@
 				CA9AE5632067141D00005733 /* NutritionInfo.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		CAD999912068248000C2EEE5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CA11A6E82068254A009FF29B /* fontawesome.ttf */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		CAFD2C63204C980A0006F00B = {
@@ -140,6 +160,7 @@
 		CAFD2C6E204C980A0006F00B /* Foodora */ = {
 			isa = PBXGroup;
 			children = (
+				CAD999912068248000C2EEE5 /* Resources */,
 				CA9AE55E20670A1D00005733 /* Models */,
 				CA9AE5592066D27A00005733 /* Custom Elements */,
 				CAFD2C6F204C980A0006F00B /* AppDelegate.swift */,
@@ -155,6 +176,8 @@
 				CAFD2C7B204C980A0006F00B /* Info.plist */,
 				CA9AE5572066D0A600005733 /* NetworkManager.swift */,
 				CA9AE5692068169D00005733 /* Style.swift */,
+				CAD9998B2068224B00C2EEE5 /* LoginViewController.swift */,
+				CA11A6EA206829C9009FF29B /* RegisterViewController.swift */,
 			);
 			path = Foodora;
 			sourceTree = "<group>";
@@ -284,6 +307,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA11A6E92068254B009FF29B /* fontawesome.ttf in Resources */,
 				CAFD2C7A204C980A0006F00B /* LaunchScreen.storyboard in Resources */,
 				CAFD2C77204C980A0006F00B /* Assets.xcassets in Resources */,
 			);
@@ -314,14 +338,18 @@
 				CAFD2CA4204CA2940006F00B /* ProfileViewController.swift in Sources */,
 				CA9AE5662067180100005733 /* MealCollectionViewCell.swift in Sources */,
 				CA9AE55D2066D97300005733 /* BrowseOptionView.swift in Sources */,
+				CA11A6EB206829C9009FF29B /* RegisterViewController.swift in Sources */,
 				CA9AE56A2068169D00005733 /* Style.swift in Sources */,
 				CAFD2C72204C980A0006F00B /* ViewController.swift in Sources */,
 				CAFD2C70204C980A0006F00B /* AppDelegate.swift in Sources */,
+				CAD9998E2068231400C2EEE5 /* BetterButton.swift in Sources */,
 				CA9AE5582066D0A600005733 /* NetworkManager.swift in Sources */,
 				CA9AE5642067141D00005733 /* NutritionInfo.swift in Sources */,
 				CA9AE5682067187100005733 /* MealSelectionViewController.swift in Sources */,
 				CAFD2CA2204CA1740006F00B /* MealPlanViewController.swift in Sources */,
 				CAFD2CA0204C9E8B0006F00B /* SearchViewController.swift in Sources */,
+				CAD999902068236E00C2EEE5 /* UnderlinedTextField.swift in Sources */,
+				CAD9998C2068224B00C2EEE5 /* LoginViewController.swift in Sources */,
 				CA9AE55B2066D32100005733 /* BrowseViewController.swift in Sources */,
 				CAFD2C9E204C9CF50006F00B /* HomeViewController.swift in Sources */,
 				CA9AE5622067116000005733 /* Ingredient.swift in Sources */,
