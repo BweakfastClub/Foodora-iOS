@@ -32,4 +32,20 @@ struct Meal : Codable {
         self.imageUrl = imageUrl
     }
     
+    func getCalorieNutritionInfo() -> NutritionInfo {
+        return nutritionInformation["calories"]!
+    }
+    
+    func getFatNutritionInfo() -> NutritionInfo {
+        return nutritionInformation["fat"]!
+    }
+    
+    func getCarbNutritionInfo() -> NutritionInfo {
+        return nutritionInformation["carbohydrates"]!
+    }
+    
+    func getProteinNutritionInfo() -> NutritionInfo {
+        return nutritionInformation["protein"]!
+    }
+    
 }

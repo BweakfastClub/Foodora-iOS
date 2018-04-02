@@ -45,6 +45,7 @@ class MealSelectionViewController : UIViewController {
     
     private func PopulateMeals() {
         
+        meals.append(Meal("Can't Wait Microwave Lava Cake", "https://images.media-allrecipes.com/userphotos/4510959.jpg"))
         meals.append(Meal("Chicken Tetrazzini", "https://images.media-allrecipes.com/userphotos/466448.jpg"))
         meals.append(Meal("Chicken Marsala Over White Rice", "https://images.media-allrecipes.com/userphotos/1448794.jpg"))
         meals.append(Meal("Moroccan Chicken Tagine with Caramelized Pears", "https://images.media-allrecipes.com/userphotos/4731893.jpg"))
@@ -96,6 +97,12 @@ extension MealSelectionViewController: UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = (collectionView.frame.width / 2.0)
         return CGSize(width: size, height: size)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let meal = meals[indexPath.row]
+        let mealVC = MealViewController(meal: meal)
+        self.navigationController?.pushViewController(mealVC, animated: true)
     }
     
 }
