@@ -50,6 +50,30 @@ class MealViewController : UIViewController {
         return stack
     }()
     
+    private let ingredientTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Ingredients"
+        label.font = UIFont(name: "AvenirNext-DemiBold", size: 20)!
+        label.textColor = .black
+        label.textAlignment = .left
+        return label
+    }()
+    
+    private let ingredientStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+//        stack.distribution = .
+        return stack
+    }()
+    
+    private func ingredientLabel() -> UILabel {
+        let label = UILabel()
+        label.font = UIFont(name: "AvenirNext-UltraLight", size: 18)!
+        label.textColor = .black
+        label.textAlignment = .left
+        return label
+    }
+    
     let calorieView: NutritionView = NutritionView()
     let proteinView: NutritionView = NutritionView()
     let fatView: NutritionView = NutritionView()
@@ -59,9 +83,7 @@ class MealViewController : UIViewController {
         self.init(nibName: nil, bundle: nil)
         view.backgroundColor = .white
         self.meal = meal
-        
-        self.navigationController?.navigationBar.topItem?.title = "MEAL"
-        
+
         view.addSubview(imageView)
         view.addSubview(mealTitle)
         
@@ -75,6 +97,9 @@ class MealViewController : UIViewController {
         nutritionStack.addArrangedSubview(proteinView)
         nutritionStack.addArrangedSubview(fatView)
         nutritionStack.addArrangedSubview(carbView)
+        
+        view.addSubview(ingredientTitleLabel)
+        view.addSubview(ingredientStack)
         
         UpdateView()
         ApplyConstraints()
@@ -90,14 +115,11 @@ class MealViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.topItem?.title = "MEAL"
     }
     
     override func viewDidLayoutSubviews() {
         gradient.frame = imageView.bounds
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
     }
     
     private func UpdateView() {
@@ -125,7 +147,19 @@ class MealViewController : UIViewController {
 //            fatView.setNutritionData(fatInfo.name, "\(fatInfo.amount) \(fatInfo.unit)")
             fatView.setNutritionData("Total Fat", "12g")
             
+            
+            let ingredients = ["10 egg whites", "1 teaspoon cream of tartar", "1/2 teaspoon salt", "1 1/4 cups white sugar, divided", "3/4 cup sifted cake flour", "6 egg yolks", "1/2 teaspoon orange extract", "1/2 cup sifted cake flour"]
+            for ingredient in ingredients {
+                let tempLabel = ingredientLabel()
+                tempLabel.text = ingredient
+                ingredientStack.addArrangedSubview(tempLabel)
+            }
+            
         }
+    }
+    
+    private func AddIngredientToStack(_ ingredient: String) {
+        
     }
     
     private func ApplyConstraints() {
@@ -139,17 +173,16 @@ class MealViewController : UIViewController {
         
         mealTitle.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            mealTitle.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 5),
+            mealTitle.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
             mealTitle.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
-            mealTitle.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10),
-            
+            mealTitle.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10)
         ])
         
         firstLine.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             firstLine.heightAnchor.constraint(equalToConstant: 1),
             firstLine.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
-            firstLine.topAnchor.constraint(equalTo: mealTitle.bottomAnchor, constant: 5),
+            firstLine.topAnchor.constraint(equalTo: mealTitle.bottomAnchor, constant: 10),
             firstLine.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         
@@ -169,6 +202,19 @@ class MealViewController : UIViewController {
             secondLine.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         
+        ingredientTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            ingredientTitleLabel.topAnchor.constraint(equalTo: secondLine.bottomAnchor, constant: 10),
+            ingredientTitleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            ingredientTitleLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20)
+        ])
+        
+        ingredientStack.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            ingredientStack.topAnchor.constraint(equalTo: ingredientTitleLabel.bottomAnchor, constant: 10),
+            ingredientStack.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            ingredientStack.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20)
+        ])
     }
     
 }
