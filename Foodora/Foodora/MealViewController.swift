@@ -22,15 +22,16 @@ class MealViewController : UIViewController {
     private let imageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
         return view
     }()
     
     private let mealTitle: UILabel = {
         let label = UILabel()
         label.text = "Meal"
-        label.font = UIFont(name: "AvenirNext-DemiBold", size: 24)!
+        label.font = UIFont(name: "AvenirNext-Bold", size: 20)!
         label.textColor = .black
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.numberOfLines = 2
         return label
     }()
@@ -59,6 +60,8 @@ class MealViewController : UIViewController {
         view.backgroundColor = .white
         self.meal = meal
         
+        self.navigationController?.navigationBar.topItem?.title = "MEAL"
+        
         view.addSubview(imageView)
         view.addSubview(mealTitle)
         
@@ -72,11 +75,6 @@ class MealViewController : UIViewController {
         nutritionStack.addArrangedSubview(proteinView)
         nutritionStack.addArrangedSubview(fatView)
         nutritionStack.addArrangedSubview(carbView)
-        
-        gradient.frame = view.bounds
-        gradient.colors = [UIColor.black.cgColor, UIColor.black.withAlphaComponent(0.7).cgColor, UIColor.clear.cgColor]
-        gradient.locations = [0, 0.50, 1]
-        imageView.layer.mask = gradient
         
         UpdateView()
         ApplyConstraints()
@@ -92,14 +90,6 @@ class MealViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = true
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = false
     }
     
     override func viewDidLayoutSubviews() {
@@ -149,7 +139,7 @@ class MealViewController : UIViewController {
         
         mealTitle.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            mealTitle.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -20),
+            mealTitle.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 5),
             mealTitle.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
             mealTitle.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10),
             
@@ -159,7 +149,7 @@ class MealViewController : UIViewController {
         NSLayoutConstraint.activate([
             firstLine.heightAnchor.constraint(equalToConstant: 1),
             firstLine.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
-            firstLine.topAnchor.constraint(equalTo: mealTitle.bottomAnchor, constant: 10),
+            firstLine.topAnchor.constraint(equalTo: mealTitle.bottomAnchor, constant: 5),
             firstLine.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         
