@@ -165,10 +165,10 @@ class MealViewController : UIViewController {
     private func ApplyConstraints() {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: view.topAnchor),
+            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             imageView.leftAnchor.constraint(equalTo: view.leftAnchor),
             imageView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.35)
+            imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.30)
         ])
         
         mealTitle.translatesAutoresizingMaskIntoConstraints = false
