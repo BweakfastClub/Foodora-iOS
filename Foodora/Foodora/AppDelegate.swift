@@ -16,29 +16,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
+
         window = UIWindow(frame: UIScreen.main.bounds)
-        
+
         // root tab controller init
         let rootTabController = UITabBarController()
-        
+
         let homeNavigationController = UINavigationController()
         homeNavigationController.viewControllers = [HomeViewController()]
-        
+
         let browseNavigationController = UINavigationController()
         browseNavigationController.viewControllers = [BrowseViewController()]
-        
+
         let searchNavigationController = UINavigationController()
         let mealVC = MealSelectionViewController()
         searchNavigationController.viewControllers = [mealVC]
         mealVC.viewTitle = "BREAKFAST MEALS"
-        
+
         let mealPlanNavigationController = UINavigationController()
         mealPlanNavigationController.viewControllers = [MealPlanViewController()]
-        
+
         let profileNavigationController = UINavigationController()
-        profileNavigationController.viewControllers = [ProfileViewController()]
-        
+        profileNavigationController.viewControllers = [LoginViewController()]
+
         rootTabController.viewControllers = [
             homeNavigationController,
             browseNavigationController,
@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             mealPlanNavigationController,
             profileNavigationController
         ]
-        
+
         let tabBarItems = rootTabController.tabBar.items! as [UITabBarItem]
         rootTabController.tabBar.tintColor = Style.main_color
         tabBarItems[0].title = "Home"
@@ -59,18 +59,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarItems[3].image = #imageLiteral(resourceName: "food")
         tabBarItems[4].title = "Profile"
         tabBarItems[4].image = #imageLiteral(resourceName: "user")
-        
+
         window?.rootViewController = rootTabController
         window?.makeKeyAndVisible()
-        
+
         // Remove the name of previous view from navigation bar next to back button
         let BarButtonItemAppearance = UIBarButtonItem.appearance()
         BarButtonItemAppearance.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.clear], for: .normal)
-        
+
         UINavigationBar.appearance().barTintColor = Style.main_color
         UINavigationBar.appearance().tintColor = .white
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.white]
         
+        // Font color of back button on navigation bar
+        UINavigationBar.appearance().tintColor = Style.main_color
+
         return true
     }
 
@@ -98,4 +101,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-
