@@ -18,12 +18,11 @@
 		CA9AE5662067180100005733 /* MealCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE5652067180100005733 /* MealCollectionViewCell.swift */; };
 		CA9AE5682067187100005733 /* MealSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE5672067187100005733 /* MealSelectionViewController.swift */; };
 		CA9AE56A2068169D00005733 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE5692068169D00005733 /* Style.swift */; };
+		CA9AE56C20681A7800005733 /* MealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE56B20681A7800005733 /* MealViewController.swift */; };
 		CAD9998C2068224B00C2EEE5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD9998B2068224B00C2EEE5 /* LoginViewController.swift */; };
 		CAD9998E2068231400C2EEE5 /* BetterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD9998D2068231400C2EEE5 /* BetterButton.swift */; };
 		CAD999902068236E00C2EEE5 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD9998F2068236E00C2EEE5 /* UnderlinedTextField.swift */; };
-		CA9AE56C20681A7800005733 /* MealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE56B20681A7800005733 /* MealViewController.swift */; };
 		CAFD2C70204C980A0006F00B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2C6F204C980A0006F00B /* AppDelegate.swift */; };
-		CAFD2C72204C980A0006F00B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2C71204C980A0006F00B /* ViewController.swift */; };
 		CAFD2C77204C980A0006F00B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAFD2C76204C980A0006F00B /* Assets.xcassets */; };
 		CAFD2C7A204C980A0006F00B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAFD2C78204C980A0006F00B /* LaunchScreen.storyboard */; };
 		CAFD2C85204C980A0006F00B /* FoodoraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2C84204C980A0006F00B /* FoodoraTests.swift */; };
@@ -63,13 +62,12 @@
 		CA9AE5652067180100005733 /* MealCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA9AE5672067187100005733 /* MealSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealSelectionViewController.swift; sourceTree = "<group>"; };
 		CA9AE5692068169D00005733 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		CA9AE56B20681A7800005733 /* MealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewController.swift; sourceTree = "<group>"; };
 		CAD9998B2068224B00C2EEE5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CAD9998D2068231400C2EEE5 /* BetterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterButton.swift; sourceTree = "<group>"; };
 		CAD9998F2068236E00C2EEE5 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
-		CA9AE56B20681A7800005733 /* MealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewController.swift; sourceTree = "<group>"; };
 		CAFD2C6C204C980A0006F00B /* Foodora.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foodora.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAFD2C6F204C980A0006F00B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CAFD2C71204C980A0006F00B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CAFD2C76204C980A0006F00B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CAFD2C79204C980A0006F00B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CAFD2C7B204C980A0006F00B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -110,6 +108,65 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CA5F8C6021502B5B00D31D8A /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				CA9AE5572066D0A600005733 /* NetworkManager.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		CA5F8C6121502D3800D31D8A /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				CAFD2C9D204C9CF50006F00B /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		CA5F8C62215030E900D31D8A /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				CAFD2CA3204CA2940006F00B /* ProfileViewController.swift */,
+				CAD9998B2068224B00C2EEE5 /* LoginViewController.swift */,
+				CA11A6EA206829C9009FF29B /* RegisterViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		CA5F8C632150310100D31D8A /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				CA9AE5672067187100005733 /* MealSelectionViewController.swift */,
+				CAFD2C9F204C9E8B0006F00B /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		CA5F8C642150329200D31D8A /* Meal Plan */ = {
+			isa = PBXGroup;
+			children = (
+				CAFD2CA1204CA1740006F00B /* MealPlanViewController.swift */,
+			);
+			path = "Meal Plan";
+			sourceTree = "<group>";
+		};
+		CA5F8C652150340100D31D8A /* Meal View */ = {
+			isa = PBXGroup;
+			children = (
+				CA9AE56B20681A7800005733 /* MealViewController.swift */,
+			);
+			path = "Meal View";
+			sourceTree = "<group>";
+		};
+		CA5F8C662150348600D31D8A /* Browse */ = {
+			isa = PBXGroup;
+			children = (
+				CA9AE55A2066D32100005733 /* BrowseViewController.swift */,
+			);
+			path = Browse;
+			sourceTree = "<group>";
+		};
 		CA9AE5592066D27A00005733 /* Custom Elements */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,25 +219,21 @@
 		CAFD2C6E204C980A0006F00B /* Foodora */ = {
 			isa = PBXGroup;
 			children = (
+				CAFD2C6F204C980A0006F00B /* AppDelegate.swift */,
+				CA9AE5692068169D00005733 /* Style.swift */,
+				CA5F8C662150348600D31D8A /* Browse */,
+				CA5F8C652150340100D31D8A /* Meal View */,
+				CA5F8C642150329200D31D8A /* Meal Plan */,
+				CA5F8C632150310100D31D8A /* Search */,
+				CA5F8C62215030E900D31D8A /* Profile */,
+				CA5F8C6121502D3800D31D8A /* Home */,
+				CA5F8C6021502B5B00D31D8A /* Networking */,
 				CAD999912068248000C2EEE5 /* Resources */,
 				CA9AE55E20670A1D00005733 /* Models */,
 				CA9AE5592066D27A00005733 /* Custom Elements */,
-				CAFD2C6F204C980A0006F00B /* AppDelegate.swift */,
-				CAFD2C71204C980A0006F00B /* ViewController.swift */,
-				CAFD2C9D204C9CF50006F00B /* HomeViewController.swift */,
-				CAFD2C9F204C9E8B0006F00B /* SearchViewController.swift */,
-				CA9AE5672067187100005733 /* MealSelectionViewController.swift */,
-				CA9AE55A2066D32100005733 /* BrowseViewController.swift */,
-				CAFD2CA3204CA2940006F00B /* ProfileViewController.swift */,
-				CAFD2CA1204CA1740006F00B /* MealPlanViewController.swift */,
-				CA9AE56B20681A7800005733 /* MealViewController.swift */,
 				CAFD2C76204C980A0006F00B /* Assets.xcassets */,
 				CAFD2C78204C980A0006F00B /* LaunchScreen.storyboard */,
 				CAFD2C7B204C980A0006F00B /* Info.plist */,
-				CA9AE5572066D0A600005733 /* NetworkManager.swift */,
-				CA9AE5692068169D00005733 /* Style.swift */,
-				CAD9998B2068224B00C2EEE5 /* LoginViewController.swift */,
-				CA11A6EA206829C9009FF29B /* RegisterViewController.swift */,
 			);
 			path = Foodora;
 			sourceTree = "<group>";
@@ -344,7 +397,6 @@
 				CA9AE55D2066D97300005733 /* BrowseOptionView.swift in Sources */,
 				CA11A6EB206829C9009FF29B /* RegisterViewController.swift in Sources */,
 				CA9AE56A2068169D00005733 /* Style.swift in Sources */,
-				CAFD2C72204C980A0006F00B /* ViewController.swift in Sources */,
 				CAFD2C70204C980A0006F00B /* AppDelegate.swift in Sources */,
 				CAD9998E2068231400C2EEE5 /* BetterButton.swift in Sources */,
 				CA9AE5582066D0A600005733 /* NetworkManager.swift in Sources */,
