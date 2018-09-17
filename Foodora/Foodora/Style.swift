@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 struct Style {
-    static let main_color = UIColor(red:0.05, green:0.31, blue:0.50, alpha:1.00)
+    static let main_color = UIColor(red:0.38, green:0.56, blue:1.00, alpha:1.0)
     static let SOFT_BLUE = UIColor(red:0.15, green:0.57, blue:0.85, alpha:1.0)
     static let SOFT_PURPLE = UIColor(red:0.49, green:0.31, blue:0.82, alpha:1.00)
     static let DUSK_BLUE = UIColor(red:0.17, green:0.24, blue:0.31, alpha:1.0)

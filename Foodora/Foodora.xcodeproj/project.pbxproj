@@ -162,6 +162,7 @@
 		CA5F8C662150348600D31D8A /* Browse */ = {
 			isa = PBXGroup;
 			children = (
+				CA9AE55C2066D97300005733 /* BrowseOptionView.swift */,
 				CA9AE55A2066D32100005733 /* BrowseViewController.swift */,
 			);
 			path = Browse;
@@ -170,7 +171,6 @@
 		CA9AE5592066D27A00005733 /* Custom Elements */ = {
 			isa = PBXGroup;
 			children = (
-				CA9AE55C2066D97300005733 /* BrowseOptionView.swift */,
 				CA9AE5652067180100005733 /* MealCollectionViewCell.swift */,
 				CAD9998D2068231400C2EEE5 /* BetterButton.swift */,
 				CAD9998F2068236E00C2EEE5 /* UnderlinedTextField.swift */,
