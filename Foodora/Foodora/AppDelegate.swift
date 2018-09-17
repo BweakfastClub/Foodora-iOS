@@ -71,9 +71,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = .white
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.white]
         
-        // Font color of back button on navigation bar
-        UINavigationBar.appearance().tintColor = Style.main_color
-
         return true
     }
 

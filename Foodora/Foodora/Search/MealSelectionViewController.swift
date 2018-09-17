@@ -32,6 +32,13 @@ class MealSelectionViewController : UIViewController {
         return collection
     }()
     
+    private let searchBar : UISearchBar = {
+        let search = UISearchBar()
+        search.placeholder = "Search Recipes"
+        search.sizeToFit()
+        return search
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -63,6 +70,8 @@ class MealSelectionViewController : UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(MealCollectionViewCell.self, forCellWithReuseIdentifier: "mealcell")
+        collectionView.register(UICollectionViewCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerCellId")
+        searchBar.delegate = self
     }
     
     private func ApplyConstraints() {
@@ -104,5 +113,24 @@ extension MealSelectionViewController: UICollectionViewDelegate, UICollectionVie
         let mealVC = MealViewController(meal: meal)
         self.navigationController?.pushViewController(mealVC, animated: true)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: view.frame.width, height: 40)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerCellId", for: indexPath)
+        header.addSubview(searchBar)
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.leftAnchor.constraint(equalTo: header.leftAnchor).isActive = true
+        searchBar.rightAnchor.constraint(equalTo: header.rightAnchor).isActive = true
+        searchBar.topAnchor.constraint(equalTo: header.topAnchor).isActive = true
+        searchBar.bottomAnchor.constraint(equalTo: header.bottomAnchor).isActive = true
+        return header
+    }
+    
+}
+
+extension MealSelectionViewController: UISearchBarDelegate {
     
 }
