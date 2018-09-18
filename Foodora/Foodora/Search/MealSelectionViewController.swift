@@ -43,6 +43,8 @@ class MealSelectionViewController : UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
+        navigationController?.navigationBar.topItem?.title = "SEARCH"
+        
         view.addSubview(collectionView)
         
         SetupCollectionView()

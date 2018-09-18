@@ -56,6 +56,20 @@ class BrowseViewController : UIViewController {
         ApplyConstraints()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let bounds = self.navigationController!.navigationBar.bounds
+        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height + 50)
+        
+        let viewNavBar = UIView(frame: CGRect(
+            origin: CGPoint(x: 0, y:0),
+            size: CGSize(width: self.view.frame.size.width, height: 100)))
+        
+        self.navigationController?.navigationBar.addSubview(viewNavBar)
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

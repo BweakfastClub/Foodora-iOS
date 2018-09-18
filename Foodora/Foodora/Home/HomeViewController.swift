@@ -14,8 +14,8 @@ class HomeViewController : UIViewController {
     let titleLabel : UILabel = {
         let label = UILabel()
         label.attributedText = NSAttributedString(string: "Home View", attributes: [
-            NSAttributedStringKey.font: UIFont(name: "Avenir Next", size: 34)!,
-            NSAttributedStringKey.foregroundColor: UIColor.black
+            NSAttributedStringKey.font: UIFont(name: "AvenirNext-Bold", size: 34)!,
+            NSAttributedStringKey.foregroundColor: UIColor(red:0.21, green:0.23, blue:0.28, alpha:1.0)
         ])
         label.textAlignment = .center
         return label
@@ -28,12 +28,21 @@ class HomeViewController : UIViewController {
         
         navigationController?.navigationBar.topItem?.title = "HOME"
         
+        let leftButton = UIBarButtonItem(image: #imageLiteral(resourceName: "circle-user"), style: .plain, target: self, action: #selector(self.someFunc))
+        leftButton.tintColor = Style.main_color
+        self.navigationItem.leftBarButtonItem = leftButton
+        
         view.addSubview(titleLabel)
         ApplyConstraints()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    @objc func someFunc() {
+        
+        print("It Works")
     }
     
     private func ApplyConstraints() {

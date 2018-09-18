@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // root tab controller init
         let rootTabController = UITabBarController()
-
+        
         let homeNavigationController = UINavigationController()
         homeNavigationController.viewControllers = [HomeViewController()]
 
@@ -31,7 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let searchNavigationController = UINavigationController()
         let mealVC = MealSelectionViewController()
         searchNavigationController.viewControllers = [mealVC]
-        mealVC.viewTitle = "BREAKFAST MEALS"
 
         let mealPlanNavigationController = UINavigationController()
         mealPlanNavigationController.viewControllers = [MealPlanViewController()]
@@ -50,11 +49,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBarItems = rootTabController.tabBar.items! as [UITabBarItem]
         rootTabController.tabBar.tintColor = Style.main_color
 //        tabBarItems[0].title = "Home"
-        tabBarItems[0].image = #imageLiteral(resourceName: "home")
+        tabBarItems[0].image = #imageLiteral(resourceName: "home-7")
         tabBarItems[0].imageInsets = UIEdgeInsetsMake(6,0,-6,0)
         
 //        tabBarItems[1].title = "Browse"
-        tabBarItems[1].image = #imageLiteral(resourceName: "apple")
+        tabBarItems[1].image = #imageLiteral(resourceName: "coffee")
         tabBarItems[1].imageInsets = UIEdgeInsetsMake(6,0,-6,0)
         
 //        tabBarItems[2].title = "Search"
@@ -76,9 +75,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let BarButtonItemAppearance = UIBarButtonItem.appearance()
         BarButtonItemAppearance.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.clear], for: .normal)
 
-        UINavigationBar.appearance().barTintColor = Style.main_color
-        UINavigationBar.appearance().tintColor = .white
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.white]
+        UINavigationBar.appearance().barTintColor = .white
+        UINavigationBar.appearance().tintColor = Style.GRAY
+        UINavigationBar.appearance().titleTextAttributes = [
+            NSAttributedStringKey.font: UIFont(name: "AvenirNext-Bold", size: 20)!,
+            NSAttributedStringKey.foregroundColor: Style.GRAY
+        ]
+//        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: UIFont(name: "Avenir-Next", size: 20)!]
         
         return true
     }
