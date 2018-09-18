@@ -75,7 +75,7 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = MealTableViewCell(style: .default, reuseIdentifier: "cell")
-        cell.meal = Meal("Burger", "https://cms.splendidtable.org/sites/default/files/styles/w2000/public/Burger-Lab_Lamb-Burger-LEDE.jpg")
+        cell.meal = Meal.test_meals[((indexPath.section + 1) * indexPath.row) % Meal.test_meals.count]
         return cell
     }
     
