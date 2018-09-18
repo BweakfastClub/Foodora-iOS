@@ -11,14 +11,16 @@ import UIKit
 
 class HomeViewController : UIViewController {
     
-    let titleLabel : UILabel = {
-        let label = UILabel()
-        label.attributedText = NSAttributedString(string: "Home View", attributes: [
-            NSAttributedStringKey.font: UIFont(name: "AvenirNext-Bold", size: 34)!,
-            NSAttributedStringKey.foregroundColor: UIColor(red:0.21, green:0.23, blue:0.28, alpha:1.0)
-        ])
-        label.textAlignment = .center
-        return label
+    let tableView : UITableView = {
+        let tv = UITableView(frame: .zero)
+        tv.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Setup cell dynamic row height
+        tv.rowHeight = 100.0
+//        tv.estimatedRowHeight = 300
+        
+        tv.sectionHeaderHeight = 40
+        return tv
     }()
     
     override func viewDidLoad() {
@@ -26,35 +28,79 @@ class HomeViewController : UIViewController {
         
         view.backgroundColor = .white
         
-        navigationController?.navigationBar.topItem?.title = "HOME"
+        navigationController?.navigationBar.topItem?.title = "BRAINFOOD"
         
-        let leftButton = UIBarButtonItem(image: #imageLiteral(resourceName: "circle-user"), style: .plain, target: self, action: #selector(self.someFunc))
+        let leftButton = UIBarButtonItem(image: #imageLiteral(resourceName: "circle-user"), style: .plain, target: self, action: #selector(self.OpenProfileView))
         leftButton.tintColor = Style.main_color
         self.navigationItem.leftBarButtonItem = leftButton
         
-        view.addSubview(titleLabel)
+        SetupTableView()
+        
         ApplyConstraints()
+    }
+    
+    private func SetupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        view.addSubview(tableView)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    @objc func someFunc() {
-        
-        print("It Works")
+    @objc func OpenProfileView() {
+        print("Opening Profile view")
     }
     
     private func ApplyConstraints() {
-        let safeArea = view.safeAreaLayoutGuide
-        
-        // Title label constraints
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
-            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            titleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: view.rightAnchor)
         ])
+    }
+}
+
+extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = MealTableViewCell(style: .default, reuseIdentifier: "cell")
+        cell.meal = Meal("Burger", "https://cms.splendidtable.org/sites/default/files/styles/w2000/public/Burger-Lab_Lamb-Burger-LEDE.jpg")
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerCell = UITableViewHeaderFooterView(reuseIdentifier: "headerCell")
+        headerCell.textLabel?.font = UIFont(name: "AvenirNext-Bold", size: 16)!
+        switch section {
+            case 0:
+                headerCell.textLabel?.text = "FAVORITES"
+            case 1:
+                headerCell.textLabel?.text = "TOP MEALS"
+            case 2:
+                headerCell.textLabel?.text = "RECOMMENDED BREAKFAST"
+            case 3:
+                headerCell.textLabel?.text = "RECOMMENDED LUNCH"
+            case 4:
+                headerCell.textLabel?.text = "RECOMMENDED DINNER"
+            default:
+                headerCell.textLabel?.text = "RECOMMENDED DINNER"
+        }
+        return headerCell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
     }
     
 }
