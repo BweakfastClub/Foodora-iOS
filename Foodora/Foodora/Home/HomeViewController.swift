@@ -16,9 +16,9 @@ class HomeViewController : UIViewController {
         tv.translatesAutoresizingMaskIntoConstraints = false
         
         // Setup cell dynamic row height
-        tv.rowHeight = 100.0
+        tv.rowHeight = 130.0
 //        tv.estimatedRowHeight = 300
-        
+        tv.separatorStyle = .none
         tv.sectionHeaderHeight = 40
         return tv
     }()
@@ -80,21 +80,20 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerCell = UITableViewHeaderFooterView(reuseIdentifier: "headerCell")
-        headerCell.textLabel?.font = UIFont(name: "AvenirNext-Bold", size: 16)!
+        let headerCell = MealSectionTableViewHeader(reuseIdentifier: "headerCell")
         switch section {
             case 0:
-                headerCell.textLabel?.text = "FAVORITES"
+                headerCell.text = "FAVORITES"
             case 1:
-                headerCell.textLabel?.text = "TOP MEALS"
+                headerCell.text = "TOP MEALS"
             case 2:
-                headerCell.textLabel?.text = "RECOMMENDED BREAKFAST"
+                headerCell.text = "RECOMMENDED BREAKFAST"
             case 3:
-                headerCell.textLabel?.text = "RECOMMENDED LUNCH"
+                headerCell.text = "RECOMMENDED LUNCH"
             case 4:
-                headerCell.textLabel?.text = "RECOMMENDED DINNER"
+                headerCell.text = "RECOMMENDED DINNER"
             default:
-                headerCell.textLabel?.text = "RECOMMENDED DINNER"
+                headerCell.text = "RECOMMENDED DINNER"
         }
         return headerCell
     }

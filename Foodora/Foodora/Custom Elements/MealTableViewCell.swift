@@ -30,14 +30,16 @@ class MealTableViewCell : UITableViewCell {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
         view.image = #imageLiteral(resourceName: "placeholder")
+        view.clipsToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     let filter : UIView = {
         let view = UIView()
+        view.clipsToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.25)
+        view.backgroundColor = UIColor(red: 0.28, green: 0.28, blue: 0.28, alpha: 0.46)
         return view
     }()
     
@@ -68,16 +70,17 @@ class MealTableViewCell : UITableViewCell {
     }
     
     private func ApplyConstraints() {
+        let padding : CGFloat = 1.0
         NSLayoutConstraint.activate([
-            backgroundImageView.topAnchor.constraint(equalTo: topAnchor),
-            backgroundImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            backgroundImageView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
+            backgroundImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: padding),
             backgroundImageView.leftAnchor.constraint(equalTo: leftAnchor),
             backgroundImageView.rightAnchor.constraint(equalTo: rightAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            filter.topAnchor.constraint(equalTo: topAnchor),
-            filter.bottomAnchor.constraint(equalTo: bottomAnchor),
+            filter.topAnchor.constraint(equalTo: topAnchor, constant: padding),
+            filter.bottomAnchor.constraint(equalTo: bottomAnchor, constant: padding),
             filter.rightAnchor.constraint(equalTo: rightAnchor),
             filter.leftAnchor.constraint(equalTo: leftAnchor)
         ])
