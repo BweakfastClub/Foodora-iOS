@@ -11,6 +11,10 @@ import UIKit
 
 class HomeViewController : UIViewController {
     
+    private let TOP_MEALS_INDEX = 4
+    private let FAV_MEALS_INDEX = 4
+    
+    
     let tableView : UITableView = {
         let tv = UITableView(frame: .zero)
         tv.translatesAutoresizingMaskIntoConstraints = false
@@ -70,7 +74,7 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
         if (indexPath.section == 1) {
             let numberOfItems : CGFloat = 10.0
             
-            return ((ceil(numberOfItems / 2.0)) * 130.0) + (1.0 * numberOfItems-1)
+            return (ceil(numberOfItems / 2.0)) * 130.0 + ((numberOfItems/2.0) - 1.0)
         }
         return UITableViewAutomaticDimension
     }
@@ -147,7 +151,6 @@ extension HomeViewController : UICollectionViewDataSource, UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath)
-        cell.backgroundColor = .green
         return cell
     }
 }

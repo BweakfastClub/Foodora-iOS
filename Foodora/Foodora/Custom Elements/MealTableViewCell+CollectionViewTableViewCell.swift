@@ -26,7 +26,7 @@ class MealTableViewCell_CollectionViewTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "collectionCell")
+        collectionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: "collectionCell")
         
         addSubview(spacerView)
         spacerView.addSubview(collectionView)
