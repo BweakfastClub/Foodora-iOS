@@ -16,8 +16,9 @@ class HomeViewController : UIViewController {
         tv.translatesAutoresizingMaskIntoConstraints = false
         
         // Setup cell dynamic row height
-        tv.rowHeight = 130.0
-//        tv.estimatedRowHeight = 300
+        tv.rowHeight = UITableViewAutomaticDimension
+        tv.estimatedRowHeight = 130.0
+        
         tv.separatorStyle = .none
         tv.sectionHeaderHeight = 40
         return tv
@@ -70,10 +71,20 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (section == 1) {
+            return 1
+        }
         return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if (indexPath.section == 1) {
+            let cell = MealTableViewCell_CollectionViewTableViewCell(style: .default, reuseIdentifier: "collectionCell")
+            cell.collectionView.delegate = self
+            cell.collectionView.dataSource = self
+            return cell
+        }
+        
         let cell = MealTableViewCell(style: .default, reuseIdentifier: "cell")
         cell.meal = Meal.test_meals[((indexPath.section + 1) * indexPath.row) % Meal.test_meals.count]
         return cell
@@ -102,4 +113,32 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
         print(indexPath.row)
     }
     
+}
+
+extension HomeViewController : UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
+    // cell bottom padding
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 1.0
+    }
+    
+    // cell side padding
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 1.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: (self.view.frame.width / 2.0) - 1.0, height: 130.0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("potato")
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath)
+        cell.backgroundColor = .green
+        return cell
+    }
 }

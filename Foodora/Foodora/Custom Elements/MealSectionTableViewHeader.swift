@@ -28,6 +28,7 @@ class MealSectionTableViewHeader : UITableViewHeaderFooterView {
     private let label : UILabel = {
         let label = UILabel(frame: .zero)
         label.font = UIFont(name: "AvenirNext-Bold", size: 18)!
+        label.textColor = Style.GRAY
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

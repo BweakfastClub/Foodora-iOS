@@ -11,6 +11,8 @@ import UIKit
 
 class MealTableViewCell : UITableViewCell {
     
+    public var cellHeight : CGFloat = 130.0
+    
     public var meal: Meal? {
         didSet {
             UpdateCell()
@@ -75,7 +77,8 @@ class MealTableViewCell : UITableViewCell {
             backgroundImageView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
             backgroundImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: padding),
             backgroundImageView.leftAnchor.constraint(equalTo: leftAnchor),
-            backgroundImageView.rightAnchor.constraint(equalTo: rightAnchor)
+            backgroundImageView.rightAnchor.constraint(equalTo: rightAnchor),
+            backgroundImageView.heightAnchor.constraint(equalToConstant: cellHeight)
         ])
         
         NSLayoutConstraint.activate([
