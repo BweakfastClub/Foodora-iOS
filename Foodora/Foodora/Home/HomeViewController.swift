@@ -66,6 +66,15 @@ class HomeViewController : UIViewController {
 
 extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if (indexPath.section == 1) {
+            let numberOfItems : CGFloat = 10.0
+            
+            return ((ceil(numberOfItems / 2.0)) * 130.0) + (1.0 * numberOfItems-1)
+        }
+        return UITableViewAutomaticDimension
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 5
     }
