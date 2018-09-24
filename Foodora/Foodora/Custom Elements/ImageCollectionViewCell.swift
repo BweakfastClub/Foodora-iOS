@@ -21,14 +21,14 @@ class ImageCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         addSubview(imageView)
-        applyconstraints()
+        ApplyConstraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func applyconstraints(){
+    private func ApplyConstraints(){
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: self.topAnchor),
             imageView.leftAnchor.constraint(equalTo: self.leftAnchor),

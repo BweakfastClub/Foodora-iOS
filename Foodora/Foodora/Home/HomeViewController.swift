@@ -11,9 +11,13 @@ import UIKit
 
 class HomeViewController : UIViewController {
     
-    private let TOP_MEALS_INDEX = 4
-    private let FAV_MEALS_INDEX = 4
+    private let FAV_MEALS_INDEX = 0
+    private let TOP_MEALS_INDEX = 1
+    private let BREAKFAST_MEALS_INDEX = 2
+    private let LUNCH_MEALS_INDEX = 3
+    private let DINNER_MEALS_INDEX = 4
     
+    private let DEFAULT_CELL_HEIGHT : CGFloat = 130.0
     
     let tableView : UITableView = {
         let tv = UITableView(frame: .zero)
@@ -71,10 +75,10 @@ class HomeViewController : UIViewController {
 extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if (indexPath.section == 1) {
+        if (indexPath.section == TOP_MEALS_INDEX) {
             let numberOfItems : CGFloat = 10.0
             
-            return (ceil(numberOfItems / 2.0)) * 130.0 + ((numberOfItems/2.0) - 1.0)
+            return (ceil(numberOfItems / 2.0)) * DEFAULT_CELL_HEIGHT + ((numberOfItems/2.0) - 1.0)
         }
         return UITableViewAutomaticDimension
     }
@@ -84,17 +88,18 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (section == 1) {
+        if (section == TOP_MEALS_INDEX) {
             return 1
         }
         return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if (indexPath.section == 1) {
+        if (indexPath.section == TOP_MEALS_INDEX) {
             let cell = MealTableViewCell_CollectionViewTableViewCell(style: .default, reuseIdentifier: "collectionCell")
             cell.collectionView.delegate = self
             cell.collectionView.dataSource = self
+            cell.collectionView.tag = TOP_MEALS_INDEX
             return cell
         }
         
@@ -106,15 +111,15 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerCell = MealSectionTableViewHeader(reuseIdentifier: "headerCell")
         switch section {
-            case 0:
+            case FAV_MEALS_INDEX:
                 headerCell.text = "FAVORITES"
-            case 1:
+            case TOP_MEALS_INDEX:
                 headerCell.text = "TOP MEALS"
-            case 2:
+            case BREAKFAST_MEALS_INDEX:
                 headerCell.text = "RECOMMENDED BREAKFAST"
-            case 3:
+            case LUNCH_MEALS_INDEX:
                 headerCell.text = "RECOMMENDED LUNCH"
-            case 4:
+            case DINNER_MEALS_INDEX:
                 headerCell.text = "RECOMMENDED DINNER"
             default:
                 headerCell.text = "RECOMMENDED DINNER"
@@ -141,16 +146,19 @@ extension HomeViewController : UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (self.view.frame.width / 2.0) - 1.0, height: 130.0)
+        return CGSize(width: (self.view.frame.width / 2.0) - 1.0, height: DEFAULT_CELL_HEIGHT)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("potato")
         return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath)
     }
 }
