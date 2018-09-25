@@ -100,7 +100,7 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.section == TOP_MEALS_INDEX || indexPath.section == FAV_MEALS_INDEX) {
-            let cell = MealTableViewCell_CollectionViewTableViewCell(style: .default, reuseIdentifier: "collectionCell")
+            let cell = MealTableViewCellWithCollectionView(style: .default, reuseIdentifier: "collectionCell")
             cell.collectionView.delegate = self
             cell.collectionView.dataSource = self
             cell.collectionView.tag = indexPath.section

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		CA05A7362150B59F00A2679F /* MealTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA05A7352150B59F00A2679F /* MealTableViewCell.swift */; };
 		CA05A73821515F2500A2679F /* MealSectionTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA05A73721515F2500A2679F /* MealSectionTableViewHeader.swift */; };
-		CA05A73C2152BF8800A2679F /* MealTableViewCell+CollectionViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA05A73B2152BF8800A2679F /* MealTableViewCell+CollectionViewTableViewCell.swift */; };
+		CA05A73C2152BF8800A2679F /* MealTableViewCellWithCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA05A73B2152BF8800A2679F /* MealTableViewCellWithCollectionView.swift */; };
 		CA05A73E2152D9EC00A2679F /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA05A73D2152D9EC00A2679F /* ImageCollectionViewCell.swift */; };
 		CA11A6E92068254B009FF29B /* fontawesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA11A6E82068254A009FF29B /* fontawesome.ttf */; };
 		CA11A6EB206829C9009FF29B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA11A6EA206829C9009FF29B /* RegisterViewController.swift */; };
@@ -57,7 +57,7 @@
 /* Begin PBXFileReference section */
 		CA05A7352150B59F00A2679F /* MealTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealTableViewCell.swift; sourceTree = "<group>"; };
 		CA05A73721515F2500A2679F /* MealSectionTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealSectionTableViewHeader.swift; sourceTree = "<group>"; };
-		CA05A73B2152BF8800A2679F /* MealTableViewCell+CollectionViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MealTableViewCell+CollectionViewTableViewCell.swift"; sourceTree = "<group>"; };
+		CA05A73B2152BF8800A2679F /* MealTableViewCellWithCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealTableViewCellWithCollectionView.swift; sourceTree = "<group>"; };
 		CA05A73D2152D9EC00A2679F /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA11A6E82068254A009FF29B /* fontawesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fontawesome.ttf; sourceTree = "<group>"; };
 		CA11A6EA206829C9009FF29B /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -185,7 +185,7 @@
 				CAD9998F2068236E00C2EEE5 /* UnderlinedTextField.swift */,
 				CA05A7352150B59F00A2679F /* MealTableViewCell.swift */,
 				CA05A73721515F2500A2679F /* MealSectionTableViewHeader.swift */,
-				CA05A73B2152BF8800A2679F /* MealTableViewCell+CollectionViewTableViewCell.swift */,
+				CA05A73B2152BF8800A2679F /* MealTableViewCellWithCollectionView.swift */,
 				CA05A73D2152D9EC00A2679F /* ImageCollectionViewCell.swift */,
 			);
 			path = "Custom Elements";
@@ -424,7 +424,7 @@
 				CA9AE55B2066D32100005733 /* BrowseViewController.swift in Sources */,
 				CAFD2C9E204C9CF50006F00B /* HomeViewController.swift in Sources */,
 				CA9AE5622067116000005733 /* Ingredient.swift in Sources */,
-				CA05A73C2152BF8800A2679F /* MealTableViewCell+CollectionViewTableViewCell.swift in Sources */,
+				CA05A73C2152BF8800A2679F /* MealTableViewCellWithCollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

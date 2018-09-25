@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MealTableViewCell_CollectionViewTableViewCell: UITableViewCell {
+class MealTableViewCellWithCollectionView: UITableViewCell {
 
     let spacerView : UIView = {
         let view = UIView()
