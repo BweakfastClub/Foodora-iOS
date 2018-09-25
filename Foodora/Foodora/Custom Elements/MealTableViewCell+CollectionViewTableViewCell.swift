@@ -20,6 +20,8 @@ class MealTableViewCell_CollectionViewTableViewCell: UITableViewCell {
         let layout = UICollectionViewFlowLayout()
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = Style.LIGHT_WHITE
+        view.isScrollEnabled = false
         return view
     }()
     
@@ -47,8 +49,6 @@ class MealTableViewCell_CollectionViewTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-        
-        
     }
     
     private func ApplyConstraints() {
