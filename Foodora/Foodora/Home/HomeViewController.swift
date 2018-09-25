@@ -75,7 +75,7 @@ class HomeViewController : UIViewController {
 extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if (indexPath.section == TOP_MEALS_INDEX) {
+        if (indexPath.section == TOP_MEALS_INDEX || indexPath.section == FAV_MEALS_INDEX) {
             let numberOfItems : CGFloat = 10.0
             
             return (ceil(numberOfItems / 2.0)) * DEFAULT_CELL_HEIGHT + ((numberOfItems/2.0) - 1.0)
@@ -88,18 +88,18 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (section == TOP_MEALS_INDEX) {
+        if (section == TOP_MEALS_INDEX || section == FAV_MEALS_INDEX) {
             return 1
         }
         return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if (indexPath.section == TOP_MEALS_INDEX) {
+        if (indexPath.section == TOP_MEALS_INDEX || indexPath.section == FAV_MEALS_INDEX) {
             let cell = MealTableViewCell_CollectionViewTableViewCell(style: .default, reuseIdentifier: "collectionCell")
             cell.collectionView.delegate = self
             cell.collectionView.dataSource = self
-            cell.collectionView.tag = TOP_MEALS_INDEX
+            cell.collectionView.tag = indexPath.section
             return cell
         }
         
@@ -159,6 +159,7 @@ extension HomeViewController : UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(collectionView.tag)
         print(indexPath)
     }
 }
