@@ -13,8 +13,8 @@ class HomeViewController : UIViewController {
     
     private let NUMBER_OF_SECTIONS = 3
     private let FAV_MEALS_INDEX = 0
-    private let TOP_MEALS_INDEX = 1
-    private let RECOMMENDED_MEAL_INDEX = 2
+    private let RECOMMENDED_MEAL_INDEX = 1
+    private let TOP_MEALS_INDEX = 2
     
     private let DEFAULT_CELL_HEIGHT : CGFloat = 130.0
     
@@ -124,7 +124,7 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
-        case TOP_MEALS_INDEX:
+        case RECOMMENDED_MEAL_INDEX:
 //            return (ceil(CGFloat(NUMBER_OF_TOP_MEALS) / 2.0)) * DEFAULT_CELL_HEIGHT + ((CGFloat(NUMBER_OF_TOP_MEALS)/2.0) - 1.0)
             return DEFAULT_CELL_HEIGHT
         case FAV_MEALS_INDEX:
@@ -140,7 +140,7 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (section == TOP_MEALS_INDEX || section == FAV_MEALS_INDEX) {
+        if (section == RECOMMENDED_MEAL_INDEX || section == FAV_MEALS_INDEX) {
             if (!NetworkManager.IsLoggedIn()) {
                 return 0
             }
@@ -150,7 +150,7 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if (indexPath.section == TOP_MEALS_INDEX || indexPath.section == FAV_MEALS_INDEX) {
+        if (indexPath.section == RECOMMENDED_MEAL_INDEX || indexPath.section == FAV_MEALS_INDEX) {
             let cell = MealTableViewCellWithCollectionView(style: .default, reuseIdentifier: "collectionCell")
             cell.collectionView.delegate = self
             cell.collectionView.dataSource = self
@@ -181,7 +181,7 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         if (!NetworkManager.IsLoggedIn()) {
-            if (section == TOP_MEALS_INDEX || section == FAV_MEALS_INDEX) {
+            if (section == RECOMMENDED_MEAL_INDEX || section == FAV_MEALS_INDEX) {
                 return 0.0
             }
         }
@@ -211,7 +211,7 @@ extension HomeViewController : UICollectionViewDataSource, UICollectionViewDeleg
         switch collectionView.tag {
         case FAV_MEALS_INDEX:
             return NUMBER_OF_FAV_MEALS
-        case TOP_MEALS_INDEX:
+        case RECOMMENDED_MEAL_INDEX:
             return NUMBER_OF_TOP_MEALS
         default:
             print("Unkwown collectionView with tag: \(collectionView.tag)")
@@ -230,7 +230,7 @@ extension HomeViewController : UICollectionViewDataSource, UICollectionViewDeleg
         case FAV_MEALS_INDEX:
             NUMBER_OF_FAV_MEALS -= 1
             tableView.reloadData()
-        case TOP_MEALS_INDEX:
+        case RECOMMENDED_MEAL_INDEX:
             NUMBER_OF_TOP_MEALS -= 1
             tableView.reloadData()
         default:
