@@ -10,6 +10,8 @@ import UIKit
 
 class MealTableViewCellWithCollectionView: UITableViewCell {
 
+    private var scrollDirection : UICollectionViewScrollDirection = .vertical
+    
     let spacerView : UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -17,13 +19,19 @@ class MealTableViewCellWithCollectionView: UITableViewCell {
     }()
     
     let collectionView : UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
+        var layout : UICollectionViewLayout
+        layout = HorizontalCollectionViewLayout()
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = Style.LIGHT_WHITE
-        view.isScrollEnabled = false
+//        view.isScrollEnabled = false
         return view
     }()
+
+    public convenience init(style: UITableViewCellStyle, reuseIdentifier: String?, scrollDirection _scrollDirection: UICollectionViewScrollDirection) {
+        self.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.scrollDirection = _scrollDirection
+    }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

@@ -79,9 +79,11 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
         case TOP_MEALS_INDEX:
-            return (ceil(CGFloat(NUMBER_OF_TOP_MEALS) / 2.0)) * DEFAULT_CELL_HEIGHT + ((CGFloat(NUMBER_OF_TOP_MEALS)/2.0) - 1.0)
+//            return (ceil(CGFloat(NUMBER_OF_TOP_MEALS) / 2.0)) * DEFAULT_CELL_HEIGHT + ((CGFloat(NUMBER_OF_TOP_MEALS)/2.0) - 1.0)
+            return DEFAULT_CELL_HEIGHT
         case FAV_MEALS_INDEX:
-            return (ceil(CGFloat(NUMBER_OF_FAV_MEALS) / 2.0)) * DEFAULT_CELL_HEIGHT + ((CGFloat(NUMBER_OF_FAV_MEALS)/2.0) - 1.0)
+//            return (ceil(CGFloat(NUMBER_OF_FAV_MEALS) / 2.0)) * DEFAULT_CELL_HEIGHT + ((CGFloat(NUMBER_OF_FAV_MEALS)/2.0) - 1.0)
+            return DEFAULT_CELL_HEIGHT
         default:
             return UITableViewAutomaticDimension
         }
