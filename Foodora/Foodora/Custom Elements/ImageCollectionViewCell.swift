@@ -30,6 +30,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
         let view = UIImageView()
         view.image = #imageLiteral(resourceName: "placeholder")
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentMode = .scaleAspectFill
         return view
     }()
     
