@@ -16,7 +16,7 @@ class NetworkManager {
     static private let defaultSession = URLSession(configuration: .default)
     
     public static func IsLoggedIn() -> Bool {
-        return false
+        return true
     }
     
     public static func GetImageByUrl(_ imageURLString : String, callback: @escaping (_ image: UIImage?) -> Void) {

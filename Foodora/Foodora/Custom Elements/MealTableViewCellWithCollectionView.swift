@@ -10,7 +10,7 @@ import UIKit
 
 class MealTableViewCellWithCollectionView: UITableViewCell {
 
-    private var scrollDirection : UICollectionViewScrollDirection = .vertical
+    private var scrollDirection : UICollectionViewScrollDirection!
     
     let spacerView : UIView = {
         let view = UIView()
@@ -19,8 +19,7 @@ class MealTableViewCellWithCollectionView: UITableViewCell {
     }()
     
     let collectionView : UICollectionView = {
-        var layout : UICollectionViewLayout
-        layout = HorizontalCollectionViewLayout()
+        var layout : UICollectionViewLayout = UICollectionViewFlowLayout()
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = Style.LIGHT_WHITE
@@ -28,15 +27,18 @@ class MealTableViewCellWithCollectionView: UITableViewCell {
         return view
     }()
 
-    public convenience init(style: UITableViewCellStyle, reuseIdentifier: String?, scrollDirection _scrollDirection: UICollectionViewScrollDirection) {
+    public convenience init(style: UITableViewCellStyle, reuseIdentifier: String?, scrollDirection: UICollectionViewScrollDirection) {
         self.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.scrollDirection = _scrollDirection
+        
+        if (scrollDirection == .horizontal) {
+            collectionView.setCollectionViewLayout(HorizontalCollectionViewLayout(), animated: true)
+        }
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        collectionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: "collectionCell")
+        collectionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier!)
         
         addSubview(spacerView)
         spacerView.addSubview(collectionView)

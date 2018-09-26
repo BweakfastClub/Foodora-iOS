@@ -131,7 +131,8 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
 //            return (ceil(CGFloat(NUMBER_OF_FAV_MEALS) / 2.0)) * DEFAULT_CELL_HEIGHT + ((CGFloat(NUMBER_OF_FAV_MEALS)/2.0) - 1.0)
             return DEFAULT_CELL_HEIGHT
         default:
-            return UITableViewAutomaticDimension
+            
+            return (ceil(CGFloat(10) / 2.0)) * DEFAULT_CELL_HEIGHT + ((CGFloat(10)/2.0) - 1.0)
         }
     }
     
@@ -146,20 +147,23 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
             }
             return 1
         }
-        return 10
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print(indexPath.section)
         if (indexPath.section == RECOMMENDED_MEAL_INDEX || indexPath.section == FAV_MEALS_INDEX) {
-            let cell = MealTableViewCellWithCollectionView(style: .default, reuseIdentifier: "collectionCell")
+            let cell = MealTableViewCellWithCollectionView(style: .default, reuseIdentifier: "collectionCell", scrollDirection: .horizontal)
             cell.collectionView.delegate = self
             cell.collectionView.dataSource = self
             cell.collectionView.tag = indexPath.section
             return cell
         }
         
-        let cell = MealTableViewCell(style: .default, reuseIdentifier: "cell")
-        cell.meal = Meal.test_meals[((indexPath.section + 1) * indexPath.row) % Meal.test_meals.count]
+        let cell = MealTableViewCellWithCollectionView(style: .default, reuseIdentifier: "topMealCell", scrollDirection: .vertical)
+        cell.collectionView.delegate = self
+        cell.collectionView.dataSource = self
+        cell.collectionView.tag = indexPath.section
         return cell
     }
     
@@ -179,13 +183,11 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
         if (!NetworkManager.IsLoggedIn()) {
             if (section == RECOMMENDED_MEAL_INDEX || section == FAV_MEALS_INDEX) {
                 return 0.0
             }
         }
-        
         return 40.0
     }
     
@@ -213,6 +215,8 @@ extension HomeViewController : UICollectionViewDataSource, UICollectionViewDeleg
             return NUMBER_OF_FAV_MEALS
         case RECOMMENDED_MEAL_INDEX:
             return NUMBER_OF_TOP_MEALS
+        case TOP_MEALS_INDEX:
+            return 10
         default:
             print("Unkwown collectionView with tag: \(collectionView.tag)")
             return 0
@@ -220,7 +224,22 @@ extension HomeViewController : UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as! ImageCollectionViewCell
+        print(collectionView.tag)
+        
+        var reuseIdentifier : String
+        switch collectionView.tag {
+        case FAV_MEALS_INDEX:
+            reuseIdentifier = "collectionCell"
+        case RECOMMENDED_MEAL_INDEX:
+            reuseIdentifier = "collectionCell"
+        case TOP_MEALS_INDEX:
+            reuseIdentifier = "topMealCell"
+        default:
+            print("Unkwown collectionView with tag: \(collectionView.tag)")
+            reuseIdentifier = "collectionCell"
+        }
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ImageCollectionViewCell
         cell.meal = Meal.test_meals[indexPath.row % Meal.test_meals.count]
         return cell
     }

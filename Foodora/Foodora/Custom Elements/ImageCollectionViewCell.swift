@@ -49,6 +49,8 @@ class ImageCollectionViewCell: UICollectionViewCell {
         addSubview(filter)
         addSubview(mealLabel)
         
+        clipsToBounds = true
+        
         ApplyConstraints()
     }
     
