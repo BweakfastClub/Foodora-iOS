@@ -33,31 +33,21 @@ class HomeViewController : UIViewController {
         return tv
     }()
     
-    // Not logged in view
-    let offlineView : UIView = {
+    let infoLabel : UILabel = {
+        let l = UILabel(frame: .zero)
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.font = UIFont(name: "AvenirNext-Bold", size: 16)!
+        l.textColor = .white
+        l.textAlignment = .center
+        l.text = "Doesn't seem like you're logged it..."
+        
+        return l
+    }()
+    
+    let infoView : UIView = {
         let view = UIView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = Style.main_color
-        
-        let label : UILabel = {
-            let l = UILabel(frame: .zero)
-            l.translatesAutoresizingMaskIntoConstraints = false
-            l.font = UIFont(name: "AvenirNext-Bold", size: 16)!
-            l.textColor = .white
-            l.textAlignment = .center
-            l.text = "Doesn't seem like you're logged it..."
-            return l
-        }()
-
-        view.addSubview(label)
-
-        NSLayoutConstraint.activate([
-            label.widthAnchor.constraint(equalTo: view.widthAnchor),
-            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            label.heightAnchor.constraint(equalToConstant: 30)
-        ])
-        
         return view
     }()
     
@@ -73,10 +63,8 @@ class HomeViewController : UIViewController {
         leftButton.tintColor = Style.main_color
         self.navigationItem.leftBarButtonItem = leftButton
         
-        view.addSubview(offlineView)
-        
         SetupTableView()
-        
+        SetupInfoView()
         ApplyConstraints()
     }
     
@@ -84,6 +72,21 @@ class HomeViewController : UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         view.addSubview(tableView)
+    }
+    
+    private func SetupInfoView() {
+        infoView.addSubview(infoLabel)
+        if (NetworkManager.IsLoggedIn()) {
+            infoView.backgroundColor = .white
+            infoLabel.text = """
+            Welcome back Brandon!
+            In the mood for some breakfast ideas?
+            """
+            infoLabel.numberOfLines = 2
+            infoLabel.textColor = Style.GRAY
+            infoLabel.alpha = 0.50
+        }
+        view.addSubview(infoView)
     }
     
     override func didReceiveMemoryWarning() {
@@ -95,24 +98,28 @@ class HomeViewController : UIViewController {
     }
     
     private func ApplyConstraints() {
-        
         let safeLayout = view.safeAreaLayoutGuide
         
-        // Offline view
+        // info view
         NSLayoutConstraint.activate([
-            offlineView.topAnchor.constraint(equalTo: safeLayout.topAnchor),
-            offlineView.leftAnchor.constraint(equalTo: safeLayout.leftAnchor),
-            offlineView.rightAnchor.constraint(equalTo: safeLayout.rightAnchor)
+            infoLabel.leftAnchor.constraint(equalTo: infoView.leftAnchor),
+            infoLabel.rightAnchor.constraint(equalTo: infoView.rightAnchor),
+            infoLabel.centerYAnchor.constraint(equalTo: infoView.centerYAnchor),
+            infoView.topAnchor.constraint(equalTo: safeLayout.topAnchor),
+            infoView.leftAnchor.constraint(equalTo: safeLayout.leftAnchor),
+            infoView.rightAnchor.constraint(equalTo: safeLayout.rightAnchor)
         ])
         
         if (!NetworkManager.IsLoggedIn()) {
-            offlineView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+            infoView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+            infoLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         } else {
-            offlineView.heightAnchor.constraint(equalToConstant: 0).isActive = true
+            infoView.heightAnchor.constraint(equalToConstant: 70).isActive = true
+            infoLabel.heightAnchor.constraint(equalToConstant: 60).isActive = true
         }
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: offlineView.bottomAnchor),
+            tableView.topAnchor.constraint(equalTo: infoView.bottomAnchor),
             tableView.bottomAnchor.constraint(equalTo: safeLayout.bottomAnchor),
             tableView.leftAnchor.constraint(equalTo: safeLayout.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: safeLayout.rightAnchor)

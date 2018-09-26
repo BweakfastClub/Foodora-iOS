@@ -83,6 +83,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ]
 //        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: UIFont(name: "Avenir-Next", size: 20)!]
         
+        //remove black bar under nav bar
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        
         return true
     }
 
