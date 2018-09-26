@@ -30,9 +30,37 @@ class HomeViewController : UIViewController {
         tv.estimatedRowHeight = 130.0
         
         tv.separatorStyle = .none
-        tv.sectionHeaderHeight = 40
         return tv
     }()
+    
+    // Not logged in view
+    let offlineView : UIView = {
+        let view = UIView(frame: .zero)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = Style.main_color
+        
+        let label : UILabel = {
+            let l = UILabel(frame: .zero)
+            l.translatesAutoresizingMaskIntoConstraints = false
+            l.font = UIFont(name: "AvenirNext-Bold", size: 16)!
+            l.textColor = .white
+            l.textAlignment = .center
+            l.text = "Doesn't seem like you're logged it..."
+            return l
+        }()
+
+        view.addSubview(label)
+
+        NSLayoutConstraint.activate([
+            label.widthAnchor.constraint(equalTo: view.widthAnchor),
+            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            label.heightAnchor.constraint(equalToConstant: 30)
+        ])
+        
+        return view
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +72,8 @@ class HomeViewController : UIViewController {
         let leftButton = UIBarButtonItem(image: #imageLiteral(resourceName: "circle-user"), style: .plain, target: self, action: #selector(self.OpenProfileView))
         leftButton.tintColor = Style.main_color
         self.navigationItem.leftBarButtonItem = leftButton
+        
+        view.addSubview(offlineView)
         
         SetupTableView()
         
@@ -65,11 +95,27 @@ class HomeViewController : UIViewController {
     }
     
     private func ApplyConstraints() {
+        
+        let safeLayout = view.safeAreaLayoutGuide
+        
+        // Offline view
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            tableView.rightAnchor.constraint(equalTo: view.rightAnchor)
+            offlineView.topAnchor.constraint(equalTo: safeLayout.topAnchor),
+            offlineView.leftAnchor.constraint(equalTo: safeLayout.leftAnchor),
+            offlineView.rightAnchor.constraint(equalTo: safeLayout.rightAnchor)
+        ])
+        
+        if (!NetworkManager.IsLoggedIn()) {
+            offlineView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        } else {
+            offlineView.heightAnchor.constraint(equalToConstant: 0).isActive = true
+        }
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: offlineView.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: safeLayout.bottomAnchor),
+            tableView.leftAnchor.constraint(equalTo: safeLayout.leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: safeLayout.rightAnchor)
         ])
     }
 }
@@ -95,9 +141,12 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (section == TOP_MEALS_INDEX || section == FAV_MEALS_INDEX) {
+            if (!NetworkManager.IsLoggedIn()) {
+                return 0
+            }
             return 1
         }
-        return 3
+        return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -127,6 +176,17 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
                 headerCell.text = "RECOMMENDED MEALS"
         }
         return headerCell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        if (!NetworkManager.IsLoggedIn()) {
+            if (section == TOP_MEALS_INDEX || section == FAV_MEALS_INDEX) {
+                return 0.0
+            }
+        }
+        
+        return 40.0
     }
     
 }

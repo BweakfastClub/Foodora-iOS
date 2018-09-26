@@ -15,6 +15,10 @@ class NetworkManager {
     
     static private let defaultSession = URLSession(configuration: .default)
     
+    public static func IsLoggedIn() -> Bool {
+        return false
+    }
+    
     public static func GetImageByUrl(_ imageURLString : String, callback: @escaping (_ image: UIImage?) -> Void) {
         if let image = postImageCache.object(forKey: imageURLString as NSString) {
             return callback(image)
