@@ -18,7 +18,6 @@ public extension UICollectionView {
     public convenience init(frame: CGRect = .zero, horizontalLayout: HorizontalCollectionViewLayout) {
         self.init(frame: frame, collectionViewLayout: horizontalLayout)
         decelerationRate = UIScrollViewDecelerationRateNormal
-        
     }
 }
 
@@ -68,22 +67,22 @@ open class HorizontalCollectionViewLayout : UICollectionViewFlowLayout {
     }
     
     override open func prepare() {
-        cache.removeAll(keepingCapacity: false)
-        
-        var frame = CGRect.zero
-        var currentX : CGFloat = 0.0
-        
-        for item in 0..<numberOfItems {
+        if (cache.isEmpty) {
+            var frame = CGRect.zero
+            var currentX : CGFloat = 0.0
             
-            let indexPath = IndexPath(item: item, section: 0)
-            
-            let attribute = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-            
-            frame = CGRect(x: currentX, y: 0, width: cellWidth, height: height)
-            attribute.frame = frame
-            cache.append(attribute)
-            
-            currentX = frame.maxX
+            for item in 0..<numberOfItems {
+                
+                let indexPath = IndexPath(item: item, section: 0)
+                
+                let attribute = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+                
+                frame = CGRect(x: currentX, y: 0, width: cellWidth, height: height)
+                attribute.frame = frame
+                cache.append(attribute)
+                
+                currentX = frame.maxX
+            }
         }
     }
     
@@ -91,7 +90,6 @@ open class HorizontalCollectionViewLayout : UICollectionViewFlowLayout {
         var prospectAttributes = [UICollectionViewLayoutAttributes]()
         
         for attribute in cache {
-            //            print(attribute.frame)
             if rect.intersects(attribute.frame) {
                 prospectAttributes.append(attribute)
             }
@@ -110,5 +108,5 @@ open class HorizontalCollectionViewLayout : UICollectionViewFlowLayout {
 //        let yOffset = itemIndex * dragOffset
 //        return CGPoint(x: 0, y: yOffset)
 //    }
-    
+
 }
