@@ -94,7 +94,9 @@ class HomeViewController : UIViewController {
     }
     
     @objc func OpenProfileView() {
-        print("Opening Profile view")
+        self.navigationController?.present(UINavigationController(rootViewController: LoginViewController()), animated: true, completion: {
+            // Verify if we logged in or not.
+        })
     }
     
     private func ApplyConstraints() {
@@ -231,8 +233,6 @@ extension HomeViewController : UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print(collectionView.tag)
-        
         var reuseIdentifier : String
         switch collectionView.tag {
         case FAV_MEALS_INDEX:
