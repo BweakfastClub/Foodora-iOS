@@ -11,19 +11,20 @@ import UIKit
 
 class UnderlinedTextField : UITextField, UITextFieldDelegate {
     
-    private let ERROR_COLOR = Style.main_color
+    private let ERROR_COLOR = UIColor(red:0.91, green:0.31, blue:0.31, alpha:1.00)
     
     private var activeColor : UIColor = .white
     // used for icon and underline
     private var elementsColor : UIColor = .white
     
-    private let borderLayer = CALayer()
-    private let borderThickness : CGFloat = 2.0
-    public var underlineColor = Style.GRAY {
+    public var underlineColor : UIColor? {
         didSet {
             setNeedsDisplay()
         }
     }
+    
+    private let borderLayer = CALayer()
+    private let borderThickness : CGFloat = 2.0
     
     private var displayingError : Bool = false {
         didSet {
@@ -118,13 +119,14 @@ class UnderlinedTextField : UITextField, UITextFieldDelegate {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         drawUnderline(rect)
+        textColor = DetermineColorForElements()
         SetupLeftView()
     }
     
     private func drawUnderline(_ rect: CGRect) {
         borderLayer.frame = CGRect(x: 0, y: bounds.size.height - borderThickness, width: bounds.size.width, height: borderThickness)
         
-        borderLayer.backgroundColor = DetermineColorForElements().cgColor
+        borderLayer.backgroundColor = DetermineUnderlineColor().cgColor
         
         self.layer.addSublayer(borderLayer)
     }
@@ -147,15 +149,29 @@ class UnderlinedTextField : UITextField, UITextFieldDelegate {
         DrawInactiveField()
     }
     
+    private func DetermineUnderlineColor() -> UIColor {
+        guard let lineColor = underlineColor else {
+            return DetermineColorForElements()
+        }
+        
+        if (displayingError) { return ERROR_COLOR }
+        if (hasText()) { return activeColor }
+        
+        return lineColor
+    }
+    
     // used to determine what color we want to draw our elements
     private func DetermineColorForElements() -> UIColor {
-        let hasText = text != nil && !text!.isEmpty
         if (displayingError) {
             return ERROR_COLOR
-        } else if (isFirstResponder || hasText) {
+        } else if (hasText()) {
             return activeColor
         }
         return elementsColor
+    }
+    
+    private func hasText() -> Bool {
+        return text != nil && text != ""
     }
     
 }
