@@ -89,18 +89,30 @@ class HomeViewController : UIViewController {
         view.addSubview(infoView)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        DispatchQueue.main.async {
+            if (NetworkManager.IsLoggedIn()) {
+                self.ApplyConstraints()
+                self.SetupInfoView()
+                self.view.setNeedsDisplay()
+            }
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
     @objc func OpenProfileView() {
-        self.navigationController?.present(UINavigationController(rootViewController: LoginViewController()), animated: true, completion: {
-            // Verify if we logged in or not.
-        })
+        self.navigationController?.present(UINavigationController(rootViewController: LoginViewController()), animated: true, completion:  nil)
     }
     
     private func ApplyConstraints() {
         let safeLayout = view.safeAreaLayoutGuide
+        
+        // Removing infoView/infoLabel constraints
+        infoView.removeConstraints(infoView.constraints)
+        infoLabel.removeConstraints(infoLabel.constraints)
         
         // info view
         NSLayoutConstraint.activate([
@@ -111,6 +123,7 @@ class HomeViewController : UIViewController {
             infoView.leftAnchor.constraint(equalTo: safeLayout.leftAnchor),
             infoView.rightAnchor.constraint(equalTo: safeLayout.rightAnchor)
         ])
+        
         
         if (!NetworkManager.IsLoggedIn()) {
             infoView.heightAnchor.constraint(equalToConstant: 40).isActive = true

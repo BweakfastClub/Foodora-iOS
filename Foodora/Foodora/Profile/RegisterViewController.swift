@@ -64,20 +64,14 @@ class RegisterViewController : UIViewController {
     ////////////////////////////
     // INPUT SUBVIEW ELEMENTS //
     ////////////////////////////
-    var fullnameTextField : UnderlinedTextField = {
-        let field = UnderlinedTextField(icon: "\u{f040}", placeholderText: "Name", placeholderColor: Style.LIGHT_WHITE, textColor: .white, elementsColor: Style.LIGHT_WHITE, activeColor: .white)
-        field.autocapitalizationType = .none
-        return field
-    }()
-    
     var usernameTextField : UnderlinedTextField = {
-        let field = UnderlinedTextField(icon: "\u{f007}", placeholderText: "Username", placeholderColor: Style.LIGHT_WHITE, textColor: .white, elementsColor: Style.LIGHT_WHITE, activeColor: .white)
+        let field = UnderlinedTextField(icon: "\u{f007}", placeholderText: "Name", placeholderColor: Style.LIGHT_WHITE, textColor: .white, elementsColor: Style.LIGHT_WHITE, activeColor: .white)
         field.autocapitalizationType = .none
         return field
     }()
     
     var emailTextField : UnderlinedTextField = {
-        let field = UnderlinedTextField(icon: "\u{f0e0}", placeholderText: "Email Address", placeholderColor: Style.LIGHT_WHITE, textColor: .white, elementsColor: Style.LIGHT_WHITE, activeColor: .white)
+        let field = UnderlinedTextField(icon: "\u{f0e0}", placeholderText: "Email", placeholderColor: Style.LIGHT_WHITE, textColor: .white, elementsColor: Style.LIGHT_WHITE, activeColor: .white)
         field.autocapitalizationType = .none
         return field
     }()
@@ -117,7 +111,6 @@ class RegisterViewController : UIViewController {
         mainStackView.addArrangedSubview(titleLabel)
         
         // add elements to inputSubView
-        inputSubView.addSubview(fullnameTextField)
         inputSubView.addSubview(usernameTextField)
         inputSubView.addSubview(emailTextField)
         inputSubView.addSubview(passwordTextField)
@@ -149,14 +142,25 @@ class RegisterViewController : UIViewController {
     }
     
     @IBAction private func RegisterButtonSelected(sender: UIButton) {
-        let username = usernameTextField.text
-        let password = passwordTextField.text
-        let email = emailTextField.text
+        guard let username = usernameTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        guard let email = emailTextField.text else { return }
         
         guard username != "" else { self.registerButton.shake(); self.usernameTextField.Error(); return }
         guard email != "" else { self.registerButton.shake(); self.emailTextField.Error(); return }
         guard password != "" else { self.registerButton.shake(); self.passwordTextField.Error(); return }
         
+        NetworkManager.Register(email: email, username: username, password: password) { (statusCode) in
+            if (statusCode == 200) {
+                debugPrint("Registered Account")
+                DispatchQueue.main.async {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            } else {
+                debugPrint("Failed to register. Status code: \(statusCode)")
+                // TODO: display error
+            }
+        }
     }
     
     private func SetupConstraints() {
@@ -182,10 +186,6 @@ class RegisterViewController : UIViewController {
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            fullnameTextField.widthAnchor.constraint(equalTo: self.inputSubView.widthAnchor, multiplier: 0.80),
-            fullnameTextField.heightAnchor.constraint(equalToConstant: 40.0),
-            fullnameTextField.centerXAnchor.constraint(equalTo: self.inputSubView.centerXAnchor),
-            fullnameTextField.bottomAnchor.constraint(equalTo: self.usernameTextField.topAnchor, constant: -10),
             usernameTextField.widthAnchor.constraint(equalTo: self.inputSubView.widthAnchor, multiplier: 0.80),
             usernameTextField.heightAnchor.constraint(equalToConstant: 40.0),
             usernameTextField.centerXAnchor.constraint(equalTo: self.inputSubView.centerXAnchor),
