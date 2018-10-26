@@ -9,6 +9,18 @@
 import Foundation
 import UIKit.UIImage
 
+struct LoginResponse : Codable {
+    var token : String
+    
+    init(token: String) {
+        self.token = token
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case token = "token"
+    }
+}
+
 class NetworkManager {
     
     static private let BASE_URL : String = "http://cpserver.eastus.cloudapp.azure.com"
@@ -19,8 +31,10 @@ class NetworkManager {
     static private let defaultSession = URLSession(configuration: .default)
     static private var defaultTask : URLSessionDataTask?
     
+    static private var sessionKey : String?
+    
     public static func IsLoggedIn() -> Bool {
-        return true
+        return sessionKey != nil
     }
     
     public static func Register(email: String, username: String, password: String, callback: @escaping (_ status: Int) -> Void) {
@@ -68,28 +82,28 @@ class NetworkManager {
         }.resume()
     }
     
-    public static func Login(_ username: String, _ password: String, callback: @escaping (_ status: Int) -> Void) {
-        guard username != "" else { return callback(400) }
-        guard password != "" else { return callback(400) }
+    public static func Login(_ username: String, _ password: String, callback: @escaping (_ statusCode: Int, _ sessionKey: String?) -> Void) {
+        guard username != "" else { return callback(400, nil) }
+        guard password != "" else { return callback(400, nil) }
         
         let body = [
-            "name": username,
+            "email": username,
             "password": password
         ]
         
         guard let urlComponent = URLComponents(string: "\(BASE_URL):\(BASE_PORT)/users/login") else {
             print("Failed to create url")
-            return callback(400) //TODO: handle a failure in a better way
+            return callback(400, nil) //TODO: handle a failure in a better way
         }
         
         guard let url = urlComponent.url else {
             print("Failed to get url")
-            return callback(400)
+            return callback(400, nil)
         }
         
         guard let jsonBody = try? JSONSerialization.data(withJSONObject: body, options: []) else {
             print("Failed to convert body dict to JSON")
-            return callback(400)
+            return callback(400, nil)
         }
         
         var urlReq = URLRequest(url: url)
@@ -100,14 +114,26 @@ class NetworkManager {
         defaultSession.dataTask(with: urlReq) { (data, res, err) in
             if err != nil {
                 debugPrint("Error loging in")
-                return callback(500)
+                return callback(500, nil)
             }
             
-            guard let _ = data, let res = res as? HTTPURLResponse else {
+            guard let data = data, let res = res as? HTTPURLResponse else {
                 debugPrint("Failed to get data/res")
-                return callback(500)
+                return callback(500, nil)
             }
-            return callback(res.statusCode)
+            
+            if (res.statusCode != 200) {
+                return callback(res.statusCode, nil)
+            }
+            
+            do {
+                let loginRes = try JSONDecoder().decode(LoginResponse.self, from: data)
+                sessionKey = loginRes.token
+                callback(res.statusCode, loginRes.token)
+            } catch let error {
+                print(error)
+                return callback(500, nil)
+            }
         }.resume()
     }
     
