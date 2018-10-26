@@ -78,6 +78,7 @@ class NetworkManager {
                 debugPrint("Failed to get data/res")
                 return callback(500)
             }
+            
             return callback(res.statusCode)
         }.resume()
     }
