@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         rootTabController.viewControllers = [
             homeNavigationController,
-            browseNavigationController,
+//            browseNavigationController,
             searchNavigationController,
             mealPlanNavigationController
 //            profileNavigationController
@@ -49,20 +49,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBarItems = rootTabController.tabBar.items! as [UITabBarItem]
         rootTabController.tabBar.tintColor = Style.main_color
 //        tabBarItems[0].title = "Home"
-        tabBarItems[0].image = #imageLiteral(resourceName: "home-7")
+        tabBarItems[0].image = UIImage(named: "restaurant")
         tabBarItems[0].imageInsets = UIEdgeInsetsMake(6,0,-6,0)
         
 //        tabBarItems[1].title = "Browse"
-        tabBarItems[1].image = #imageLiteral(resourceName: "coffee")
-        tabBarItems[1].imageInsets = UIEdgeInsetsMake(6,0,-6,0)
+//        tabBarItems[1].image = #imageLiteral(resourceName: "coffee")
+//        tabBarItems[1].imageInsets = UIEdgeInsetsMake(6,0,-6,0)
         
 //        tabBarItems[2].title = "Search"
-        tabBarItems[2].image = #imageLiteral(resourceName: "search")
-        tabBarItems[2].imageInsets = UIEdgeInsetsMake(6,0,-6,0)
+        tabBarItems[1].image = UIImage(named: "search")
+        tabBarItems[1].imageInsets = UIEdgeInsetsMake(6,0,-6,0)
         
 //        tabBarItems[3].title = "Plan"
-        tabBarItems[3].image = #imageLiteral(resourceName: "food")
-        tabBarItems[3].imageInsets = UIEdgeInsetsMake(6,0,-6,0)
+        tabBarItems[2].image = UIImage(named: "book")
+        tabBarItems[2].imageInsets = UIEdgeInsetsMake(6,0,-6,0)
         
 //        tabBarItems[4].title = "Profile"
 //        tabBarItems[4].image = #imageLiteral(resourceName: "user")
