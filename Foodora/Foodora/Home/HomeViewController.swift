@@ -59,7 +59,7 @@ class HomeViewController : UIViewController {
         
         navigationController?.navigationBar.topItem?.title = "BRAINFOOD"
         
-        let leftButton = UIBarButtonItem(image: #imageLiteral(resourceName: "circle-user"), style: .plain, target: self, action: #selector(self.OpenProfileView))
+        let leftButton = UIBarButtonItem(image: UIImage(named: "user"), style: .plain, target: self, action: #selector(self.OpenProfileView))
         leftButton.tintColor = Style.main_color
         self.navigationItem.leftBarButtonItem = leftButton
         
@@ -91,9 +91,10 @@ class HomeViewController : UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         DispatchQueue.main.async {
-            if (NetworkManager.IsLoggedIn()) {
+            if (NetworkManager.IsLoggedIn()) { //TODO: check if we actually need to update
                 self.ApplyConstraints()
                 self.SetupInfoView()
+                self.tableView.reloadData()
                 self.view.setNeedsDisplay()
             }
         }
