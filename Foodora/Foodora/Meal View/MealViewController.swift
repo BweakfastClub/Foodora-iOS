@@ -11,8 +11,6 @@ import UIKit
 
 class MealViewController : UIViewController {
     
-    var gradient = CAGradientLayer()
-    
     private var meal: Meal? {
         didSet {
             UpdateView()
@@ -41,7 +39,7 @@ class MealViewController : UIViewController {
         let fadeView = UIView()
         view.addSubview(fadeView)
         fadeView.backgroundColor = .black
-        fadeView.alpha = 0.4
+        fadeView.alpha = 0.35
         fadeView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             fadeView.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -56,46 +54,53 @@ class MealViewController : UIViewController {
     private let mealTitle: UILabel = {
         let label = UILabel()
         label.text = "Meal"
-        label.font = UIFont(name: "AvenirNext-Bold", size: 20)!
-        label.textColor = .black
-        label.textAlignment = .left
+        label.font = UIFont(name: "AvenirNext-Medium", size: 20)!
+        label.textColor = .white
+        label.textAlignment = .center
         label.numberOfLines = 2
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private var firstLine: UIView!
-    private var secondLine: UIView!
-    private func lineView() -> UIView {
-        let view = UIView()
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.1)
-        return view
-    }
+    private let nutritionalFactLabel: UILabel = {
+        let label = UILabel()
+        label.text = "NUTRITIONAL FACTS"
+        label.font = UIFont(name: "AvenirNext-Bold", size: 20)!
+        label.textColor = .black
+        label.textAlignment = .left
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
     private let nutritionStack: UIStackView = {
         let stack = UIStackView()
         stack.distribution = .equalSpacing
+        stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
     
     private let ingredientTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Ingredients"
-        label.font = UIFont(name: "AvenirNext-DemiBold", size: 20)!
+        label.text = "INGREDIENTS"
+        label.font = UIFont(name: "AvenirNext-Bold", size: 20)!
         label.textColor = .black
         label.textAlignment = .left
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private let ingredientStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
-//        stack.distribution = .
+        stack.spacing = 5.0
+        stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
     
     private func ingredientLabel() -> UILabel {
         let label = UILabel()
-        label.font = UIFont(name: "AvenirNext-UltraLight", size: 18)!
+        label.font = UIFont(name: "AvenirNext-Medium", size: 16)!
+        label.textColor = Style.GRAY
         label.textColor = .black
         label.textAlignment = .left
         return label
@@ -115,11 +120,7 @@ class MealViewController : UIViewController {
         view.addSubview(imageView)
         view.addSubview(mealTitle)
         
-        firstLine = lineView()
-        secondLine = lineView()
-        view.addSubview(firstLine)
-        view.addSubview(secondLine)
-        
+        view.addSubview(nutritionalFactLabel)
         view.addSubview(nutritionStack)
         nutritionStack.addArrangedSubview(calorieView)
         nutritionStack.addArrangedSubview(proteinView)
@@ -155,10 +156,6 @@ class MealViewController : UIViewController {
         self.navigationController?.isNavigationBarHidden = false
     }
     
-    override func viewDidLayoutSubviews() {
-        gradient.frame = imageView.bounds
-    }
-    
     @IBAction private func dismissView(sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
@@ -170,7 +167,7 @@ class MealViewController : UIViewController {
                     self.imageView.image = image
                 }
             }
-            mealTitle.text = meal!.title
+            mealTitle.text = meal!.title.uppercased()
             
 //            let calorieInfo = meal!.getCalorieNutritionInfo()
 //            calorieView.setNutritionData(calorieInfo.name, "\(calorieInfo.amount) \(calorieInfo.unit)")
@@ -216,43 +213,30 @@ class MealViewController : UIViewController {
         
         mealTitle.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            mealTitle.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
+            mealTitle.centerYAnchor.constraint(equalTo: imageView.centerYAnchor),
             mealTitle.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
             mealTitle.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10)
         ])
         
-        firstLine.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            firstLine.heightAnchor.constraint(equalToConstant: 1),
-            firstLine.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
-            firstLine.topAnchor.constraint(equalTo: mealTitle.bottomAnchor, constant: 10),
-            firstLine.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            nutritionalFactLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
+            nutritionalFactLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            nutritionalFactLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20)
         ])
         
-        nutritionStack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            nutritionStack.topAnchor.constraint(equalTo: firstLine.bottomAnchor, constant: 10),
+            nutritionStack.topAnchor.constraint(equalTo: nutritionalFactLabel.bottomAnchor, constant: 10),
             nutritionStack.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
             nutritionStack.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
-            nutritionStack.heightAnchor.constraint(equalToConstant: 50)
+            nutritionStack.heightAnchor.constraint(equalToConstant: 40)
         ])
         
-        secondLine.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            secondLine.heightAnchor.constraint(equalToConstant: 1),
-            secondLine.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
-            secondLine.topAnchor.constraint(equalTo: nutritionStack.bottomAnchor, constant: 10),
-            secondLine.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
-        
-        ingredientTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            ingredientTitleLabel.topAnchor.constraint(equalTo: secondLine.bottomAnchor, constant: 10),
+            ingredientTitleLabel.topAnchor.constraint(equalTo: nutritionStack.bottomAnchor, constant: 10),
             ingredientTitleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
             ingredientTitleLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20)
         ])
         
-        ingredientStack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             ingredientStack.topAnchor.constraint(equalTo: ingredientTitleLabel.bottomAnchor, constant: 10),
             ingredientStack.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
@@ -274,7 +258,8 @@ class NutritionView: UIView {
     private let nutritionNameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = UIFont(name: "AvenirNext-UltraLight", size: 16)!
+        label.textColor = Style.GRAY
+        label.font = UIFont(name: "AvenirNext-Medium", size: 16)!
         label.text = "calories"
         return label
     }()
