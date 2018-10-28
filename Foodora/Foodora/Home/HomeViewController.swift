@@ -39,7 +39,7 @@ class HomeViewController : UIViewController {
         l.font = UIFont(name: "AvenirNext-Bold", size: 16)!
         l.textColor = .white
         l.textAlignment = .center
-        l.text = "Doesn't seem like you're logged it..."
+        l.text = "Doesn't seem like you're logged in..."
         
         return l
     }()
