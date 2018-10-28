@@ -2,8 +2,8 @@
 Native iOS application for Foodora
 
 ## Home View 
-<img src="https://imgur.com/gWMzmjD.png" width="250"></img>
-<img src="https://i.imgur.com/dUKG0yO.png" width="250"></img>
+<img src="https://i.imgur.com/n7EvxKC.png" width="250"></img>
+<img src="https://i.imgur.com/ABYnp5l.png" width="250"></img>
 <br>
 
 ## Login
