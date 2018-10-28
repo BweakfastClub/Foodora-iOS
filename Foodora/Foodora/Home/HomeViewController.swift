@@ -124,8 +124,7 @@ class HomeViewController : UIViewController {
             infoView.leftAnchor.constraint(equalTo: safeLayout.leftAnchor),
             infoView.rightAnchor.constraint(equalTo: safeLayout.rightAnchor)
         ])
-        
-        
+
         if (!NetworkManager.IsLoggedIn()) {
             infoView.heightAnchor.constraint(equalToConstant: 40).isActive = true
             infoLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
@@ -174,7 +173,6 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print(indexPath.section)
         if (indexPath.section == RECOMMENDED_MEAL_INDEX || indexPath.section == FAV_MEALS_INDEX) {
             let cell = MealTableViewCellWithCollectionView(style: .default, reuseIdentifier: "collectionCell", scrollDirection: .horizontal)
             cell.collectionView.delegate = self
@@ -266,15 +264,21 @@ extension HomeViewController : UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch collectionView.tag {
+        var meal : Meal
+        
+        switch indexPath.section {
         case FAV_MEALS_INDEX:
-            NUMBER_OF_FAV_MEALS -= 1
-            tableView.reloadData()
+            meal = Meal.test_meals[indexPath.row % Meal.test_meals.count]
         case RECOMMENDED_MEAL_INDEX:
-            NUMBER_OF_TOP_MEALS -= 1
-            tableView.reloadData()
+            meal = Meal.test_meals[indexPath.row % Meal.test_meals.count]
+        case TOP_MEALS_INDEX:
+            meal = Meal.test_meals[indexPath.row % Meal.test_meals.count]
         default:
-            return
+            meal = Meal.test_meals[indexPath.row % Meal.test_meals.count]
         }
+        
+        let mealVC = MealViewController(meal: meal)
+        self.navigationController?.pushViewController(mealVC, animated: true)
+        
     }
 }
