@@ -14,5 +14,9 @@ Native iOS application for Foodora
 <img src="https://i.imgur.com/WNZXbTn.png" width="250"></img>
 <br>
 
+## Meal View
+<img src="https://i.imgur.com/Uxeaqh8.png" width="250"></img>
+<br>
+
 #### Wireframe
 <img src="https://i.imgur.com/GJNR2G0.png"></img>
