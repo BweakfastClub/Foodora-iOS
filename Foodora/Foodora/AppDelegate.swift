@@ -25,12 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let homeNavigationController = UINavigationController()
         homeNavigationController.viewControllers = [HomeViewController()]
 
-        let browseNavigationController = UINavigationController()
-        browseNavigationController.viewControllers = [BrowseViewController()]
-
         let searchNavigationController = UINavigationController()
-        let mealVC = MealSelectionViewController()
-        searchNavigationController.viewControllers = [mealVC]
+        searchNavigationController.viewControllers = [SearchViewController()]
 
         let mealPlanNavigationController = UINavigationController()
         mealPlanNavigationController.viewControllers = [MealPlanViewController()]
