@@ -31,38 +31,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let mealPlanNavigationController = UINavigationController()
         mealPlanNavigationController.viewControllers = [MealPlanViewController()]
 
-        let profileNavigationController = UINavigationController()
-        profileNavigationController.viewControllers = [LoginViewController()]
-
         rootTabController.viewControllers = [
             homeNavigationController,
-//            browseNavigationController,
             searchNavigationController,
             mealPlanNavigationController
-//            profileNavigationController
         ]
 
         let tabBarItems = rootTabController.tabBar.items! as [UITabBarItem]
         rootTabController.tabBar.tintColor = Style.main_color
-//        tabBarItems[0].title = "Home"
+        
+        // Home Tab
         tabBarItems[0].image = UIImage(named: "restaurant")
         tabBarItems[0].imageInsets = UIEdgeInsetsMake(6,0,-6,0)
         
-//        tabBarItems[1].title = "Browse"
-//        tabBarItems[1].image = #imageLiteral(resourceName: "coffee")
-//        tabBarItems[1].imageInsets = UIEdgeInsetsMake(6,0,-6,0)
-        
-//        tabBarItems[2].title = "Search"
+        // Search Tab
         tabBarItems[1].image = UIImage(named: "search")
         tabBarItems[1].imageInsets = UIEdgeInsetsMake(6,0,-6,0)
         
-//        tabBarItems[3].title = "Plan"
+        // Meal Plan Tab
         tabBarItems[2].image = UIImage(named: "book")
         tabBarItems[2].imageInsets = UIEdgeInsetsMake(6,0,-6,0)
-        
-//        tabBarItems[4].title = "Profile"
-//        tabBarItems[4].image = #imageLiteral(resourceName: "user")
-//        tabBarItems[4].imageInsets = UIEdgeInsetsMake(6,0,-6,0)
 
         window?.rootViewController = rootTabController
         window?.makeKeyAndVisible()
@@ -77,7 +65,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSAttributedStringKey.font: UIFont(name: "AvenirNext-Bold", size: 20)!,
             NSAttributedStringKey.foregroundColor: Style.GRAY
         ]
-//        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: UIFont(name: "Avenir-Next", size: 20)!]
         
         //remove black bar under nav bar
         UINavigationBar.appearance().shadowImage = UIImage()
