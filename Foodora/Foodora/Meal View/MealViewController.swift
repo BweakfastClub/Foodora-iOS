@@ -19,10 +19,37 @@ class MealViewController : UIViewController {
         }
     }
     
+    var dismissButton : UIButton = {
+        let button = BetterButton()
+        let label = UILabel()
+        button.titleLabel?.font = UIFont(name: "fontawesome", size: 30)
+        button.setTitle("\u{f104}", for: .normal)
+        button.backgroundColor = .clear
+        button.setTitleColor(.white, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(MealViewController.dismissView), for: .touchUpInside)
+        return button
+    }()
+    
     private let imageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Adding fade to image
+        let fadeView = UIView()
+        view.addSubview(fadeView)
+        fadeView.backgroundColor = .black
+        fadeView.alpha = 0.4
+        fadeView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            fadeView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            fadeView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            fadeView.topAnchor.constraint(equalTo: view.topAnchor),
+            fadeView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
         return view
     }()
     
@@ -81,9 +108,10 @@ class MealViewController : UIViewController {
     
     convenience init(meal: Meal) {
         self.init(nibName: nil, bundle: nil)
-        view.backgroundColor = .white
         self.meal = meal
-
+        
+        view.backgroundColor = .white
+        
         view.addSubview(imageView)
         view.addSubview(mealTitle)
         
@@ -101,6 +129,8 @@ class MealViewController : UIViewController {
         view.addSubview(ingredientTitleLabel)
         view.addSubview(ingredientStack)
         
+        view.addSubview(dismissButton)
+        
         UpdateView()
         ApplyConstraints()
     }
@@ -115,11 +145,22 @@ class MealViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.topItem?.title = "MEAL"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     override func viewDidLayoutSubviews() {
         gradient.frame = imageView.bounds
+    }
+    
+    @IBAction private func dismissView(sender: UIButton) {
+        navigationController?.popViewController(animated: true)
     }
     
     private func UpdateView() {
@@ -158,14 +199,16 @@ class MealViewController : UIViewController {
         }
     }
     
-    private func AddIngredientToStack(_ ingredient: String) {
-        
-    }
-    
     private func ApplyConstraints() {
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            dismissButton.widthAnchor.constraint(equalToConstant: 40),
+            dismissButton.heightAnchor.constraint(equalToConstant: 40),
+            dismissButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 5),
+            dismissButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10)
+        ])
+        
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: view.topAnchor),
             imageView.leftAnchor.constraint(equalTo: view.leftAnchor),
             imageView.rightAnchor.constraint(equalTo: view.rightAnchor),
             imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.30)
