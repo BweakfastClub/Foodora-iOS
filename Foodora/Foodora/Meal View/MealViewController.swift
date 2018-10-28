@@ -111,6 +111,16 @@ class MealViewController : UIViewController {
     let fatView: NutritionView = NutritionView()
     let carbView: NutritionView = NutritionView()
     
+    var mealPlanButton: BetterButton = {
+        let button = BetterButton()
+        button.setTitle("ADD TO MEAL PLAN", for: .normal)
+        button.backgroundColor = Style.main_color
+        button.setTitleColor(.white, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(MealViewController.clickedMealPlanButton), for: .touchUpInside)
+        return button
+    }()
+    
     convenience init(meal: Meal) {
         self.init(nibName: nil, bundle: nil)
         self.meal = meal
@@ -129,6 +139,8 @@ class MealViewController : UIViewController {
         
         view.addSubview(ingredientTitleLabel)
         view.addSubview(ingredientStack)
+        
+        view.addSubview(mealPlanButton)
         
         view.addSubview(dismissButton)
         
@@ -158,6 +170,10 @@ class MealViewController : UIViewController {
     
     @IBAction private func dismissView(sender: UIButton) {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction private func clickedMealPlanButton(sender: UIButton) {
+        print("Clicked meal plan button")
     }
     
     private func UpdateView() {
@@ -196,7 +212,7 @@ class MealViewController : UIViewController {
         }
     }
     
-    private func ApplyConstraints() {
+    private func ApplyConstraints() { //TODO: PUT EVERYTHING IN A STACK VIEW OR TRY AND USE A TABLEVIEW FOR INGREDIENTS
         NSLayoutConstraint.activate([
             dismissButton.widthAnchor.constraint(equalToConstant: 40),
             dismissButton.heightAnchor.constraint(equalToConstant: 40),
@@ -242,6 +258,14 @@ class MealViewController : UIViewController {
             ingredientStack.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
             ingredientStack.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20)
         ])
+        
+        NSLayoutConstraint.activate([
+            mealPlanButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            mealPlanButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            mealPlanButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.80),
+            mealPlanButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+        
     }
     
 }
