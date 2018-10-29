@@ -11,6 +11,9 @@ import UIKit
 
 class SearchViewController : UIViewController {
     
+    private let CELL_ID: String = "mealCell"
+    private let DEFAULT_CELL_HEIGHT : CGFloat = 130.0
+    
     // View that contains search bar
     let searchBarView: UIView = {
         let view = UIView()
@@ -31,6 +34,14 @@ class SearchViewController : UIViewController {
         return sb
     }()
     
+    let mealCollectionView: UICollectionView = {
+        var layout : UICollectionViewLayout = UICollectionViewFlowLayout()
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.backgroundColor = Style.LIGHT_GRAY
+        return cv
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,6 +54,12 @@ class SearchViewController : UIViewController {
         
         // Search bar
         view.addSubview(searchBar)
+        
+        // Meal collection view
+        mealCollectionView.dataSource = self
+        mealCollectionView.delegate = self
+        mealCollectionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: CELL_ID)
+        view.addSubview(mealCollectionView)
         
         ApplyConstraints()
     }
@@ -61,6 +78,14 @@ class SearchViewController : UIViewController {
             searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
         
+        // Meal Collection View
+        NSLayoutConstraint.activate([
+            mealCollectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
+            mealCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            mealCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            mealCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+        
     }
     
 }
@@ -69,8 +94,37 @@ extension SearchViewController : UISearchBarDelegate {
     
 }
 
-extension UISearchBar {
+extension SearchViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    // cell bottom padding
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.5
+    }
     
+    // cell side padding
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: DEFAULT_CELL_HEIGHT)
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CELL_ID, for: indexPath) as! ImageCollectionViewCell
+        cell.meal = Meal.test_meals[indexPath.row % Meal.test_meals.count]
+        return cell
+    }
+}
+
+extension UISearchBar {
     func setSearchFieldBackgroundColor(color: UIColor) {
         let textFieldInsideSearchBar = self.value(forKey: "searchField") as? UITextField
         textFieldInsideSearchBar?.backgroundColor = color
