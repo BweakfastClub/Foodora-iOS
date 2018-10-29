@@ -14,6 +14,28 @@ class SearchViewController : UIViewController {
     private let CELL_ID: String = "mealCell"
     private let DEFAULT_CELL_HEIGHT : CGFloat = 130.0
     
+    private var mealCount = 10
+    
+    // empty collection view logo
+    let emptyCVImage: UIImageView = {
+        let view = UIImageView(frame: .zero)
+        view.contentMode = .scaleAspectFit
+        view.image = UIImage(named: "brain")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    // empty collection view label
+    let emptyCVLabel: UILabel = {
+        let label = UILabel()
+        label.text = "You haven't searched anything"
+        label.font = UIFont(name: "PingFangHK-Ultralight", size: 20)
+        label.textAlignment = .center
+        label.sizeToFit()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     // View that contains search bar
     let searchBarView: UIView = {
         let view = UIView()
@@ -61,6 +83,12 @@ class SearchViewController : UIViewController {
         mealCollectionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: CELL_ID)
         view.addSubview(mealCollectionView)
         
+        // Adding empty view logo
+        view.addSubview(emptyCVImage)
+        
+        // Adding empty view label
+        view.addSubview(emptyCVLabel)
+        
         ApplyConstraints()
     }
     
@@ -86,6 +114,19 @@ class SearchViewController : UIViewController {
             mealCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
         
+        NSLayoutConstraint.activate([
+            emptyCVImage.heightAnchor.constraint(equalToConstant: 80),
+            emptyCVImage.widthAnchor.constraint(equalToConstant: 80),
+            emptyCVImage.centerXAnchor.constraint(equalTo: mealCollectionView.centerXAnchor),
+            emptyCVImage.centerYAnchor.constraint(equalTo: mealCollectionView.centerYAnchor, constant: -5)
+        ])
+        
+        NSLayoutConstraint.activate([
+            emptyCVLabel.leftAnchor.constraint(equalTo: mealCollectionView.leftAnchor),
+            emptyCVLabel.rightAnchor.constraint(equalTo: mealCollectionView.rightAnchor),
+            emptyCVLabel.centerXAnchor.constraint(equalTo: mealCollectionView.centerXAnchor),
+            emptyCVLabel.topAnchor.constraint(equalTo: emptyCVImage.bottomAnchor, constant: 5)
+        ])
     }
     
 }
@@ -114,7 +155,14 @@ extension SearchViewController : UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        if (mealCount == 0) {
+            emptyCVImage.alpha = 1.0
+            emptyCVLabel.alpha = 1.0
+            return mealCount
+        }
+        emptyCVImage.alpha = 0.0
+        emptyCVLabel.alpha = 0.0
+        return mealCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
