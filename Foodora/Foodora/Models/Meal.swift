@@ -51,7 +51,7 @@ struct Meal : Codable {
     static let test_meals : [Meal] = [
         Meal("Lettuce Burger", "https://cms.splendidtable.org/sites/default/files/styles/w2000/public/Burger-Lab_Lamb-Burger-LEDE.jpg"),
         Meal("Cheese Pizza", "https://i.ytimg.com/vi/1pVqlEBmPJU/maxresdefault.jpg"),
-        Meal("Chicken Caear Wrap","https://cdn.schwans.com/media/images/recipes/41276-1-1540.jpg"),
+        Meal("Chicken Caesar Wrap","https://cdn.schwans.com/media/images/recipes/41276-1-1540.jpg"),
         Meal("Waffle & bananas", "https://d2gk7xgygi98cy.cloudfront.net/1875-3-large.jpg"),
         Meal("Moist Cookies", "https://www.modernhoney.com/wp-content/uploads/2017/11/Thin-and-Crispy-Chocolate-Chip-Cookies-2.jpg"),
         Meal("White Chocolate Chip Cookies", "https://www.peta.org.uk/wp-content/uploads/2017/06/chocorangecookies.jpg"),
