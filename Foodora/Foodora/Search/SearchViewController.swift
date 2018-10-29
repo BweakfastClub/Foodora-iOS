@@ -11,14 +11,24 @@ import UIKit
 
 class SearchViewController : UIViewController {
     
-    let titleLabel : UILabel = {
-        let label = UILabel()
-        label.attributedText = NSAttributedString(string: "Search View", attributes: [
-            NSAttributedStringKey.font: UIFont(name: "Avenir Next", size: 34)!,
-            NSAttributedStringKey.foregroundColor: UIColor.black
-        ])
-        label.textAlignment = .center
-        return label
+    // View that contains search bar
+    let searchBarView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    // search bar
+    let searchBar: UISearchBar = {
+        let sb = UISearchBar()
+        sb.translatesAutoresizingMaskIntoConstraints = false
+        sb.backgroundImage = UIImage()
+        
+        sb.setPlaceholderTextColorTo(color: Style.main_color)
+        sb.setMagnifyingGlassColorTo(color: Style.main_color)
+        sb.setSearchFieldBackgroundColor(color: Style.LIGHT_GRAY)
+        
+        return sb
     }()
     
     override func viewDidLoad() {
@@ -28,7 +38,11 @@ class SearchViewController : UIViewController {
         
         navigationController?.navigationBar.topItem?.title = "SEARCH"
         
-        view.addSubview(titleLabel)
+        // Setup search bar delegate
+        searchBar.delegate = self
+        
+        // Search bar
+        view.addSubview(searchBar)
         
         ApplyConstraints()
     }
@@ -38,16 +52,40 @@ class SearchViewController : UIViewController {
     }
     
     private func ApplyConstraints() {
-        let safeArea = view.safeAreaLayoutGuide
         
-        // Title label constraints
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        // Search bar constraints
         NSLayoutConstraint.activate([
-            titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
-            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            titleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            searchBar.heightAnchor.constraint(equalToConstant: 50),
+            searchBar.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.90),
+            searchBar.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
         
     }
     
+}
+
+extension SearchViewController : UISearchBarDelegate {
+    
+}
+
+extension UISearchBar {
+    
+    func setSearchFieldBackgroundColor(color: UIColor) {
+        let textFieldInsideSearchBar = self.value(forKey: "searchField") as? UITextField
+        textFieldInsideSearchBar?.backgroundColor = color
+    }
+    
+    func setPlaceholderTextColorTo(color: UIColor) {
+        let textFieldInsideSearchBar = self.value(forKey: "searchField") as? UITextField
+        textFieldInsideSearchBar?.textColor = color
+        textFieldInsideSearchBar?.attributedPlaceholder = NSAttributedString(string: "Search", attributes: [NSAttributedString.Key.foregroundColor: color])
+    }
+    
+    func setMagnifyingGlassColorTo(color: UIColor) {
+        let textFieldInsideSearchBar = self.value(forKey: "searchField") as? UITextField
+        let glassIconView = textFieldInsideSearchBar?.leftView as? UIImageView
+        glassIconView?.image = glassIconView?.image?.withRenderingMode(.alwaysTemplate)
+        glassIconView?.tintColor = color
+    }
 }
