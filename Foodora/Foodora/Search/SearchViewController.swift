@@ -94,7 +94,7 @@ extension SearchViewController : UISearchBarDelegate {
     
 }
 
-extension SearchViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension SearchViewController : UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     // cell bottom padding
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0.5
@@ -121,5 +121,13 @@ extension SearchViewController : UICollectionViewDelegate, UICollectionViewDataS
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CELL_ID, for: indexPath) as! ImageCollectionViewCell
         cell.meal = Meal.test_meals[indexPath.row % Meal.test_meals.count]
         return cell
+    }
+}
+
+extension SearchViewController : UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let meal = Meal.test_meals[indexPath.row % Meal.test_meals.count]
+        let mealVC = MealViewController(meal: meal)
+        self.navigationController?.pushViewController(mealVC, animated: true)
     }
 }
