@@ -24,6 +24,7 @@
 		CAD9998C2068224B00C2EEE5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD9998B2068224B00C2EEE5 /* LoginViewController.swift */; };
 		CAD9998E2068231400C2EEE5 /* BetterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD9998D2068231400C2EEE5 /* BetterButton.swift */; };
 		CAD999902068236E00C2EEE5 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD9998F2068236E00C2EEE5 /* UnderlinedTextField.swift */; };
+		CAE7B9152186ABC400A16B2C /* UISearchBar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7B9142186ABC400A16B2C /* UISearchBar+Extensions.swift */; };
 		CAFD2C70204C980A0006F00B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD2C6F204C980A0006F00B /* AppDelegate.swift */; };
 		CAFD2C77204C980A0006F00B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAFD2C76204C980A0006F00B /* Assets.xcassets */; };
 		CAFD2C7A204C980A0006F00B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAFD2C78204C980A0006F00B /* LaunchScreen.storyboard */; };
@@ -70,6 +71,7 @@
 		CAD9998B2068224B00C2EEE5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CAD9998D2068231400C2EEE5 /* BetterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterButton.swift; sourceTree = "<group>"; };
 		CAD9998F2068236E00C2EEE5 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
+		CAE7B9142186ABC400A16B2C /* UISearchBar+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extensions.swift"; sourceTree = "<group>"; };
 		CAFD2C6C204C980A0006F00B /* Foodora.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foodora.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAFD2C6F204C980A0006F00B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAFD2C76204C980A0006F00B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -202,6 +204,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		CAE7B9132186AB9400A16B2C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CAE7B9142186ABC400A16B2C /* UISearchBar+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		CAFD2C63204C980A0006F00B = {
 			isa = PBXGroup;
 			children = (
@@ -236,6 +246,7 @@
 				CAD999912068248000C2EEE5 /* Resources */,
 				CA9AE55E20670A1D00005733 /* Models */,
 				CA9AE5592066D27A00005733 /* Custom Elements */,
+				CAE7B9132186AB9400A16B2C /* Extensions */,
 				CAB7E0322159E3850062C891 /* Custom Layouts */,
 				CAFD2C78204C980A0006F00B /* LaunchScreen.storyboard */,
 				CAFD2C76204C980A0006F00B /* Assets.xcassets */,
@@ -409,6 +420,7 @@
 				CA9AE5582066D0A600005733 /* NetworkManager.swift in Sources */,
 				CA9AE5642067141D00005733 /* NutritionInfo.swift in Sources */,
 				CAB7E0342159E4220062C891 /* HorizontalCollectionViewLayout.swift in Sources */,
+				CAE7B9152186ABC400A16B2C /* UISearchBar+Extensions.swift in Sources */,
 				CAFD2CA2204CA1740006F00B /* MealPlanViewController.swift in Sources */,
 				CAFD2CA0204C9E8B0006F00B /* SearchViewController.swift in Sources */,
 				CA05A73E2152D9EC00A2679F /* ImageCollectionViewCell.swift in Sources */,
