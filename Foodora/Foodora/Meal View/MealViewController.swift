@@ -29,6 +29,18 @@ class MealViewController : UIViewController {
         return button
     }()
     
+    var likeRecipeButton: UIButton = {
+        let button = BetterButton()
+        let label = UILabel()
+        button.titleLabel?.font = UIFont(name: "fontawesome", size: 30)
+        button.setTitle("\u{f004}", for: .normal)
+        button.backgroundColor = .clear
+        button.setTitleColor(.white, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.addTarget(self, action: #selector(MealViewController.dismissView), for: .touchUpInside)
+        return button
+    }()
+    
     private let imageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
@@ -144,6 +156,8 @@ class MealViewController : UIViewController {
         
         view.addSubview(dismissButton)
         
+        view.addSubview(likeRecipeButton)
+        
         UpdateView()
         ApplyConstraints()
     }
@@ -218,6 +232,13 @@ class MealViewController : UIViewController {
             dismissButton.heightAnchor.constraint(equalToConstant: 40),
             dismissButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 5),
             dismissButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10)
+        ])
+        
+        NSLayoutConstraint.activate([
+            likeRecipeButton.widthAnchor.constraint(equalToConstant: 40),
+            likeRecipeButton.heightAnchor.constraint(equalToConstant: 40),
+            likeRecipeButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 5),
+            likeRecipeButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -10)
         ])
         
         NSLayoutConstraint.activate([
