@@ -32,7 +32,7 @@ class MealViewController : UIViewController {
     var likeRecipeButton: UIButton = {
         let button = BetterButton()
         let label = UILabel()
-        button.titleLabel?.font = UIFont(name: "fontawesome", size: 30)
+        button.titleLabel?.font = UIFont(name: "fontawesome", size: 20)
         button.setTitle("\u{f004}", for: .normal)
         button.backgroundColor = .clear
         button.setTitleColor(.white, for: .normal)
@@ -235,8 +235,8 @@ class MealViewController : UIViewController {
         ])
         
         NSLayoutConstraint.activate([
-            likeRecipeButton.widthAnchor.constraint(equalToConstant: 40),
-            likeRecipeButton.heightAnchor.constraint(equalToConstant: 40),
+            likeRecipeButton.widthAnchor.constraint(equalToConstant: 30),
+            likeRecipeButton.heightAnchor.constraint(equalToConstant: 30),
             likeRecipeButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 5),
             likeRecipeButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -10)
         ])
