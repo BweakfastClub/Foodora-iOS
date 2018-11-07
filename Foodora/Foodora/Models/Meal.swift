@@ -10,10 +10,12 @@ import Foundation
 
 struct Meal : Codable {
 
-    var id: Int
+    
+    var id: String
+    var mealId: Int
     var title: String
-    var nutritionInformation: Dictionary<String, NutritionInfo>
-    var ingredients: [Ingredient]
+    var nutritionInformation: Dictionary<String, NutritionInfo>?
+    var ingredients: [Ingredient]?
     var servings: Int
     var prepMinutes: Int
     var cookMinutes: Int
@@ -21,7 +23,8 @@ struct Meal : Codable {
     var imageUrl: String
 
     init(_ title: String, _ imageUrl: String) {
-        self.id = 0
+        self.id = "0"
+        self.mealId = 0
         self.title = title
         self.nutritionInformation = [:]
         self.ingredients = []
@@ -32,20 +35,31 @@ struct Meal : Codable {
         self.imageUrl = imageUrl
     }
     
-    func getCalorieNutritionInfo() -> NutritionInfo {
-        return nutritionInformation["calories"]!
+    enum CodingKeys: String, CodingKey {
+        case id = "_id"
+        case mealId = "id"
+        case title = "title"
+        case servings = "servings"
+        case prepMinutes = "prepMinutes"
+        case cookMinutes = "cookMinutes"
+        case readyMinutes = "readyMinutes"
+        case imageUrl = "imageUrl"
     }
     
-    func getFatNutritionInfo() -> NutritionInfo {
-        return nutritionInformation["fat"]!
+    func getCalorieNutritionInfo() -> NutritionInfo? {
+        return nutritionInformation?["calories"]!
     }
     
-    func getCarbNutritionInfo() -> NutritionInfo {
-        return nutritionInformation["carbohydrates"]!
+    func getFatNutritionInfo() -> NutritionInfo? {
+        return nutritionInformation?["fat"]!
     }
     
-    func getProteinNutritionInfo() -> NutritionInfo {
-        return nutritionInformation["protein"]!
+    func getCarbNutritionInfo() -> NutritionInfo? {
+        return nutritionInformation?["carbohydrates"]!
+    }
+    
+    func getProteinNutritionInfo() -> NutritionInfo? {
+        return nutritionInformation?["protein"]!
     }
     
     static let test_meals : [Meal] = [
