@@ -73,6 +73,7 @@ class SearchViewController : UIViewController {
         
         // Setup search bar delegate
         searchBar.delegate = self
+        searchBar.showsCancelButton = false
         
         // Search bar
         view.addSubview(searchBar)
@@ -133,6 +134,18 @@ class SearchViewController : UIViewController {
 
 extension SearchViewController : UISearchBarDelegate {
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if (searchText.isEmpty) {
+            DispatchQueue.main.async {
+                self.view.endEditing(true)
+                searchBar.resignFirstResponder()
+                self.mealResults = [] //Remove resulting meals
+                self.mealCollectionView.reloadData()
+            }
+            return
+        }
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let query = searchBar.text else { return }
         NetworkManager.Search(query) { (mealRes) in
@@ -142,6 +155,7 @@ extension SearchViewController : UISearchBarDelegate {
                 self.mealCollectionView.reloadData()
             }
         }
+        searchBar.endEditing(true)
     }
 }
 
