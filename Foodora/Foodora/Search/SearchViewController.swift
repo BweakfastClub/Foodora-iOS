@@ -14,7 +14,7 @@ class SearchViewController : UIViewController {
     private let CELL_ID: String = "mealCell"
     private let DEFAULT_CELL_HEIGHT : CGFloat = 130.0
     
-    private var mealCount = 10
+    private var mealResults: [Meal] = []
     
     // empty collection view logo
     let emptyCVImage: UIImageView = {
@@ -133,6 +133,16 @@ class SearchViewController : UIViewController {
 
 extension SearchViewController : UISearchBarDelegate {
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let query = searchBar.text else { return }
+        NetworkManager.Search(query) { (mealRes) in
+            guard let meals = mealRes else { return }
+            self.mealResults = meals
+            DispatchQueue.main.async {
+                self.mealCollectionView.reloadData()
+            }
+        }
+    }
 }
 
 extension SearchViewController : UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -155,26 +165,26 @@ extension SearchViewController : UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if (mealCount == 0) {
+        if (mealResults.count == 0) {
             emptyCVImage.alpha = 1.0
             emptyCVLabel.alpha = 1.0
-            return mealCount
+            return 0
         }
         emptyCVImage.alpha = 0.0
         emptyCVLabel.alpha = 0.0
-        return mealCount
+        return mealResults.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CELL_ID, for: indexPath) as! ImageCollectionViewCell
-        cell.meal = Meal.test_meals[indexPath.row % Meal.test_meals.count]
+        cell.meal = mealResults[indexPath.row]
         return cell
     }
 }
 
 extension SearchViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let meal = Meal.test_meals[indexPath.row % Meal.test_meals.count]
+        let meal = mealResults[indexPath.row]
         let mealVC = MealViewController(meal: meal)
         self.navigationController?.pushViewController(mealVC, animated: true)
     }
