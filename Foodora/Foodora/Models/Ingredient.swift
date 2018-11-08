@@ -13,6 +13,13 @@ struct Ingredient : Codable {
     var id: Int
     var description: String
     var grams: Float
-    var displayDescription: String
+    var displayType: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "ingredientID"
+        case description = "displayValue"
+        case grams = "grams"
+        case displayType = "displayType"
+    }
     
 }

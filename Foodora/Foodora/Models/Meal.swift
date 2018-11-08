@@ -14,8 +14,8 @@ struct Meal : Codable {
     var id: String
     var mealId: Int
     var title: String
-    var nutritionInformation: Dictionary<String, NutritionInfo>?
-    var ingredients: [Ingredient]?
+    var nutritionInformation: Dictionary<String, NutritionInfo>
+    var ingredients: [Ingredient]
     var servings: Int
     var prepMinutes: Int
     var cookMinutes: Int
@@ -44,22 +44,24 @@ struct Meal : Codable {
         case cookMinutes = "cookMinutes"
         case readyMinutes = "readyMinutes"
         case imageUrl = "imageUrl"
+        case ingredients = "ingredients"
+        case nutritionInformation = "nutrition"
     }
     
     func getCalorieNutritionInfo() -> NutritionInfo? {
-        return nutritionInformation?["calories"]!
+        return nutritionInformation["calories"]
     }
     
     func getFatNutritionInfo() -> NutritionInfo? {
-        return nutritionInformation?["fat"]!
+        return nutritionInformation["fat"]
     }
     
     func getCarbNutritionInfo() -> NutritionInfo? {
-        return nutritionInformation?["carbohydrates"]!
+        return nutritionInformation["carbohydrates"]
     }
     
     func getProteinNutritionInfo() -> NutritionInfo? {
-        return nutritionInformation?["protein"]!
+        return nutritionInformation["protein"]
     }
     
     static let test_meals : [Meal] = [

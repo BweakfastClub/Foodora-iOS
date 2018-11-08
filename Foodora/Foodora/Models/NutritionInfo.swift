@@ -17,4 +17,13 @@ struct NutritionInfo: Codable {
     var dailyValue: String
     var isCompleteData: Bool
     
+    enum CodingKeys: String, CodingKey {
+        case name = "name"
+        case amount = "amount"
+        case unit = "unit"
+        case displayValue = "displayValue"
+        case dailyValue = "dailyValue"
+        case isCompleteData = "isCompleteData"
+    }
+    
 }

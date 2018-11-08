@@ -167,7 +167,6 @@
 		CA9AE5592066D27A00005733 /* Custom Elements */ = {
 			isa = PBXGroup;
 			children = (
-				CA9AE5632067141D00005733 /* NutritionInfo.swift */,
 				CA9AE5652067180100005733 /* MealCollectionViewCell.swift */,
 				CAD9998D2068231400C2EEE5 /* BetterButton.swift */,
 				CAD9998F2068236E00C2EEE5 /* UnderlinedTextField.swift */,
@@ -184,6 +183,7 @@
 			children = (
 				CA9AE55F20670AE500005733 /* Meal.swift */,
 				CA9AE5612067116000005733 /* Ingredient.swift */,
+				CA9AE5632067141D00005733 /* NutritionInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
