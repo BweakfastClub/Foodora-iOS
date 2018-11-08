@@ -11,15 +11,27 @@ import UIKit
 
 class HomeViewController : UIViewController {
     
-    private let NUMBER_OF_SECTIONS = 3
-    private let FAV_MEALS_INDEX = 0
-    private let RECOMMENDED_MEAL_INDEX = 1
-    private let TOP_MEALS_INDEX = 2
+    private let NUMBER_OF_SECTIONS = 2
+    private let RECOMMENDED_MEAL_INDEX = 0
+    private let TOP_MEALS_INDEX = 1
     
     private let DEFAULT_CELL_HEIGHT : CGFloat = 130.0
     
-    private var NUMBER_OF_FAV_MEALS = 6
-    private var NUMBER_OF_TOP_MEALS = 4
+    private var recommendedMeals: [Meal] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    private var topMeals: [Meal] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
     
     let tableView : UITableView = {
         let tv = UITableView(frame: .zero)
@@ -63,6 +75,7 @@ class HomeViewController : UIViewController {
         leftButton.tintColor = Style.main_color
         self.navigationItem.leftBarButtonItem = leftButton
         
+        RequestTopMeals()
         SetupTableView()
         SetupInfoView()
         ApplyConstraints()
@@ -87,6 +100,15 @@ class HomeViewController : UIViewController {
             infoLabel.alpha = 0.50
         }
         view.addSubview(infoView)
+    }
+    
+    private func RequestTopMeals() {
+        NetworkManager.TopRecipes { (mealRes) in
+            guard let meals = mealRes else { return }
+            DispatchQueue.main.async {
+                self.topMeals = meals
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -145,16 +167,13 @@ class HomeViewController : UIViewController {
 extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.section {
-        case RECOMMENDED_MEAL_INDEX:
-//            return (ceil(CGFloat(NUMBER_OF_TOP_MEALS) / 2.0)) * DEFAULT_CELL_HEIGHT + ((CGFloat(NUMBER_OF_TOP_MEALS)/2.0) - 1.0)
+        if (indexPath.section == RECOMMENDED_MEAL_INDEX) {
+            if (!NetworkManager.IsLoggedIn()) {
+                return 0
+            }
             return DEFAULT_CELL_HEIGHT
-        case FAV_MEALS_INDEX:
-//            return (ceil(CGFloat(NUMBER_OF_FAV_MEALS) / 2.0)) * DEFAULT_CELL_HEIGHT + ((CGFloat(NUMBER_OF_FAV_MEALS)/2.0) - 1.0)
-            return DEFAULT_CELL_HEIGHT
-        default:
-            
-            return (ceil(CGFloat(10) / 2.0)) * DEFAULT_CELL_HEIGHT + ((CGFloat(10)/2.0) - 1.0)
+        } else {
+            return (ceil(CGFloat(topMeals.count) / 2.0)) * DEFAULT_CELL_HEIGHT + ((CGFloat(topMeals.count)/2.0) - 1.0)
         }
     }
     
@@ -163,25 +182,16 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (section == RECOMMENDED_MEAL_INDEX || section == FAV_MEALS_INDEX) {
-            if (!NetworkManager.IsLoggedIn()) {
-                return 0
-            }
-            return 1
-        }
         return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if (indexPath.section == RECOMMENDED_MEAL_INDEX || indexPath.section == FAV_MEALS_INDEX) {
-            let cell = MealTableViewCellWithCollectionView(style: .default, reuseIdentifier: "collectionCell", scrollDirection: .horizontal)
-            cell.collectionView.delegate = self
-            cell.collectionView.dataSource = self
-            cell.collectionView.tag = indexPath.section
-            return cell
+        var cell: MealTableViewCellWithCollectionView
+        if (indexPath.section == RECOMMENDED_MEAL_INDEX) {
+            cell = MealTableViewCellWithCollectionView(style: .default, reuseIdentifier: "recommendedCell", scrollDirection: .horizontal)
         }
         
-        let cell = MealTableViewCellWithCollectionView(style: .default, reuseIdentifier: "topMealCell", scrollDirection: .vertical)
+        cell = MealTableViewCellWithCollectionView(style: .default, reuseIdentifier: "topMealCell", scrollDirection: .vertical)
         cell.collectionView.delegate = self
         cell.collectionView.dataSource = self
         cell.collectionView.tag = indexPath.section
@@ -191,23 +201,19 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerCell = MealSectionTableViewHeader(reuseIdentifier: "headerCell")
         switch section {
-            case FAV_MEALS_INDEX:
-                headerCell.text = "FAVORITES"
             case TOP_MEALS_INDEX:
                 headerCell.text = "TOP MEALS"
             case RECOMMENDED_MEAL_INDEX:
                 headerCell.text = "RECOMMENDED MEALS"
             default:
-                headerCell.text = "RECOMMENDED MEALS"
+                headerCell.text = ""
         }
         return headerCell
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if (!NetworkManager.IsLoggedIn()) {
-            if (section == RECOMMENDED_MEAL_INDEX || section == FAV_MEALS_INDEX) {
-                return 0.0
-            }
+        if (section == RECOMMENDED_MEAL_INDEX && !NetworkManager.IsLoggedIn()) {
+            return 0.0
         }
         return 40.0
     }
@@ -232,12 +238,10 @@ extension HomeViewController : UICollectionViewDataSource, UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView.tag {
-        case FAV_MEALS_INDEX:
-            return NUMBER_OF_FAV_MEALS
         case RECOMMENDED_MEAL_INDEX:
-            return NUMBER_OF_TOP_MEALS
+            return recommendedMeals.count
         case TOP_MEALS_INDEX:
-            return 10
+            return topMeals.count
         default:
             print("Unkwown collectionView with tag: \(collectionView.tag)")
             return 0
@@ -246,13 +250,14 @@ extension HomeViewController : UICollectionViewDataSource, UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var reuseIdentifier : String
+        
         switch collectionView.tag {
-        case FAV_MEALS_INDEX:
-            reuseIdentifier = "collectionCell"
         case RECOMMENDED_MEAL_INDEX:
-            reuseIdentifier = "collectionCell"
+            reuseIdentifier = "recommendedCell"
         case TOP_MEALS_INDEX:
-            reuseIdentifier = "topMealCell"
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "topMealCell", for: indexPath) as! ImageCollectionViewCell
+            cell.meal = topMeals[indexPath.row]
+            return cell
         default:
             print("Unkwown collectionView with tag: \(collectionView.tag)")
             reuseIdentifier = "collectionCell"
@@ -265,16 +270,14 @@ extension HomeViewController : UICollectionViewDataSource, UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         var meal : Meal
-        
-        switch indexPath.section {
-        case FAV_MEALS_INDEX:
-            meal = Meal.test_meals[indexPath.row % Meal.test_meals.count]
+        print("Section: \(collectionView.tag) Row: \(indexPath.row)")
+        switch collectionView.tag {
         case RECOMMENDED_MEAL_INDEX:
-            meal = Meal.test_meals[indexPath.row % Meal.test_meals.count]
+            meal = recommendedMeals[indexPath.row]
         case TOP_MEALS_INDEX:
-            meal = Meal.test_meals[indexPath.row % Meal.test_meals.count]
+            meal = topMeals[indexPath.row]
         default:
-            meal = Meal.test_meals[indexPath.row % Meal.test_meals.count]
+            meal = topMeals[indexPath.row]
         }
         
         let mealVC = MealViewController(meal: meal)

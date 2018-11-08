@@ -72,9 +72,7 @@ class SearchViewController : UIViewController {
         navigationController?.navigationBar.topItem?.title = "SEARCH"
         
         // Setup search bar delegate
-        searchBar.delegate = self
-        searchBar.showsCancelButton = false
-        
+        searchBar.delegate = self        
         // Search bar
         view.addSubview(searchBar)
         
