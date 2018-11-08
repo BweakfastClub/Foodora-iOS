@@ -139,7 +139,7 @@ class NetworkManager {
     }
     
     public static func Search(_ query: String, callback: @escaping (_ meals: [Meal]?) -> Void) {
-        
+
         let searchBody = ["$search": query]
         let textBody = ["$text": searchBody]
         let body = ["query": textBody]
@@ -190,6 +190,48 @@ class NetworkManager {
                 return callback(nil)
             }
         }.resume()
+    }
+    
+    public static func TopRecipes(callback: @escaping (_ meals: [Meal]?) -> Void) {
+        
+        
+        guard let urlComponent = URLComponents(string: "\(BASE_URL):\(BASE_PORT)/recipes/top_recipes") else {
+            print("Failed to create url")
+            return callback(nil) //TODO: handle a failure in a better way
+        }
+        
+        guard let url = urlComponent.url else {
+            print("Failed to get url")
+            return callback(nil)
+        }
+        
+        var urlReq = URLRequest(url: url)
+        urlReq.httpMethod = "GET"
+        
+        defaultSession.dataTask(with: urlReq) { (data, res, err) in
+            if err != nil {
+                debugPrint("Error searching")
+                return callback(nil)
+            }
+            
+            guard let data = data, let res = res as? HTTPURLResponse else {
+                debugPrint("Failed to get data/res")
+                return callback(nil)
+            }
+            
+            if (res.statusCode != 200) {
+                debugPrint("Search status code: \(res.statusCode)")
+                return callback(nil)
+            }
+            
+            do {
+                let meals = try JSONDecoder().decode([Meal].self, from: data)
+                callback(meals)
+            } catch let error {
+                print(error)
+                return callback(nil)
+            }
+            }.resume()
     }
     
     public static func GetImageByUrl(_ imageURLString : String, callback: @escaping (_ image: UIImage?) -> Void) {
