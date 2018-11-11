@@ -16,27 +16,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-
         window = UIWindow(frame: UIScreen.main.bounds)
-
+        window?.rootViewController = LoadingViewController()
+        window?.makeKeyAndVisible()
+        return true
+    }
+    
+    func splashScreenCompleted() {
         // root tab controller init
         let rootTabController = UITabBarController()
         
         let homeNavigationController = UINavigationController()
         homeNavigationController.viewControllers = [HomeViewController()]
-
+        
         let searchNavigationController = UINavigationController()
         searchNavigationController.viewControllers = [SearchViewController()]
-
+        
         let mealPlanNavigationController = UINavigationController()
         mealPlanNavigationController.viewControllers = [MealPlanViewController()]
-
+        
         rootTabController.viewControllers = [
             homeNavigationController,
             searchNavigationController,
             mealPlanNavigationController
         ]
-
+        
         let tabBarItems = rootTabController.tabBar.items! as [UITabBarItem]
         rootTabController.tabBar.tintColor = Style.main_color
         
@@ -51,14 +55,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Meal Plan Tab
         tabBarItems[2].image = UIImage(named: "book")
         tabBarItems[2].imageInsets = UIEdgeInsetsMake(6,0,-6,0)
-
-        window?.rootViewController = rootTabController
-        window?.makeKeyAndVisible()
-
+        
         // Remove the name of previous view from navigation bar next to back button
         let BarButtonItemAppearance = UIBarButtonItem.appearance()
         BarButtonItemAppearance.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.clear], for: .normal)
-
+        
         UINavigationBar.appearance().barTintColor = .white
         UINavigationBar.appearance().tintColor = Style.GRAY
         UINavigationBar.appearance().titleTextAttributes = [
@@ -70,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         
-        return true
+        window?.rootViewController = rootTabController
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
