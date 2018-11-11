@@ -37,7 +37,7 @@ class MealViewController : UIViewController {
         button.backgroundColor = .clear
         button.setTitleColor(.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-//        button.addTarget(self, action: #selector(MealViewController.dismissView), for: .touchUpInside)
+        button.addTarget(self, action: #selector(MealViewController.likeMeal), for: .touchUpInside)
         return button
     }()
     
@@ -118,10 +118,12 @@ class MealViewController : UIViewController {
         return label
     }
     
-    let calorieView: NutritionView = NutritionView()
-    let proteinView: NutritionView = NutritionView()
-    let fatView: NutritionView = NutritionView()
-    let carbView: NutritionView = NutritionView()
+    private let calorieView: NutritionView = NutritionView()
+    private let proteinView: NutritionView = NutritionView()
+    private let fatView: NutritionView = NutritionView()
+    private let carbView: NutritionView = NutritionView()
+    
+    private var likedMeal: Bool = false
     
     var mealPlanButton: BetterButton = {
         let button = BetterButton()
@@ -184,6 +186,29 @@ class MealViewController : UIViewController {
     
     @IBAction private func dismissView(sender: UIButton) {
         navigationController?.popViewController(animated: true)
+    }
+    
+    // like button clicked
+    @IBAction private func likeMeal(sender: UIButton) {
+        guard let m = meal else { return }
+        NetworkManager.LikeMeals([m.mealId], !self.likedMeal) { (success) in
+            print("Success: \(success)")
+            if (success) {
+                DispatchQueue.main.async {
+                    self.likedMeal = !self.likedMeal
+                    self.UpdateLikeButton()
+                }
+            }
+        }
+    }
+    
+    private func UpdateLikeButton() {
+        if (self.likedMeal) {
+            likeRecipeButton.setTitleColor(Style.NICE_RED, for: .normal)
+        } else {
+            likeRecipeButton.setTitleColor(.white, for: .normal)
+        }
+        self.likeRecipeButton.setNeedsDisplay()
     }
     
     @IBAction private func clickedMealPlanButton(sender: UIButton) {
