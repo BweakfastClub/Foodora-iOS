@@ -38,12 +38,47 @@ class NetworkManager {
     private init(serverURL: String, port: String = "8080") {
         self.BASE_URL = serverURL
         self.BASE_PORT = port
+        
+        self.sessionKey = getSessionKey()
+        print("SessionKey: \(self.sessionKey)")
     }
     
+    public func saveSessionKey() {
+        UserDefaults.standard.set(self.sessionKey, forKey: "sessionKey")
+    }
     
+    public func getSessionKey() -> String? {
+        return UserDefaults.standard.string(forKey: "sessionKey")
+    }
     
     public func IsLoggedIn() -> Bool {
         return sessionKey != nil
+    }
+    
+    public func Ping(callback: @escaping (_ status: Int) -> Void) {
+        guard let urlComponent = URLComponents(string: "\(BASE_URL):\(BASE_PORT)/ping") else {
+            print("Failed to create url")
+            return callback(400) //TODO: handle a failure in a better way
+        }
+        
+        guard let url = urlComponent.url else {
+            print("Failed to get url")
+            return callback(400)
+        }
+        
+        defaultSession.dataTask(with: URLRequest(url: url)) { (data, res, err) in
+            if err != nil {
+                debugPrint("Failed to ping server")
+                return callback(500)
+            }
+            
+            guard let _ = data, let res = res as? HTTPURLResponse else {
+                debugPrint("Failed to ping server")
+                return callback(500)
+            }
+            
+            return callback(res.statusCode)
+        }.resume()
     }
     
     public func Register(email: String, username: String, password: String, callback: @escaping (_ status: Int) -> Void) {

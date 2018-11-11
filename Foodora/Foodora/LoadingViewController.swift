@@ -19,22 +19,38 @@ class LoadingViewController: UIViewController {
         return iv
     }()
     
+    let statusLabel: UILabel = {
+        let l = UILabel(frame: .zero)
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.font = UIFont(name: "AvenirNext-Bold", size: 16)!
+        l.textColor = Style.GRAY
+        l.textAlignment = .center
+        l.alpha = 1.0
+        l.text = "Connecting to Server..."
+        return l
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
         
         view.addSubview(logoImage)
+        view.addSubview(statusLabel)
         
         ApplyConstraints()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("Hello")
-        
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5) {
-            let delegate = UIApplication.shared.delegate as! AppDelegate
-            delegate.splashScreenCompleted()
+        NetworkManager.shared.Ping { (statusCode) in
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+                if (statusCode == 200) {
+                    let delegate = UIApplication.shared.delegate as! AppDelegate
+                    delegate.splashScreenCompleted()
+                } else {
+                    self.statusLabel.text = "Failed to connect to server."
+                }
+            }
         }
     }
     
@@ -47,6 +63,12 @@ class LoadingViewController: UIViewController {
             logoImage.widthAnchor.constraint(equalToConstant: 125),
             logoImage.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
             logoImage.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            statusLabel.topAnchor.constraint(equalTo: logoImage.bottomAnchor, constant: 10),
+            statusLabel.leftAnchor.constraint(equalTo: safeArea.leftAnchor, constant: 5),
+            statusLabel.rightAnchor.constraint(equalTo: safeArea.rightAnchor, constant: -5)
         ])
     }
     
