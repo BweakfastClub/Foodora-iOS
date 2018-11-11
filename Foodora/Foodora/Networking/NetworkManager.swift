@@ -23,7 +23,7 @@ struct LoginResponse : Codable {
 
 class NetworkManager {
     
-    static private let BASE_URL : String = "http://cpserver.eastus.cloudapp.azure.com"
+    static private let BASE_URL : String = "http://67.205.132.168"
     static private let BASE_PORT : String = "8080"
     
     static private let postImageCache = NSCache<NSString, UIImage>()
@@ -31,7 +31,7 @@ class NetworkManager {
     static private let defaultSession = URLSession(configuration: .default)
     static private var defaultTask : URLSessionDataTask?
     
-    static private var sessionKey : String?
+    static private var sessionKey : String? = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhYW5hbmFAYmFuYW5hLmNvbSIsIm5hbWUiOiJiYW5hbmEiLCJpYXQiOjE1NDE3OTQ0MjZ9.t1gDb27Toix9Fgc23kulPX0b2bK6bJPHURIusxW4Vpc"
     
     public static func IsLoggedIn() -> Bool {
         return sessionKey != nil
@@ -144,8 +144,6 @@ class NetworkManager {
         let textBody = ["$text": searchBody]
         let body = ["query": textBody]
         
-        print(body)
-        
         guard let urlComponent = URLComponents(string: "\(BASE_URL):\(BASE_PORT)/recipes/search") else {
             print("Failed to create url")
             return callback(nil) //TODO: handle a failure in a better way
@@ -232,6 +230,63 @@ class NetworkManager {
                 return callback(nil)
             }
             }.resume()
+    }
+    
+    public static func LikeMeals(_ mealIds: [Int], _ postRequest: Bool, callback: @escaping (_ success: Bool) -> Void) {
+        if (!IsLoggedIn()) {
+            print("Can't like recipe when not logged in.")
+            return callback(false)
+        }
+        
+        let body = [
+            "recipeIds": mealIds
+        ]
+        
+        guard let urlComponent = URLComponents(string: "\(BASE_URL):\(BASE_PORT)/users/liked_recipes") else {
+            print("Failed to create url")
+            return callback(false) //TODO: handle a failure in a better way
+        }
+        
+        guard let url = urlComponent.url else {
+            print("Failed to get url")
+            return callback(false)
+        }
+        
+        guard let jsonBody = try? JSONSerialization.data(withJSONObject: body, options: []) else {
+            print("Failed to convert body dict to JSON")
+            return callback(false)
+        }
+        
+        var urlReq = URLRequest(url: url)
+        
+        if (postRequest) {
+            urlReq.httpMethod = "POST"
+        } else {
+            urlReq.httpMethod = "DELETE"
+        }
+        
+        urlReq.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlReq.addValue(self.sessionKey!, forHTTPHeaderField: "token")
+        urlReq.httpBody = jsonBody
+        
+        defaultSession.dataTask(with: urlReq) { (data, res, err) in
+            if err != nil {
+                debugPrint("Error searching")
+                return callback(false)
+            }
+            
+            guard let res = res as? HTTPURLResponse else {
+                debugPrint("Failed to get data/res")
+                return callback(false)
+            }
+            
+            if (res.statusCode == 200) {
+                return callback(true)
+            }
+            
+            return callback(false)
+        }.resume()
+        
     }
     
     public static func GetImageByUrl(_ imageURLString : String, callback: @escaping (_ image: UIImage?) -> Void) {
