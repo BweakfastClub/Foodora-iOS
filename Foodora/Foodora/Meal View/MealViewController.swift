@@ -191,7 +191,7 @@ class MealViewController : UIViewController {
     // like button clicked
     @IBAction private func likeMeal(sender: UIButton) {
         guard let m = meal else { return }
-        NetworkManager.LikeMeals([m.mealId], !self.likedMeal) { (success) in
+        NetworkManager.shared.LikeMeals([m.mealId], !self.likedMeal) { (success) in
             print("Success: \(success)")
             if (success) {
                 DispatchQueue.main.async {
@@ -217,7 +217,7 @@ class MealViewController : UIViewController {
     
     private func UpdateView() {
         if meal != nil {
-            NetworkManager.GetImageByUrl(meal!.imageUrl) { (image) in
+            NetworkManager.shared.GetImageByUrl(meal!.imageUrl) { (image) in
                 DispatchQueue.main.async {
                     self.imageView.image = image
                 }

@@ -18,4 +18,5 @@ struct Style {
     static let GRAY = UIColor(red:0.21, green:0.23, blue:0.28, alpha:1.0)
     static let LIGHT_GRAY = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.00)
     static let LIGHT_WHITE = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.60)
+    static let NICE_RED = UIColor(red:0.91, green:0.31, blue:0.31, alpha:1.00)
 }

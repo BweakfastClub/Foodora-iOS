@@ -144,7 +144,7 @@ class LoginViewController: UIViewController {
         guard username != "" else { self.loginButton.shake(); self.usernameTextField.Error(); return }
         guard password != "" else { self.loginButton.shake(); self.passwordTextField.Error(); return }
         
-        NetworkManager.Login(username, password) { (statusCode, sessionKey) in
+        NetworkManager.shared.Login(username, password) { (statusCode, sessionKey) in
             if (statusCode == 200) {
                 self.navigationController?.dismiss(animated: true, completion: nil)
             } else {

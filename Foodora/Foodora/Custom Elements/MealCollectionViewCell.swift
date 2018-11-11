@@ -65,7 +65,7 @@ class MealCollectionViewCell: UICollectionViewCell {
     private func UpdateCell() {
         if meal != nil {
             containerLabel.text = meal!.title
-            NetworkManager.GetImageByUrl(meal!.imageUrl) { (image) in
+            NetworkManager.shared.GetImageByUrl(meal!.imageUrl) { (image) in
                 DispatchQueue.main.async {
                     self.backgroundImage.image = image
                 }

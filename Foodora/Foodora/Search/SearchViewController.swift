@@ -146,7 +146,7 @@ extension SearchViewController : UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let query = searchBar.text else { return }
-        NetworkManager.Search(query) { (mealRes) in
+        NetworkManager.shared.Search(query) { (mealRes) in
             guard let meals = mealRes else { return }
             self.mealResults = meals
             DispatchQueue.main.async {

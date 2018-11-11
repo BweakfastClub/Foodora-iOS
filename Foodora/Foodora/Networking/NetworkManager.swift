@@ -23,21 +23,30 @@ struct LoginResponse : Codable {
 
 class NetworkManager {
     
-    static private let BASE_URL : String = "http://67.205.132.168"
-    static private let BASE_PORT : String = "8080"
+    static let shared : NetworkManager = NetworkManager(serverURL: "http://68.183.102.146")
     
-    static private let postImageCache = NSCache<NSString, UIImage>()
+    private var BASE_URL : String
+    private let BASE_PORT : String
     
-    static private let defaultSession = URLSession(configuration: .default)
-    static private var defaultTask : URLSessionDataTask?
+    private let postImageCache = NSCache<NSString, UIImage>()
     
-    static private var sessionKey : String? = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhYW5hbmFAYmFuYW5hLmNvbSIsIm5hbWUiOiJiYW5hbmEiLCJpYXQiOjE1NDE3OTQ0MjZ9.t1gDb27Toix9Fgc23kulPX0b2bK6bJPHURIusxW4Vpc"
+    private let defaultSession = URLSession(configuration: .default)
+    private var defaultTask : URLSessionDataTask?
     
-    public static func IsLoggedIn() -> Bool {
+    private var sessionKey : String?
+    
+    private init(serverURL: String, port: String = "8080") {
+        self.BASE_URL = serverURL
+        self.BASE_PORT = port
+    }
+    
+    
+    
+    public func IsLoggedIn() -> Bool {
         return sessionKey != nil
     }
     
-    public static func Register(email: String, username: String, password: String, callback: @escaping (_ status: Int) -> Void) {
+    public func Register(email: String, username: String, password: String, callback: @escaping (_ status: Int) -> Void) {
         guard email != "" else { return callback(400) }
         guard username != "" else { return callback(400) }
         guard password != "" else { return callback(400) }
@@ -83,7 +92,7 @@ class NetworkManager {
         }.resume()
     }
     
-    public static func Login(_ username: String, _ password: String, callback: @escaping (_ statusCode: Int, _ sessionKey: String?) -> Void) {
+    public func Login(_ username: String, _ password: String, callback: @escaping (_ statusCode: Int, _ sessionKey: String?) -> Void) {
         guard username != "" else { return callback(400, nil) }
         guard password != "" else { return callback(400, nil) }
         
@@ -129,7 +138,7 @@ class NetworkManager {
             
             do {
                 let loginRes = try JSONDecoder().decode(LoginResponse.self, from: data)
-                sessionKey = loginRes.token
+                self.sessionKey = loginRes.token
                 callback(res.statusCode, loginRes.token)
             } catch let error {
                 print(error)
@@ -138,7 +147,7 @@ class NetworkManager {
         }.resume()
     }
     
-    public static func Search(_ query: String, callback: @escaping (_ meals: [Meal]?) -> Void) {
+    public func Search(_ query: String, callback: @escaping (_ meals: [Meal]?) -> Void) {
 
         let searchBody = ["$search": query]
         let textBody = ["$text": searchBody]
@@ -190,8 +199,7 @@ class NetworkManager {
         }.resume()
     }
     
-    public static func TopRecipes(callback: @escaping (_ meals: [Meal]?) -> Void) {
-        
+    public func TopRecipes(callback: @escaping (_ meals: [Meal]?) -> Void) {
         
         guard let urlComponent = URLComponents(string: "\(BASE_URL):\(BASE_PORT)/recipes/top_recipes") else {
             print("Failed to create url")
@@ -232,7 +240,7 @@ class NetworkManager {
             }.resume()
     }
     
-    public static func LikeMeals(_ mealIds: [Int], _ postRequest: Bool, callback: @escaping (_ success: Bool) -> Void) {
+    public func LikeMeals(_ mealIds: [Int], _ postRequest: Bool, callback: @escaping (_ success: Bool) -> Void) {
         if (!IsLoggedIn()) {
             print("Can't like recipe when not logged in.")
             return callback(false)
@@ -289,7 +297,7 @@ class NetworkManager {
         
     }
     
-    public static func GetImageByUrl(_ imageURLString : String, callback: @escaping (_ image: UIImage?) -> Void) {
+    public func GetImageByUrl(_ imageURLString : String, callback: @escaping (_ image: UIImage?) -> Void) {
         if let image = postImageCache.object(forKey: imageURLString as NSString) {
             return callback(image)
         } else if let imageURL = URL(string: imageURLString) {

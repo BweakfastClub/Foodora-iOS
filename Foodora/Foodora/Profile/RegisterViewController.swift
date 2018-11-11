@@ -150,7 +150,7 @@ class RegisterViewController : UIViewController {
         guard email != "" else { self.registerButton.shake(); self.emailTextField.Error(); return }
         guard password != "" else { self.registerButton.shake(); self.passwordTextField.Error(); return }
         
-        NetworkManager.Register(email: email, username: username, password: password) { (statusCode) in
+        NetworkManager.shared.Register(email: email, username: username, password: password) { (statusCode) in
             if (statusCode == 200) {
                 debugPrint("Registered Account")
                 DispatchQueue.main.async {

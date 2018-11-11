@@ -57,7 +57,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
     private func UpdateCell() {
         if let meal = meal {
             mealLabel.text = meal.title
-            NetworkManager.GetImageByUrl(meal.imageUrl) { (image) in
+            NetworkManager.shared.GetImageByUrl(meal.imageUrl) { (image) in
                 DispatchQueue.main.async {
                     self.imageView.image = image
                 }

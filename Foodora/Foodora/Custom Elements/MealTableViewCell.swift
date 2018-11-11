@@ -48,7 +48,7 @@ class MealTableViewCell : UITableViewCell {
     private func UpdateCell() {
         if let meal = meal {
             mealLabel.text = meal.title.uppercased()
-            NetworkManager.GetImageByUrl(meal.imageUrl) { (image) in
+            NetworkManager.shared.GetImageByUrl(meal.imageUrl) { (image) in
                 DispatchQueue.main.async {
                     self.backgroundImageView.image = image
                 }

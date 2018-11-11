@@ -89,7 +89,7 @@ class HomeViewController : UIViewController {
     
     private func SetupInfoView() {
         infoView.addSubview(infoLabel)
-        if (NetworkManager.IsLoggedIn()) {
+        if (NetworkManager.shared.IsLoggedIn()) {
             infoView.backgroundColor = .white
             infoLabel.text = """
             Welcome back Brandon!
@@ -103,7 +103,7 @@ class HomeViewController : UIViewController {
     }
     
     private func RequestTopMeals() {
-        NetworkManager.TopRecipes { (mealRes) in
+        NetworkManager.shared.TopRecipes { (mealRes) in
             guard let meals = mealRes else { return }
             DispatchQueue.main.async {
                 self.topMeals = meals
@@ -113,7 +113,7 @@ class HomeViewController : UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         DispatchQueue.main.async {
-            if (NetworkManager.IsLoggedIn()) { //TODO: check if we actually need to update
+            if (NetworkManager.shared.IsLoggedIn()) { //TODO: check if we actually need to update
                 self.ApplyConstraints()
                 self.SetupInfoView()
                 self.tableView.reloadData()
@@ -147,7 +147,7 @@ class HomeViewController : UIViewController {
             infoView.rightAnchor.constraint(equalTo: safeLayout.rightAnchor)
         ])
 
-        if (!NetworkManager.IsLoggedIn()) {
+        if (!NetworkManager.shared.IsLoggedIn()) {
             infoView.heightAnchor.constraint(equalToConstant: 40).isActive = true
             infoLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         } else {
@@ -168,7 +168,7 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if (indexPath.section == RECOMMENDED_MEAL_INDEX) {
-            if (!NetworkManager.IsLoggedIn()) {
+            if (!NetworkManager.shared.IsLoggedIn()) {
                 return 0
             }
             return DEFAULT_CELL_HEIGHT
@@ -212,7 +212,7 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if (section == RECOMMENDED_MEAL_INDEX && !NetworkManager.IsLoggedIn()) {
+        if (section == RECOMMENDED_MEAL_INDEX && !NetworkManager.shared.IsLoggedIn()) {
             return 0.0
         }
         return 40.0
