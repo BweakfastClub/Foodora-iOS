@@ -92,7 +92,7 @@ class HomeViewController : UIViewController {
         if (NetworkManager.shared.IsLoggedIn()) {
             infoView.backgroundColor = .white
             infoLabel.text = """
-            Welcome back Brandon!
+            Welcome back \(NetworkManager.shared.user!.name)!
             In the mood for some breakfast ideas?
             """
             infoLabel.numberOfLines = 2
