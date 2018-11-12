@@ -71,8 +71,6 @@ class ProfileViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        PullUserData()
-        
         view.backgroundColor = .white
         
         navigationController?.navigationBar.topItem?.title = "PROFILE"
@@ -100,6 +98,10 @@ class ProfileViewController : UIViewController {
         ApplyConstraints()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        PullUserData()
+    }
+
     private func PullUserData() {
         NetworkManager.shared.RetrieveUserData { (resStatus) in
             DispatchQueue.main.async {
