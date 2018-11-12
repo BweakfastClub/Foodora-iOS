@@ -224,27 +224,29 @@ class MealViewController : UIViewController {
             }
             mealTitle.text = meal!.title.uppercased()
             
-//            let calorieInfo = meal!.getCalorieNutritionInfo()
-//            calorieView.setNutritionData(calorieInfo.name, "\(calorieInfo.amount) \(calorieInfo.unit)")
-            calorieView.setNutritionData("Calories", "635")
+            let calorieInfo = meal!.getCalorieNutritionInfo()
+            if (calorieInfo != nil) {
+                calorieView.setNutritionData("Calories", "\(calorieInfo!.amount.rounded())\(calorieInfo!.unit)")
+            }
             
-//            let proteinInfo = meal!.getProteinNutritionInfo()
-//            proteinView.setNutritionData(proteinInfo.name, "\(proteinInfo.amount) \(proteinInfo.unit)")
-            proteinView.setNutritionData("Protein", "25g")
+            let proteinInfo = meal!.getProteinNutritionInfo()
+            if (proteinInfo != nil) {
+                proteinView.setNutritionData("Protein", "\(proteinInfo!.amount.rounded())\(proteinInfo!.unit)")
+            }
             
-//            let carbInfo = meal!.getCarbNutritionInfo()
-//            carbView.setNutritionData(carbInfo.name, "\(carbInfo.amount) \(carbInfo.unit)")
-            carbView.setNutritionData("Total Carbs", "73g")
+            let carbInfo = meal!.getCarbNutritionInfo()
+            if (carbInfo != nil) {
+                carbView.setNutritionData("Total Carbs", "\(carbInfo!.amount.rounded())\(carbInfo!.unit)")
+            }
             
-//            let fatInfo = meal!.getFatNutritionInfo()
-//            fatView.setNutritionData(fatInfo.name, "\(fatInfo.amount) \(fatInfo.unit)")
-            fatView.setNutritionData("Total Fat", "12g")
+            let fatInfo = meal!.getFatNutritionInfo()
+            if (fatInfo != nil) {
+                fatView.setNutritionData("Total Fat", "\(fatInfo!.amount.rounded())\(fatInfo!.unit)")
+            }
             
-            
-            let ingredients = ["10 egg whites", "1 teaspoon cream of tartar", "1/2 teaspoon salt", "1 1/4 cups white sugar, divided", "3/4 cup sifted cake flour", "6 egg yolks", "1/2 teaspoon orange extract", "1/2 cup sifted cake flour"]
-            for ingredient in ingredients {
+            for ingredient in meal!.ingredients {
                 let tempLabel = ingredientLabel()
-                tempLabel.text = ingredient
+                tempLabel.text = ingredient.description
                 ingredientStack.addArrangedSubview(tempLabel)
             }
             
