@@ -146,7 +146,10 @@ class LoginViewController: UIViewController {
         
         NetworkManager.shared.Login(username, password) { (statusCode, sessionKey) in
             if (statusCode == 200) {
-                self.navigationController?.dismiss(animated: true, completion: nil)
+                
+                NetworkManager.shared.RetrieveUserData(callback: { (statusCode) in
+                    self.navigationController?.dismiss(animated: true, completion: nil)
+                })
             } else {
                 // TODO: Login failed. Display msg
             }
