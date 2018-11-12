@@ -34,6 +34,7 @@ class NetworkManager {
     private var defaultTask : URLSessionDataTask?
     
     private var sessionKey : String?
+    public var user : User?
     
     private init(serverURL: String, port: String = "8080") {
         self.BASE_URL = serverURL
@@ -78,6 +79,55 @@ class NetworkManager {
             }
             
             return callback(res.statusCode)
+        }.resume()
+    }
+    
+    public func RetrieveUserData(callback: @escaping (_ status: Int) -> Void) {
+        print("Retrieving user data")
+        if (!self.IsLoggedIn()) {
+            return
+        }
+        
+        guard let urlComponent = URLComponents(string: "\(BASE_URL):\(BASE_PORT)/users/user_info") else {
+            print("Failed to create url")
+            self.sessionKey = nil
+            return callback(500) //TODO: handle a failure in a better way
+        }
+        
+        guard let url = urlComponent.url else {
+            print("Failed to get url")
+            self.sessionKey = nil
+            return callback(500)
+        }
+        
+        var urlReq = URLRequest(url: url)
+        urlReq.httpMethod = "GET"
+        urlReq.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlReq.addValue(self.sessionKey!, forHTTPHeaderField: "token")
+        
+        defaultSession.dataTask(with: urlReq) { (data, res, err) in
+            if err != nil {
+                debugPrint("Failed to get user data")
+                self.sessionKey = nil
+                return callback(500)
+            }
+            
+            guard let data = data, let res = res as? HTTPURLResponse else {
+                debugPrint("Failed to get user data")
+                self.sessionKey = nil
+                return callback(500)
+            }
+            
+            do {
+                let user = try JSONDecoder().decode(User.self, from: data)
+                self.user = user
+                print("Retrieved user data")
+                return callback(res.statusCode)
+            } catch let error {
+                print(error)
+                self.sessionKey = nil
+                return callback(500)
+            }
         }.resume()
     }
     

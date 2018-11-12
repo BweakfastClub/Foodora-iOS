@@ -43,15 +43,31 @@ class LoadingViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         NetworkManager.shared.Ping { (statusCode) in
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+            DispatchQueue.main.async {
                 if (statusCode == 200) {
-                    let delegate = UIApplication.shared.delegate as! AppDelegate
-                    delegate.splashScreenCompleted()
+                    if (NetworkManager.shared.IsLoggedIn()){
+                        self.RetrieveUserData()
+                    } else {
+                        self.DissmissToMain()
+                    }
                 } else {
                     self.statusLabel.text = "Failed to connect to server."
                 }
             }
         }
+    }
+    
+    private func RetrieveUserData() {
+        NetworkManager.shared.RetrieveUserData(callback: { (status) in
+            DispatchQueue.main.async {
+                self.DissmissToMain()
+            }
+        })
+    }
+    
+    private func DissmissToMain() {
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        delegate.splashScreenCompleted()
     }
     
     private func ApplyConstraints() {
