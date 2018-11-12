@@ -14,7 +14,11 @@ class ProfileViewController : UIViewController {
     private let CELL_ID: String = "favMealCell"
     private let DEFAULT_CELL_HEIGHT : CGFloat = 130.0
     
-    private var favMeals: [Meal] = []
+    private var favMeals: [Meal] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
     let infoView : UIView = {
         let view = UIView(frame: .zero)
@@ -67,6 +71,8 @@ class ProfileViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        PullUserData()
+        
         view.backgroundColor = .white
         
         navigationController?.navigationBar.topItem?.title = "PROFILE"
@@ -92,6 +98,18 @@ class ProfileViewController : UIViewController {
         view.addSubview(emptyCVLabel)
         
         ApplyConstraints()
+    }
+    
+    private func PullUserData() {
+        NetworkManager.shared.RetrieveUserData { (resStatus) in
+            DispatchQueue.main.async {
+                guard let u = NetworkManager.shared.user, let meals = u.likedRecipes else {
+                    self.favMeals = []
+                    return
+                }
+                self.favMeals = meals
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
