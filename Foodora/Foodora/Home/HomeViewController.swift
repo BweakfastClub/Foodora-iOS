@@ -17,6 +17,9 @@ class HomeViewController : UIViewController {
     
     private let DEFAULT_CELL_HEIGHT : CGFloat = 130.0
     
+    private let RECOMMENDED_CELL_ID = "recommendedMealCell"
+    private let TOP_CELL_ID = "topMealCell"
+    
     private var recommendedMeals: [Meal] = [] {
         didSet {
             DispatchQueue.main.async {
@@ -194,10 +197,11 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: MealTableViewCellWithCollectionView
         if (indexPath.section == RECOMMENDED_MEAL_INDEX) {
-            cell = MealTableViewCellWithCollectionView(style: .default, reuseIdentifier: "recommendedCell", scrollDirection: .horizontal)
+            cell = MealTableViewCellWithCollectionView(style: .default, reuseIdentifier: RECOMMENDED_CELL_ID, scrollDirection: .horizontal)
+        } else {
+            cell = MealTableViewCellWithCollectionView(style: .default, reuseIdentifier: TOP_CELL_ID, scrollDirection: .vertical)
         }
-        
-        cell = MealTableViewCellWithCollectionView(style: .default, reuseIdentifier: "topMealCell", scrollDirection: .vertical)
+
         cell.collectionView.delegate = self
         cell.collectionView.dataSource = self
         cell.collectionView.tag = indexPath.section
@@ -245,7 +249,8 @@ extension HomeViewController : UICollectionViewDataSource, UICollectionViewDeleg
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView.tag {
         case RECOMMENDED_MEAL_INDEX:
-            return recommendedMeals.count
+//            return recommendedMeals.count
+            return Meal.test_meals.count
         case TOP_MEALS_INDEX:
             return topMeals.count
         default:
@@ -259,9 +264,11 @@ extension HomeViewController : UICollectionViewDataSource, UICollectionViewDeleg
         
         switch collectionView.tag {
         case RECOMMENDED_MEAL_INDEX:
-            reuseIdentifier = "recommendedCell"
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RECOMMENDED_CELL_ID, for: indexPath) as! ImageCollectionViewCell
+            cell.meal = Meal.test_meals[indexPath.row]
+            return cell
         case TOP_MEALS_INDEX:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "topMealCell", for: indexPath) as! ImageCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TOP_CELL_ID, for: indexPath) as! ImageCollectionViewCell
             cell.meal = topMeals[indexPath.row]
             return cell
         default:
@@ -279,7 +286,8 @@ extension HomeViewController : UICollectionViewDataSource, UICollectionViewDeleg
         print("Section: \(collectionView.tag) Row: \(indexPath.row)")
         switch collectionView.tag {
         case RECOMMENDED_MEAL_INDEX:
-            meal = recommendedMeals[indexPath.row]
+            meal = Meal.test_meals[indexPath.row]
+//            meal = recommendedMeals[indexPath.row]
         case TOP_MEALS_INDEX:
             meal = topMeals[indexPath.row]
         default:
