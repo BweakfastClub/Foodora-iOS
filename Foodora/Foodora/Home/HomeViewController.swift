@@ -127,6 +127,10 @@ class HomeViewController : UIViewController {
     }
     
     @objc func OpenProfileView() {
+        if (NetworkManager.shared.IsLoggedIn()) {
+            self.navigationController?.pushViewController(ProfileViewController(), animated: true)
+            return
+        }
         self.navigationController?.present(UINavigationController(rootViewController: LoginViewController()), animated: true, completion:  nil)
     }
     

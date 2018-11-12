@@ -41,7 +41,7 @@ class NetworkManager {
         self.BASE_PORT = port
         
         self.sessionKey = getSessionKey()
-        print("SessionKey: \(self.sessionKey)")
+        print("SessionKey: \(self.sessionKey ?? "")")
     }
     
     public func saveSessionKey() {
