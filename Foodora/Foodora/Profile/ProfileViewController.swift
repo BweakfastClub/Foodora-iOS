@@ -75,9 +75,15 @@ class ProfileViewController : UIViewController {
         
         navigationController?.navigationBar.topItem?.title = "PROFILE"
         
-        let leftButton = UIBarButtonItem(image: UIImage(named: "cancel"), style: .plain, target: self, action: #selector(ProfileViewController.DismissView))
-        leftButton.tintColor = Style.main_color
+        // Left Nav bar cancel button
+        let leftButton = UIBarButtonItem(image: UIImage(named: "clear-cancel"), style: .plain, target: self, action: #selector(ProfileViewController.DismissView))
+        leftButton.tintColor = .black
         self.navigationItem.leftBarButtonItem = leftButton
+        
+        // Right Nav bar settings button
+        let rightButton = UIBarButtonItem(image: UIImage(named: "settings"), style: .plain, target: self, action: #selector(ProfileViewController.OpenSettings))
+        rightButton.tintColor = .black
+        self.navigationItem.rightBarButtonItem = rightButton
         
         // Meal collection view
         collectionView.dataSource = self
@@ -120,6 +126,10 @@ class ProfileViewController : UIViewController {
     
     @objc func DismissView() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func OpenSettings() {
+        
     }
     
     private func ApplyConstraints() {
