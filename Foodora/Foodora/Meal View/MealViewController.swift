@@ -218,6 +218,7 @@ class MealViewController : UIViewController {
     }
     
     private func UpdateLikeButton() {
+        if !NetworkManager.shared.IsLoggedIn() { return }
         if (self.likedMeal) {
             likeRecipeButton.setTitleColor(Style.NICE_RED, for: .normal)
         } else {
