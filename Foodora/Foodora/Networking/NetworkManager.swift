@@ -23,7 +23,7 @@ struct LoginResponse : Codable {
 
 class NetworkManager {
     
-    static let shared : NetworkManager = NetworkManager(serverURL: "http://68.183.102.146")
+    static let shared : NetworkManager = NetworkManager(serverURL: "http://104.248.7.15")
     
     private var BASE_URL : String
     private let BASE_PORT : String
@@ -380,6 +380,43 @@ class NetworkManager {
             return callback(false)
         }.resume()
         
+    }
+    
+    public func GetRecipeById(_ recipeId: Int, callback: @escaping (_ meal: Meal?) -> Void) {
+        
+        guard let urlComponent = URLComponents(string: "\(BASE_URL):\(BASE_PORT)/recipes/id/\(recipeId)") else {
+            print("Failed to create url")
+            return callback(nil) //TODO: handle a failure in a better way
+        }
+        
+        guard let url = urlComponent.url else {
+            print("Failed to get url")
+            return callback(nil)
+        }
+        
+        var urlReq = URLRequest(url: url)
+        urlReq.httpMethod = "GET"
+        urlReq.addValue(self.sessionKey ?? "", forHTTPHeaderField: "token")
+        
+        defaultSession.dataTask(with: urlReq) { (data, res, err) in
+            if err != nil {
+                debugPrint("Error looking up recipe with id \(recipeId)")
+                return callback(nil)
+            }
+            
+            guard let data = data, let _ = res as? HTTPURLResponse else {
+                debugPrint("Failed to get data/res")
+                return callback(nil)
+            }
+            
+            do {
+                let meal = try JSONDecoder().decode(Meal.self, from: data)
+                callback(meal)
+            } catch let error {
+                print(error)
+                return callback(nil)
+            }
+        }.resume()
     }
     
     public func GetImageByUrl(_ imageURLString : String, callback: @escaping (_ image: UIImage?) -> Void) {
