@@ -123,7 +123,11 @@ class MealViewController : UIViewController {
     private let fatView: NutritionView = NutritionView()
     private let carbView: NutritionView = NutritionView()
     
-    private var likedMeal: Bool = false
+    private var likedMeal: Bool = false {
+        didSet {
+            UpdateLikeButton()
+        }
+    }
     
     var mealPlanButton: BetterButton = {
         let button = BetterButton()
@@ -138,6 +142,7 @@ class MealViewController : UIViewController {
     convenience init(meal: Meal) {
         self.init(nibName: nil, bundle: nil)
         self.meal = meal
+        RetrieveMeal(meal.mealId)
         
         view.backgroundColor = .white
         
@@ -162,6 +167,16 @@ class MealViewController : UIViewController {
         
         UpdateView()
         ApplyConstraints()
+    }
+    
+    private func RetrieveMeal(_ mealId: Int) {
+        NetworkManager.shared.GetRecipeById(mealId) { (meal) in
+            DispatchQueue.main.async {
+                guard let m = meal else { return }
+                self.meal = m
+                self.likedMeal = m.userLikedRecipe()
+            }
+        }
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -216,6 +231,11 @@ class MealViewController : UIViewController {
     }
     
     private func UpdateView() {
+        if (!NetworkManager.shared.IsLoggedIn()) {
+            likeRecipeButton.alpha = 0.0
+            likeRecipeButton.isUserInteractionEnabled = false
+        }
+        
         if meal != nil {
             NetworkManager.shared.GetImageByUrl(meal!.imageUrl) { (image) in
                 DispatchQueue.main.async {

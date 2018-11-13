@@ -21,6 +21,7 @@ struct Meal : Codable {
     var cookMinutes: Int
     var readyMinutes: Int
     var imageUrl: String
+    var userInfo: UserMealInfo?
 
     init(_ title: String, _ imageUrl: String) {
         self.id = "0"
@@ -46,6 +47,7 @@ struct Meal : Codable {
         case imageUrl = "imageUrl"
         case ingredients = "ingredients"
         case nutritionInformation = "nutrition"
+        case userInfo = "userSpecificInformation"
     }
     
     func getCalorieNutritionInfo() -> NutritionInfo? {
@@ -64,6 +66,13 @@ struct Meal : Codable {
         return nutritionInformation["protein"]
     }
     
+    func userLikedRecipe() -> Bool {
+        guard let uInfo = userInfo else {
+            return false
+        }
+        return uInfo.hasLiked
+    }
+    
     static let test_meals : [Meal] = [
         Meal("Chicken Burger", "https://shawarmahotspot.ca/wp-content/uploads/2017/11/Chicken-Burger-325.jpg"),
         Meal("Meat Burger", "https://cms.splendidtable.org/sites/default/files/styles/w2000/public/Burger-Lab_Lamb-Burger-LEDE.jpg"),
@@ -77,4 +86,12 @@ struct Meal : Codable {
         Meal("Sirloin Steak", "https://ae01.alicdn.com/kf/HTB1YSjuHVXXXXcdaXXXq6xXFXXXb/Delicious-food-of-Fruits-Salad-Barbecue-Cafeteria-Kitchen-Decoration-posters-HD-Print-Size-50x70cm-Wall-Sticker.jpg")
     ]
     
+}
+
+struct UserMealInfo : Codable {
+    var hasLiked: Bool
+    
+    enum CodingKeys: String, CodingKey {
+        case hasLiked = "likedRecipes"
+    }
 }
