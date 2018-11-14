@@ -129,7 +129,7 @@ class ProfileViewController : UIViewController {
     }
     
     @objc func OpenSettings() {
-        
+        self.navigationController?.pushViewController(SettingsViewController(), animated: true)
     }
     
     private func ApplyConstraints() {

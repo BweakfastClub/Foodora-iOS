@@ -23,6 +23,7 @@
 		CA9AE56A2068169D00005733 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE5692068169D00005733 /* Style.swift */; };
 		CA9AE56C20681A7800005733 /* MealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE56B20681A7800005733 /* MealViewController.swift */; };
 		CAB7E0342159E4220062C891 /* HorizontalCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB7E0332159E4220062C891 /* HorizontalCollectionViewLayout.swift */; };
+		CAC22EF2219B4E7A005F5F66 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC22EF1219B4E7A005F5F66 /* SettingsViewController.swift */; };
 		CAD9998C2068224B00C2EEE5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD9998B2068224B00C2EEE5 /* LoginViewController.swift */; };
 		CAD9998E2068231400C2EEE5 /* BetterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD9998D2068231400C2EEE5 /* BetterButton.swift */; };
 		CAD999902068236E00C2EEE5 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD9998F2068236E00C2EEE5 /* UnderlinedTextField.swift */; };
@@ -72,6 +73,7 @@
 		CA9AE5692068169D00005733 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		CA9AE56B20681A7800005733 /* MealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewController.swift; sourceTree = "<group>"; };
 		CAB7E0332159E4220062C891 /* HorizontalCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalCollectionViewLayout.swift; sourceTree = "<group>"; };
+		CAC22EF1219B4E7A005F5F66 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		CAD9998B2068224B00C2EEE5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CAD9998D2068231400C2EEE5 /* BetterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterButton.swift; sourceTree = "<group>"; };
 		CAD9998F2068236E00C2EEE5 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				CAFD2CA3204CA2940006F00B /* ProfileViewController.swift */,
 				CAD9998B2068224B00C2EEE5 /* LoginViewController.swift */,
 				CA11A6EA206829C9009FF29B /* RegisterViewController.swift */,
+				CAC22EF1219B4E7A005F5F66 /* SettingsViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				CA11A6EB206829C9009FF29B /* RegisterViewController.swift in Sources */,
 				CA05A73821515F2500A2679F /* MealSectionTableViewHeader.swift in Sources */,
 				CA9AE56A2068169D00005733 /* Style.swift in Sources */,
+				CAC22EF2219B4E7A005F5F66 /* SettingsViewController.swift in Sources */,
 				CAFD2C70204C980A0006F00B /* AppDelegate.swift in Sources */,
 				CAD9998E2068231400C2EEE5 /* BetterButton.swift in Sources */,
 				CA9AE5582066D0A600005733 /* NetworkManager.swift in Sources */,
