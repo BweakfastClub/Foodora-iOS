@@ -1,4 +1,7 @@
+os: osx
+
 language: swift
+osx_image: xcode10
 xcode_project: Foodora/Foodora.xcodeproj # path to your xcodeproj folder
 xcode_scheme: Foodora/FoodoraTests
 xcode_destination: platform=iOS Simulator,OS=11.2,name=iPhone X
