@@ -11,14 +11,15 @@ import UIKit
 
 class MealPlanViewController : UIViewController {
     
-    let titleLabel : UILabel = {
-        let label = UILabel()
-        label.attributedText = NSAttributedString(string: "Meal Plan View", attributes: [
-            NSAttributedStringKey.font: UIFont(name: "Avenir Next", size: 34)!,
-            NSAttributedStringKey.foregroundColor: UIColor.black
-        ])
-        label.textAlignment = .center
-        return label
+    private let NUMBER_OF_SECTIONS: Int = 3
+    private let CELL_ID: String = "mealCell"
+    private let DEFAULT_CELL_HEIGHT : CGFloat = 130.0
+    
+    private let tableView: UITableView = {
+        let tv = UITableView(frame: .zero)
+        tv.translatesAutoresizingMaskIntoConstraints = false
+        
+        return tv
     }()
     
     override func viewDidLoad() {
@@ -28,8 +29,16 @@ class MealPlanViewController : UIViewController {
         
         navigationController?.navigationBar.topItem?.title = "MEAL PLAN"
         
-        view.addSubview(titleLabel)
+        SetupTableView()
+        
         ApplyConstraints()
+    }
+    
+    private func SetupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(MealTableViewCell.self, forCellReuseIdentifier: CELL_ID)
+        view.addSubview(tableView)
     }
     
     override func didReceiveMemoryWarning() {
@@ -39,14 +48,33 @@ class MealPlanViewController : UIViewController {
     private func ApplyConstraints() {
         let safeArea = view.safeAreaLayoutGuide
         
-        // Title label constraints
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
-            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            titleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            tableView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
+            tableView.leftAnchor.constraint(equalTo: safeArea.leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: safeArea.rightAnchor)
         ])
     }
     
 }
 
+
+extension MealPlanViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CELL_ID, for: indexPath) as! MealTableViewCell
+        cell.meal = Meal.test_meals[indexPath.section + indexPath.row % Meal.test_meals.count]
+        return cell
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return NUMBER_OF_SECTIONS
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return DEFAULT_CELL_HEIGHT
+    }
+}
