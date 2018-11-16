@@ -15,10 +15,39 @@ class MealPlanViewController : UIViewController {
     private let CELL_ID: String = "mealCell"
     private let DEFAULT_CELL_HEIGHT : CGFloat = 130.0
     
+    private let BREAKFAST_SECTION: Int = 0
+    private let LUNCH_SECTION: Int = 1
+    private let DINNER_SECTION: Int = 2
+    
+    private let breakfastMeals: [Meal] = []
+    private let lunchMeals: [Meal] = []
+    private let dinnerMeals: [Meal] = []
+    
+    // empty collection view logo
+    let emptyTVImage: UIImageView = {
+        let view = UIImageView(frame: .zero)
+        view.contentMode = .scaleAspectFit
+        view.image = UIImage(named: "brain")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    // empty collection view label
+    let emptyTVLabel: UILabel = {
+        let label = UILabel()
+        label.text = "You haven't added anything yet."
+        label.font = UIFont(name: "PingFangHK-Ultralight", size: 20)
+        label.textAlignment = .center
+        label.sizeToFit()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     private let tableView: UITableView = {
         let tv = UITableView(frame: .zero)
         tv.translatesAutoresizingMaskIntoConstraints = false
-        
+        tv.backgroundColor = Style.LIGHT_GRAY
+        tv.separatorStyle = .none
         return tv
     }()
     
@@ -30,6 +59,9 @@ class MealPlanViewController : UIViewController {
         navigationController?.navigationBar.topItem?.title = "MEAL PLAN"
         
         SetupTableView()
+        
+        view.addSubview(emptyTVImage)
+        view.addSubview(emptyTVLabel)
         
         ApplyConstraints()
     }
@@ -45,14 +77,32 @@ class MealPlanViewController : UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    private func NoMealPlanData() -> Bool {
+        return breakfastMeals.count == 0 && lunchMeals.count == 0 && dinnerMeals.count == 0
+    }
+    
     private func ApplyConstraints() {
         let safeArea = view.safeAreaLayoutGuide
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: safeArea.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
-            tableView.leftAnchor.constraint(equalTo: safeArea.leftAnchor),
-            tableView.rightAnchor.constraint(equalTo: safeArea.rightAnchor)
+            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: view.rightAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            emptyTVImage.heightAnchor.constraint(equalToConstant: 80),
+            emptyTVImage.widthAnchor.constraint(equalToConstant: 80),
+            emptyTVImage.centerXAnchor.constraint(equalTo: tableView.centerXAnchor),
+            emptyTVImage.centerYAnchor.constraint(equalTo: tableView.centerYAnchor, constant: -5)
+        ])
+        
+        NSLayoutConstraint.activate([
+            emptyTVLabel.leftAnchor.constraint(equalTo: tableView.leftAnchor),
+            emptyTVLabel.rightAnchor.constraint(equalTo: tableView.rightAnchor),
+            emptyTVLabel.centerXAnchor.constraint(equalTo: tableView.centerXAnchor),
+            emptyTVLabel.topAnchor.constraint(equalTo: emptyTVImage.bottomAnchor, constant: 5)
         ])
     }
     
@@ -61,7 +111,27 @@ class MealPlanViewController : UIViewController {
 
 extension MealPlanViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        if (NoMealPlanData()) {
+            
+            emptyTVImage.alpha = 1.0
+            emptyTVLabel.alpha = 1.0
+            
+            return 0
+        }
+        
+        emptyTVImage.alpha = 0.0
+        emptyTVLabel.alpha = 0.0
+        
+        switch section {
+        case BREAKFAST_SECTION:
+            return breakfastMeals.count
+        case LUNCH_SECTION:
+            return lunchMeals.count
+        case DINNER_SECTION:
+            return dinnerMeals.count
+        default:
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -76,5 +146,29 @@ extension MealPlanViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return DEFAULT_CELL_HEIGHT
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = MealSectionTableViewHeader(reuseIdentifier: "headerCell")
+        
+        switch section {
+        case BREAKFAST_SECTION:
+            header.text = "BREAKFAST"
+        case LUNCH_SECTION:
+            header.text = "LUNCH"
+        case DINNER_SECTION:
+            header.text = "DINNER"
+        default:
+            header.text = ""
+        }
+        
+        return header
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if (NoMealPlanData()) {
+            return 0.0
+        }
+        return 40.0
     }
 }
