@@ -419,6 +419,66 @@ class NetworkManager {
         }.resume()
     }
     
+    public func AddToMealPlan(_ recipeId: Int, _ mealType: String, _ delete: Bool = false, callback: @escaping (_ success: Bool) -> Void) {
+        if (!self.IsLoggedIn()){
+            return callback(false)
+        }
+        
+        if (!["breakfast", "lunch", "dinner"].contains(mealType)) {
+            return callback(false)
+        }
+        
+        let body = [
+            mealType: [recipeId]
+        ]
+        
+        guard let urlComponent = URLComponents(string: "\(BASE_URL):\(BASE_PORT)/users/meal_plan") else {
+            print("Failed to create url")
+            return callback(false) //TODO: handle a failure in a better way
+        }
+        
+        guard let url = urlComponent.url else {
+            print("Failed to get url")
+            return callback(false)
+        }
+        
+        guard let jsonBody = try? JSONSerialization.data(withJSONObject: body, options: []) else {
+            print("Failed to convert body dict to JSON")
+            return callback(false)
+        }
+        
+        var urlReq = URLRequest(url: url)
+        
+        if (delete) {
+            urlReq.httpMethod = "DELETE"
+        } else {
+            urlReq.httpMethod = "POST"
+        }
+        
+        urlReq.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlReq.addValue(self.sessionKey!, forHTTPHeaderField: "token")
+        urlReq.httpBody = jsonBody
+        
+        defaultSession.dataTask(with: urlReq) { (data, res, err) in
+            if err != nil {
+                debugPrint(err)
+                return callback(false)
+            }
+            
+            guard let res = res as? HTTPURLResponse else {
+                debugPrint("Failed to get data/res")
+                return callback(false)
+            }
+            
+            if (res.statusCode == 200) {
+                return callback(true)
+            }
+            
+            debugPrint("Failed to modify meal plan with status code \(res.statusCode)")
+            return callback(false)
+        }.resume()
+    }
+    
     public func GetImageByUrl(_ imageURLString : String, callback: @escaping (_ image: UIImage?) -> Void) {
         if let image = postImageCache.object(forKey: imageURLString as NSString) {
             return callback(image)
