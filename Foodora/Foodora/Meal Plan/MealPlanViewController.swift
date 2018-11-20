@@ -19,9 +19,9 @@ class MealPlanViewController : UIViewController {
     private let LUNCH_SECTION: Int = 1
     private let DINNER_SECTION: Int = 2
     
-    private let breakfastMeals: [Meal] = []
-    private let lunchMeals: [Meal] = []
-    private let dinnerMeals: [Meal] = []
+    private var breakfastMeals: [Meal] = []
+    private var lunchMeals: [Meal] = []
+    private var dinnerMeals: [Meal] = []
     
     // empty collection view logo
     let emptyTVImage: UIImageView = {
@@ -46,13 +46,15 @@ class MealPlanViewController : UIViewController {
     private let tableView: UITableView = {
         let tv = UITableView(frame: .zero)
         tv.translatesAutoresizingMaskIntoConstraints = false
-        tv.backgroundColor = Style.LIGHT_GRAY
+        
         tv.separatorStyle = .none
         return tv
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        RetrieveMealPlanInfo()
         
         view.backgroundColor = .white
         
@@ -64,6 +66,21 @@ class MealPlanViewController : UIViewController {
         view.addSubview(emptyTVLabel)
         
         ApplyConstraints()
+    }
+    
+    private func RetrieveMealPlanInfo() {
+        if (!NetworkManager.shared.IsLoggedIn()) {
+            return
+        }
+        
+        guard let user = NetworkManager.shared.user else {
+            debugPrint("Logged in but no user found in Network Manager")
+            return
+        }
+        
+        breakfastMeals = user.GetMealPlanBreakfast()
+        lunchMeals = user.GetMealPlanLunch()
+        dinnerMeals = user.GetMealPlanDinner()
     }
     
     private func SetupTableView() {
@@ -136,7 +153,18 @@ extension MealPlanViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CELL_ID, for: indexPath) as! MealTableViewCell
-        cell.meal = Meal.test_meals[indexPath.section + indexPath.row % Meal.test_meals.count]
+        
+        switch indexPath.section {
+        case BREAKFAST_SECTION:
+            cell.meal = breakfastMeals[indexPath.row]
+        case LUNCH_SECTION:
+            cell.meal = lunchMeals[indexPath.row]
+        case DINNER_SECTION:
+            cell.meal = dinnerMeals[indexPath.row]
+        default:
+            cell.meal = nil
+        }
+        
         return cell
     }
     
