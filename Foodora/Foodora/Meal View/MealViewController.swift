@@ -228,7 +228,55 @@ class MealViewController : UIViewController {
     }
     
     @IBAction private func clickedMealPlanButton(sender: UIButton) {
-        print("Clicked meal plan button")
+        guard let m = meal else { return }
+        
+        let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
+        let attributedTitle = NSAttributedString(string: "Add To Meal Plan", attributes: [NSAttributedStringKey.font : UIFont(name: "AvenirNext-DemiBold", size: 20)!])
+        let attributedMessage = NSAttributedString(string: "Which meal is this?", attributes: [NSAttributedStringKey.font: UIFont(name: "AvenirNext-Medium", size: 16)!])
+        alert.setValue(attributedTitle, forKey: "attributedTitle")
+        alert.setValue(attributedMessage, forKey: "attributedMessage")
+        
+        let breakfastAction = UIAlertAction(title: "Breakfast", style: .default, handler: { (action) -> Void in
+            self.AddToMealPlan(meal: m, mealType: "breakfast")
+        })
+        
+        let lunchAction = UIAlertAction(title: "Lunch", style: .default, handler: { (action) -> Void in
+            self.AddToMealPlan(meal: m, mealType: "lunch")
+        })
+        
+        let dinnerAction = UIAlertAction(title: "Dinner", style: .default, handler: { (action) -> Void in
+            self.AddToMealPlan(meal: m, mealType: "dinner")
+        })
+        
+        // Cancel button
+        let cancel = UIAlertAction(title: "Cancel", style: .destructive, handler: { (action) -> Void in
+            return
+        })
+        
+        alert.addAction(breakfastAction)
+        alert.addAction(lunchAction)
+        alert.addAction(dinnerAction)
+        alert.addAction(cancel)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    private func AddToMealPlan(meal: Meal, mealType: String) {
+        debugPrint("Adding \(meal.title) to \(mealType) meal plan")
+        
+        guard let u = NetworkManager.shared.user else {
+            debugPrint("Failed to get user from network manager.")
+            return
+        }
+        
+        u.AddTopMealPlan(mealToAdd: meal, typeOfMeal: mealType) { (success) in
+            if (success) {
+                debugPrint("SUCCESS: Adding \(meal.title) to \(mealType) meal plan")
+            } else {
+                debugPrint("FAILED: Adding \(meal.title) to \(mealType) meal plan")
+            }
+        }
+        
     }
     
     private func UpdateView() {
