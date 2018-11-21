@@ -30,8 +30,8 @@ extension User {
         NetworkManager.shared.AddToMealPlan(mealToAdd.mealId, typeOfMeal, false, callback: callback)
     }
     
-    public func RemoveFromMealPlan(mealToAdd: Meal, typeOfMeal: String, _ callback: @escaping (_ success: Bool) -> Void) {
-        NetworkManager.shared.AddToMealPlan(mealToAdd.mealId, typeOfMeal, true, callback: callback)
+    public func RemoveFromMealPlan(mealToAdd: Meal, _ callback: @escaping (_ success: Bool) -> Void) {
+        NetworkManager.shared.AddToMealPlan(mealToAdd.mealId, "", true, callback: callback)
     }
     
     public func GetMealPlanBreakfast() -> [Meal] {

@@ -424,11 +424,11 @@ class NetworkManager {
             return callback(false)
         }
         
-        if (!["breakfast", "lunch", "dinner"].contains(mealType)) {
+        if (!["breakfast", "lunch", "dinner"].contains(mealType) && !delete) {
             return callback(false)
         }
         
-        let body = [
+        var body = [
             mealType: [recipeId]
         ]
         
@@ -442,17 +442,23 @@ class NetworkManager {
             return callback(false)
         }
         
-        guard let jsonBody = try? JSONSerialization.data(withJSONObject: body, options: []) else {
-            print("Failed to convert body dict to JSON")
-            return callback(false)
-        }
-        
         var urlReq = URLRequest(url: url)
         
         if (delete) {
             urlReq.httpMethod = "DELETE"
+            
+            body = [
+                "breakfast": [recipeId],
+                "lunch": [recipeId],
+                "dinner": [recipeId]
+            ]
         } else {
             urlReq.httpMethod = "POST"
+        }
+        
+        guard let jsonBody = try? JSONSerialization.data(withJSONObject: body, options: []) else {
+            print("Failed to convert body dict to JSON")
+            return callback(false)
         }
         
         urlReq.addValue("application/json", forHTTPHeaderField: "Content-Type")

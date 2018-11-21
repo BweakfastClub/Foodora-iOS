@@ -125,7 +125,17 @@ class MealViewController : UIViewController {
     
     private var likedMeal: Bool = false {
         didSet {
-            UpdateLikeButton()
+            DispatchQueue.main.async {
+                self.UpdateLikeButton()
+            }
+        }
+    }
+    
+    private var inMealPlan: Bool = false {
+        didSet {
+            DispatchQueue.main.async {
+                self.UpdateMealPlanButton()
+            }
         }
     }
     
@@ -175,6 +185,7 @@ class MealViewController : UIViewController {
                 guard let m = meal else { return }
                 self.meal = m
                 self.likedMeal = m.userLikedRecipe()
+                self.inMealPlan = m.inMealPlan()
             }
         }
     }
@@ -230,6 +241,16 @@ class MealViewController : UIViewController {
     @IBAction private func clickedMealPlanButton(sender: UIButton) {
         guard let m = meal else { return }
         
+        if (self.inMealPlan) {
+            AttemptingToRemoveFromMealPlan()
+        } else {
+            AttemptingToAddToMealPlan()
+        }
+    }
+    
+    private func AttemptingToAddToMealPlan() {
+        guard let m = meal else { return }
+        
         let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
         let attributedTitle = NSAttributedString(string: "Add To Meal Plan", attributes: [NSAttributedStringKey.font : UIFont(name: "AvenirNext-DemiBold", size: 20)!])
         let attributedMessage = NSAttributedString(string: "Which meal is this?", attributes: [NSAttributedStringKey.font: UIFont(name: "AvenirNext-Medium", size: 16)!])
@@ -261,6 +282,30 @@ class MealViewController : UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    private func AttemptingToRemoveFromMealPlan() {
+        guard let m = meal else { return }
+        
+        let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
+        let attributedTitle = NSAttributedString(string: "Remove From Meal Plan", attributes: [NSAttributedStringKey.font : UIFont(name: "AvenirNext-DemiBold", size: 20)!])
+        let attributedMessage = NSAttributedString(string: "Are you sure?", attributes: [NSAttributedStringKey.font: UIFont(name: "AvenirNext-Medium", size: 16)!])
+        alert.setValue(attributedTitle, forKey: "attributedTitle")
+        alert.setValue(attributedMessage, forKey: "attributedMessage")
+        
+        let confirmAction = UIAlertAction(title: "Confirm", style: .default, handler: { (action) -> Void in
+            self.RemoveFromMealPlan(meal: m)
+        })
+        
+        // Cancel button
+        let cancel = UIAlertAction(title: "Cancel", style: .destructive, handler: { (action) -> Void in
+            return
+        })
+        
+        alert.addAction(confirmAction)
+        alert.addAction(cancel)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
     private func AddToMealPlan(meal: Meal, mealType: String) {
         debugPrint("Adding \(meal.title) to \(mealType) meal plan")
         
@@ -272,11 +317,29 @@ class MealViewController : UIViewController {
         u.AddTopMealPlan(mealToAdd: meal, typeOfMeal: mealType) { (success) in
             if (success) {
                 debugPrint("SUCCESS: Adding \(meal.title) to \(mealType) meal plan")
+                self.inMealPlan = !self.inMealPlan
             } else {
                 debugPrint("FAILED: Adding \(meal.title) to \(mealType) meal plan")
             }
         }
+    }
+    
+    private func RemoveFromMealPlan(meal: Meal) {
+        debugPrint("Removing \(meal.title) from meal plan")
         
+        guard let u = NetworkManager.shared.user else {
+            debugPrint("Failed to get user from network manager.")
+            return
+        }
+        
+        u.RemoveFromMealPlan(mealToAdd: meal) { (success) in
+            if (success) {
+                debugPrint("SUCCESS: Removed \(meal.title) from meal plan")
+                self.inMealPlan = !self.inMealPlan
+            } else {
+                debugPrint("FAILED: Removed \(meal.title) from meal plan")
+            }
+        }
     }
     
     private func UpdateView() {
@@ -292,6 +355,8 @@ class MealViewController : UIViewController {
                 }
             }
             mealTitle.text = meal!.title.uppercased()
+            
+            UpdateMealPlanButton()
             
             let calorieInfo = meal!.getCalorieNutritionInfo()
             if (calorieInfo != nil) {
@@ -319,6 +384,25 @@ class MealViewController : UIViewController {
                 ingredientStack.addArrangedSubview(tempLabel)
             }
             
+        }
+    }
+    
+    private func UpdateMealPlanButton() {
+        if (!NetworkManager.shared.IsLoggedIn()) {
+            mealPlanButton.alpha = 0.0
+            mealPlanButton.isUserInteractionEnabled = false
+            return
+        }
+        
+        mealPlanButton.alpha = 1.0
+        mealPlanButton.isUserInteractionEnabled = true
+        
+        if (self.inMealPlan) {
+            mealPlanButton.setTitle("REMOVE FROM MEAL PLAN", for: .normal)
+            mealPlanButton.backgroundColor = Style.NICE_RED
+        } else {
+            mealPlanButton.setTitle("ADD TO MEAL PLAN", for: .normal)
+            mealPlanButton.backgroundColor = Style.main_color
         }
     }
     
