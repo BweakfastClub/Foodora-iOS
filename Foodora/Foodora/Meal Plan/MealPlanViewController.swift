@@ -23,6 +23,8 @@ class MealPlanViewController : UIViewController {
     private var lunchMeals: [Meal] = []
     private var dinnerMeals: [Meal] = []
     
+    private let refreshControl = UIRefreshControl()
+    
     // empty collection view logo
     let emptyTVImage: UIImageView = {
         let view = UIImageView(frame: .zero)
@@ -84,10 +86,37 @@ class MealPlanViewController : UIViewController {
     }
     
     private func SetupTableView() {
+        
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+        
+        refreshControl.addTarget(self, action: #selector(MealPlanViewController.refreshWeatherData), for: .valueChanged)
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(MealTableViewCell.self, forCellReuseIdentifier: CELL_ID)
         view.addSubview(tableView)
+    }
+    
+    @objc private func refreshWeatherData(_ sender: AnyObject?) {
+        if (!NetworkManager.shared.IsLoggedIn()) {
+            refreshControl.endRefreshing()
+            return
+        }
+        
+        guard let user = NetworkManager.shared.user else {
+            debugPrint("Logged in but no user found in Network Manager")
+            refreshControl.endRefreshing()
+            return
+        }
+        
+        breakfastMeals = user.GetMealPlanBreakfast()
+        lunchMeals = user.GetMealPlanLunch()
+        dinnerMeals = user.GetMealPlanDinner()
+        refreshControl.endRefreshing()
     }
     
     override func didReceiveMemoryWarning() {
