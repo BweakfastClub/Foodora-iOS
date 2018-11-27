@@ -94,14 +94,14 @@ class HomeViewController : UIViewController {
             tableView.addSubview(refreshControl)
         }
         
-        refreshControl.addTarget(self, action: #selector(HomeViewController.refreshWeatherData), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(HomeViewController.refreshData), for: .valueChanged)
         
         tableView.delegate = self
         tableView.dataSource = self
         view.addSubview(tableView)
     }
     
-    @objc private func refreshWeatherData(_ sender: AnyObject?) {
+    @objc private func refreshData(_ sender: AnyObject?) {
         if (!NetworkManager.shared.IsLoggedIn()) {
             refreshControl.endRefreshing()
             return

@@ -93,7 +93,7 @@ class MealPlanViewController : UIViewController {
             tableView.addSubview(refreshControl)
         }
         
-        refreshControl.addTarget(self, action: #selector(MealPlanViewController.refreshWeatherData), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(MealPlanViewController.refreshData), for: .valueChanged)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -101,7 +101,7 @@ class MealPlanViewController : UIViewController {
         view.addSubview(tableView)
     }
     
-    @objc private func refreshWeatherData(_ sender: AnyObject?) {
+    @objc private func refreshData(_ sender: AnyObject?) {
         if (!NetworkManager.shared.IsLoggedIn()) {
             refreshControl.endRefreshing()
             return
