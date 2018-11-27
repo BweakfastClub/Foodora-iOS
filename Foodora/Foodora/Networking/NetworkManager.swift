@@ -56,6 +56,11 @@ class NetworkManager {
         return sessionKey != nil
     }
     
+    public func Logout() {
+        self.sessionKey = nil
+        UserDefaults.standard.set(nil, forKey: "sessionKey")
+    }
+    
     public func Ping(callback: @escaping (_ status: Int) -> Void) {
         guard let urlComponent = URLComponents(string: "\(BASE_URL):\(BASE_PORT)/ping") else {
             print("Failed to create url")

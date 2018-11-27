@@ -27,7 +27,7 @@ class SettingsViewController: UIViewController {
         button.backgroundColor = Style.main_color
         button.setTitleColor(.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-//        button.addTarget(self, action: #selector(MealViewController.clickedMealPlanButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(SettingsViewController.logoutButtonPressed), for: .touchUpInside)
         return button
     }()
     
@@ -54,6 +54,11 @@ class SettingsViewController: UIViewController {
         view.addSubview(logoutButton)
         
         ApplyConstraints()
+    }
+    
+    @IBAction private func logoutButtonPressed(sender: UIButton) {
+        NetworkManager.shared.Logout()
+        
     }
     
     private func ApplyConstraints() {

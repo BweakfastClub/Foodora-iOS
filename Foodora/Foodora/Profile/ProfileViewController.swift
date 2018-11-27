@@ -70,6 +70,7 @@ class ProfileViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        PullUserData()
         
         view.backgroundColor = .white
         
