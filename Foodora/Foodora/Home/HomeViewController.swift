@@ -20,6 +20,8 @@ class HomeViewController : UIViewController {
     private let RECOMMENDED_CELL_ID = "recommendedMealCell"
     private let TOP_CELL_ID = "topMealCell"
     
+    private let refreshControl = UIRefreshControl()
+    
     private var recommendedMeals: [Meal] = [] {
         didSet {
             DispatchQueue.main.async {
@@ -85,9 +87,29 @@ class HomeViewController : UIViewController {
     }
     
     private func SetupTableView() {
+        
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+        
+        refreshControl.addTarget(self, action: #selector(HomeViewController.refreshWeatherData), for: .valueChanged)
+        
         tableView.delegate = self
         tableView.dataSource = self
         view.addSubview(tableView)
+    }
+    
+    @objc private func refreshWeatherData(_ sender: AnyObject?) {
+        if (!NetworkManager.shared.IsLoggedIn()) {
+            refreshControl.endRefreshing()
+            return
+        }
+        
+        RequestTopMeals {
+            self.refreshControl.endRefreshing()
+        }
     }
     
     private func SetupInfoView() {
@@ -105,11 +127,16 @@ class HomeViewController : UIViewController {
         view.addSubview(infoView)
     }
     
-    private func RequestTopMeals() {
+    private func RequestTopMeals(callback: (() -> Void)? = nil) {
         NetworkManager.shared.TopRecipes { (mealRes) in
             guard let meals = mealRes else { return }
             DispatchQueue.main.async {
                 self.topMeals = meals
+                
+                if (callback != nil) {
+                    callback!()
+                }
+                
             }
         }
     }
