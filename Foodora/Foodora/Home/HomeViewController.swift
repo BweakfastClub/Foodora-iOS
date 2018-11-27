@@ -123,6 +123,12 @@ class HomeViewController : UIViewController {
             infoLabel.numberOfLines = 2
             infoLabel.textColor = Style.GRAY
             infoLabel.alpha = 0.50
+        } else {
+            infoView.backgroundColor = Style.main_color
+            infoLabel.textColor = .white
+            infoLabel.numberOfLines = 1
+            infoLabel.text = "Doesn't seem like you're logged in..."
+            infoLabel.alpha = 1.0
         }
         view.addSubview(infoView)
     }
@@ -143,12 +149,12 @@ class HomeViewController : UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         DispatchQueue.main.async {
-            if (NetworkManager.shared.IsLoggedIn()) { //TODO: check if we actually need to update
+//            if (NetworkManager.shared.IsLoggedIn()) { //TODO: check if we actually need to update
                 self.ApplyConstraints()
                 self.SetupInfoView()
                 self.tableView.reloadData()
                 self.view.setNeedsDisplay()
-            }
+//            }
         }
     }
     
