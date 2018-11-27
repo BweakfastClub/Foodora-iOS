@@ -58,7 +58,7 @@ class SettingsViewController: UIViewController {
     
     @IBAction private func logoutButtonPressed(sender: UIButton) {
         NetworkManager.shared.Logout()
-        
+        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
     private func ApplyConstraints() {
