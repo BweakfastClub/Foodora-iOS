@@ -372,7 +372,7 @@ class MealViewController : UIViewController {
             
             let calorieInfo = meal!.getCalorieNutritionInfo()
             if (calorieInfo != nil) {
-                calorieView.setNutritionData("Calories", "\(calorieInfo!.amount.rounded())\(calorieInfo!.unit)")
+                calorieView.setNutritionData("Calories", "\(calorieInfo!.amount.rounded())")
             }
             
             let proteinInfo = meal!.getProteinNutritionInfo()

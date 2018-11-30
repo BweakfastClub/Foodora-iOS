@@ -45,6 +45,19 @@ class MealPlanViewController : UIViewController {
         return label
     }()
     
+    private let nutritionStack: UIStackView = {
+        let stack = UIStackView()
+        stack.distribution = .fillEqually
+        stack.backgroundColor = Style.main_color
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
+    private let calorieView: MealPlanNutritionView = MealPlanNutritionView()
+    private let proteinView: MealPlanNutritionView = MealPlanNutritionView()
+    private let fatView: MealPlanNutritionView = MealPlanNutritionView()
+    private let carbView: MealPlanNutritionView = MealPlanNutritionView()
+    
     private let tableView: UITableView = {
         let tv = UITableView(frame: .zero)
         tv.translatesAutoresizingMaskIntoConstraints = false
@@ -62,11 +75,18 @@ class MealPlanViewController : UIViewController {
         
         navigationController?.navigationBar.topItem?.title = "MEAL PLAN"
         
+        view.addSubview(nutritionStack)
+        nutritionStack.addArrangedSubview(calorieView)
+        nutritionStack.addArrangedSubview(proteinView)
+        nutritionStack.addArrangedSubview(fatView)
+        nutritionStack.addArrangedSubview(carbView)
+        
         SetupTableView()
         
         view.addSubview(emptyTVImage)
         view.addSubview(emptyTVLabel)
         
+        UpdateView()
         ApplyConstraints()
     }
     
@@ -117,6 +137,7 @@ class MealPlanViewController : UIViewController {
                 self.lunchMeals = refreshedUser.GetMealPlanLunch()
                 self.dinnerMeals = refreshedUser.GetMealPlanDinner()
                 self.tableView.reloadData()
+                self.UpdateView()
                 self.refreshControl.endRefreshing()
             }
         }
@@ -130,11 +151,41 @@ class MealPlanViewController : UIViewController {
         return breakfastMeals.count == 0 && lunchMeals.count == 0 && dinnerMeals.count == 0
     }
     
+    private func UpdateView() {
+        if (!NetworkManager.shared.IsLoggedIn()) {
+            return
+        }
+        
+        var totalCalories: Int = 0
+        var totalProtein: Int = 0
+        var totalCarbs: Int = 0
+        var totalFats: Int = 0
+        
+        for breakfast in [breakfastMeals, lunchMeals, dinnerMeals].flatMap({ $0 }) {
+            totalCalories += Int(breakfast.getCalorieNutritionInfo()?.amount ?? 0)
+            totalProtein += Int(breakfast.getProteinNutritionInfo()?.amount ?? 0)
+            totalCarbs += Int(breakfast.getCarbNutritionInfo()?.amount ?? 0)
+            totalFats += Int(breakfast.getFatNutritionInfo()?.amount ?? 0)
+        }
+        
+        calorieView.setNutritionData("Calories", "\(totalCalories)")
+        proteinView.setNutritionData("Protein", "\(totalProtein)g")
+        carbView.setNutritionData("Total Carbs", "\(totalCarbs)g")
+        fatView.setNutritionData("Total Fat", "\(totalFats)g")
+    }
+    
     private func ApplyConstraints() {
         let safeArea = view.safeAreaLayoutGuide
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            nutritionStack.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            nutritionStack.leftAnchor.constraint(equalTo: view.leftAnchor),
+            nutritionStack.rightAnchor.constraint(equalTo: view.rightAnchor),
+            nutritionStack.heightAnchor.constraint(equalToConstant: 60)
+        ])
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: nutritionStack.bottomAnchor),
             tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor)
@@ -231,4 +282,65 @@ extension MealPlanViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return 40.0
     }
+}
+
+
+fileprivate class MealPlanNutritionView: UIView {
+    
+    private let stack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.distribution = .fillEqually
+        return stack
+    }()
+    
+    private let nutritionNameLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = Style.LIGHT_WHITE
+        label.font = UIFont(name: "AvenirNext-Medium", size: 16)!
+        label.text = "calories"
+        return label
+    }()
+    
+    private let nutritionAmountLabel: UILabel = {
+        let label = UILabel()
+        label.text = "1200"
+        label.textColor = .white
+        label.textAlignment = .center
+        label.font = UIFont(name: "AvenirNext-DemiBold", size: 18)!
+        return label
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        backgroundColor = Style.main_color
+        
+        addSubview(stack)
+        stack.addArrangedSubview(nutritionAmountLabel)
+        stack.addArrangedSubview(nutritionNameLabel)
+        
+        ApplyConstraints()
+    }
+    
+    public func setNutritionData(_ nutritionName: String, _ nutritionAmount: String) {
+        self.nutritionNameLabel.text = nutritionName
+        self.nutritionAmountLabel.text = nutritionAmount
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func ApplyConstraints() {
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            stack.heightAnchor.constraint(equalToConstant: 40),
+            stack.centerYAnchor.constraint(equalTo: centerYAnchor),
+            stack.leftAnchor.constraint(equalTo: leftAnchor),
+            stack.rightAnchor.constraint(equalTo: rightAnchor)
+        ])
+    }
+    
 }
