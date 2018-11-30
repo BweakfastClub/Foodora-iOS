@@ -158,7 +158,28 @@ class RegisterViewController : UIViewController {
                 }
             } else {
                 debugPrint("Failed to register. Status code: \(statusCode)")
-                // TODO: display error
+                
+                var errorMsg: String = "Failed to Register. Error code \(statusCode)"
+                
+                if (statusCode == 409) {
+                    errorMsg = "Email already used, please use another email."
+                }
+                
+                let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
+                let attributedTitle = NSAttributedString(string: "Register Failed", attributes: [NSAttributedStringKey.font : UIFont(name: "AvenirNext-DemiBold", size: 20)!])
+                let attributedMessage = NSAttributedString(string: errorMsg, attributes: [NSAttributedStringKey.font: UIFont(name: "AvenirNext-Medium", size: 16)!])
+                alert.setValue(attributedTitle, forKey: "attributedTitle")
+                alert.setValue(attributedMessage, forKey: "attributedMessage")
+                
+                DispatchQueue.main.async {
+                    self.present(alert, animated: true, completion: nil)
+                }
+                
+                let when = DispatchTime.now() + 2
+                DispatchQueue.main.asyncAfter(deadline: when){
+                    alert.dismiss(animated: true, completion: nil)
+                }
+                
             }
         }
     }
