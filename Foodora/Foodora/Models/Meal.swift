@@ -71,13 +71,7 @@ struct Meal : Codable {
             return false
         }
         
-        for k in uInfo.mealPlan.values {
-            if (k) {
-                return true
-            }
-        }
-        
-        return false
+        return uInfo.mealPlan.count > 0
     }
     
     func userLikedRecipe() -> Bool {
@@ -104,7 +98,7 @@ struct Meal : Codable {
 
 struct UserMealInfo : Codable {
     var hasLiked: Bool
-    var mealPlan: [String : Bool]
+    var mealPlan: [String]
     
     enum CodingKeys: String, CodingKey {
         case hasLiked = "likedRecipes"
