@@ -146,12 +146,31 @@ class LoginViewController: UIViewController {
         
         NetworkManager.shared.Login(username, password) { (statusCode, sessionKey) in
             if (statusCode == 200) {
-                
                 NetworkManager.shared.RetrieveUserData(callback: { (statusCode) in
                     self.navigationController?.dismiss(animated: true, completion: nil)
                 })
             } else {
-                // TODO: Login failed. Display msg
+                let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
+                let attributedTitle = NSAttributedString(string: "Login Failed", attributes: [NSAttributedStringKey.font : UIFont(name: "AvenirNext-DemiBold", size: 20)!])
+                let attributedMessage = NSAttributedString(string: "Invalid username/password", attributes: [NSAttributedStringKey.font: UIFont(name: "AvenirNext-Medium", size: 16)!])
+                alert.setValue(attributedTitle, forKey: "attributedTitle")
+                alert.setValue(attributedMessage, forKey: "attributedMessage")
+                
+//                // Cancel button
+//                let cancel = UIAlertAction(title: "Okay", style: .destructive, handler: { (action) -> Void in
+//                    return
+//                })
+//                alert.addAction(cancel)
+                
+                DispatchQueue.main.async {
+                    self.present(alert, animated: true, completion: nil)
+                }
+                
+                let when = DispatchTime.now() + 2
+                DispatchQueue.main.asyncAfter(deadline: when){
+                    alert.dismiss(animated: true, completion: nil)
+                }
+                
             }
         }
         
