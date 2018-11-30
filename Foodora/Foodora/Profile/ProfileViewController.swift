@@ -82,7 +82,7 @@ class ProfileViewController : UIViewController {
         self.navigationItem.leftBarButtonItem = leftButton
         
         // Right Nav bar settings button
-        let rightButton = UIBarButtonItem(image: UIImage(named: "settings"), style: .plain, target: self, action: #selector(ProfileViewController.OpenSettings))
+        let rightButton = UIBarButtonItem(image: UIImage(named: "exit"), style: .plain, target: self, action: #selector(ProfileViewController.OpenSettings))
         rightButton.tintColor = .black
         self.navigationItem.rightBarButtonItem = rightButton
         
@@ -132,9 +132,26 @@ class ProfileViewController : UIViewController {
     @objc func OpenSettings() {
 //        self.navigationController?.pushViewController(SettingsViewController(), animated: true)
         
-        NetworkManager.shared.Logout()
-        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
         
+        let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
+        let attributedTitle = NSAttributedString(string: "Logout", attributes: [NSAttributedStringKey.font : UIFont(name: "AvenirNext-DemiBold", size: 20)!])
+        let attributedMessage = NSAttributedString(string: "Are you sure you want to logout?", attributes: [NSAttributedStringKey.font: UIFont(name: "AvenirNext-Medium", size: 16)!])
+        alert.setValue(attributedTitle, forKey: "attributedTitle")
+        alert.setValue(attributedMessage, forKey: "attributedMessage")
+        
+        let yesAction = UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
+            NetworkManager.shared.Logout()
+            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: { (action) -> Void in
+            return
+        })
+        
+        alert.addAction(yesAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: nil)
     }
     
     private func ApplyConstraints() {
