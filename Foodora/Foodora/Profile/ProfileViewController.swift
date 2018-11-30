@@ -130,7 +130,11 @@ class ProfileViewController : UIViewController {
     }
     
     @objc func OpenSettings() {
-        self.navigationController?.pushViewController(SettingsViewController(), animated: true)
+//        self.navigationController?.pushViewController(SettingsViewController(), animated: true)
+        
+        NetworkManager.shared.Logout()
+        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        
     }
     
     private func ApplyConstraints() {
