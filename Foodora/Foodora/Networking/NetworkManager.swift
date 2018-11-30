@@ -388,7 +388,6 @@ class NetworkManager {
     }
     
     public func GetRecipeById(_ recipeId: Int, callback: @escaping (_ meal: Meal?) -> Void) {
-        
         guard let urlComponent = URLComponents(string: "\(BASE_URL):\(BASE_PORT)/recipes/id/\(recipeId)") else {
             print("Failed to create url")
             return callback(nil) //TODO: handle a failure in a better way

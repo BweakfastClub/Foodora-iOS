@@ -149,6 +149,13 @@ class MealViewController : UIViewController {
         return button
     }()
     
+    var ingredientTableView: UITableView = {
+        let view = UITableView(frame: .zero)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.rowHeight = 30
+        return view
+    }()
+    
     convenience init(meal: Meal) {
         self.init(nibName: nil, bundle: nil)
         self.meal = meal
@@ -167,7 +174,12 @@ class MealViewController : UIViewController {
         nutritionStack.addArrangedSubview(carbView)
         
         view.addSubview(ingredientTitleLabel)
-        view.addSubview(ingredientStack)
+        
+        //view.addSubview(ingredientStack)
+        view.addSubview(ingredientTableView)
+        
+        ingredientTableView.delegate = self
+        ingredientTableView.dataSource = self
         
         view.addSubview(mealPlanButton)
         
@@ -454,11 +466,11 @@ class MealViewController : UIViewController {
             ingredientTitleLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20)
         ])
         
-        NSLayoutConstraint.activate([
-            ingredientStack.topAnchor.constraint(equalTo: ingredientTitleLabel.bottomAnchor, constant: 10),
-            ingredientStack.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
-            ingredientStack.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20)
-        ])
+//        NSLayoutConstraint.activate([
+//            ingredientStack.topAnchor.constraint(equalTo: ingredientTitleLabel.bottomAnchor, constant: 10),
+//            ingredientStack.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+//            ingredientStack.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20)
+//        ])
         
         NSLayoutConstraint.activate([
             mealPlanButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
@@ -467,6 +479,38 @@ class MealViewController : UIViewController {
             mealPlanButton.heightAnchor.constraint(equalToConstant: 50)
         ])
         
+        NSLayoutConstraint.activate([
+            ingredientTableView.topAnchor.constraint(equalTo: ingredientTitleLabel.bottomAnchor, constant: 10),
+            ingredientTableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 5),
+            ingredientTableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -5),
+            ingredientTableView.bottomAnchor.constraint(equalTo: mealPlanButton.topAnchor, constant: -5)
+        ])
+        
+    }
+    
+}
+
+extension MealViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let m = meal else { return 0 }
+        
+        return m.ingredients.count
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = UITableViewCell(frame: .zero)
+        
+        guard let m = meal  else { return cell }
+        cell.textLabel?.text = m.ingredients[indexPath.row].description
+        
+        return cell
     }
     
 }
