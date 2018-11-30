@@ -123,6 +123,11 @@ class MealPlanViewController : UIViewController {
     
     @objc private func refreshData(_ sender: AnyObject?) {
         if (!NetworkManager.shared.IsLoggedIn()) {
+            self.breakfastMeals = []
+            self.lunchMeals = []
+            self.dinnerMeals = []
+            self.tableView.reloadData()
+            self.UpdateView()
             refreshControl.endRefreshing()
             return
         }
@@ -152,20 +157,18 @@ class MealPlanViewController : UIViewController {
     }
     
     private func UpdateView() {
-        if (!NetworkManager.shared.IsLoggedIn()) {
-            return
-        }
-        
         var totalCalories: Int = 0
         var totalProtein: Int = 0
         var totalCarbs: Int = 0
         var totalFats: Int = 0
         
-        for breakfast in [breakfastMeals, lunchMeals, dinnerMeals].flatMap({ $0 }) {
-            totalCalories += Int(breakfast.getCalorieNutritionInfo()?.amount ?? 0)
-            totalProtein += Int(breakfast.getProteinNutritionInfo()?.amount ?? 0)
-            totalCarbs += Int(breakfast.getCarbNutritionInfo()?.amount ?? 0)
-            totalFats += Int(breakfast.getFatNutritionInfo()?.amount ?? 0)
+        if (NetworkManager.shared.IsLoggedIn()) {
+            for breakfast in [breakfastMeals, lunchMeals, dinnerMeals].flatMap({ $0 }) {
+                totalCalories += Int(breakfast.getCalorieNutritionInfo()?.amount ?? 0)
+                totalProtein += Int(breakfast.getProteinNutritionInfo()?.amount ?? 0)
+                totalCarbs += Int(breakfast.getCarbNutritionInfo()?.amount ?? 0)
+                totalFats += Int(breakfast.getFatNutritionInfo()?.amount ?? 0)
+            }
         }
         
         calorieView.setNutritionData("Calories", "\(totalCalories)")

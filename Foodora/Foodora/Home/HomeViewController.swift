@@ -283,7 +283,7 @@ extension HomeViewController : UICollectionViewDataSource, UICollectionViewDeleg
         switch collectionView.tag {
         case RECOMMENDED_MEAL_INDEX:
 //            return recommendedMeals.count
-            return Meal.test_meals.count
+            return Meal.test_meals.count 
         case TOP_MEALS_INDEX:
             return topMeals.count
         default:
