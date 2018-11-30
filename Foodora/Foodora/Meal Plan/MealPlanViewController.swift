@@ -282,6 +282,24 @@ extension MealPlanViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return 40.0
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var selectedMeal: Meal
+        
+        switch indexPath.section {
+        case 0:
+            selectedMeal = breakfastMeals[indexPath.row]
+        case 1:
+            selectedMeal = lunchMeals[indexPath.row]
+        case 2:
+            selectedMeal = dinnerMeals[indexPath.row]
+        default:
+            return
+        }
+        
+        let mealVC = MealViewController(meal: selectedMeal)
+        self.navigationController?.pushViewController(mealVC, animated: true)
+    }
 }
 
 
