@@ -107,16 +107,19 @@ class MealPlanViewController : UIViewController {
             return
         }
         
-        guard let user = NetworkManager.shared.user else {
-            debugPrint("Logged in but no user found in Network Manager")
-            refreshControl.endRefreshing()
-            return
+        NetworkManager.shared.RetrieveUserData { (statusCode) in
+            DispatchQueue.main.async {
+                guard let refreshedUser = NetworkManager.shared.user else {
+                    self.refreshControl.endRefreshing()
+                    return
+                }
+                self.breakfastMeals = refreshedUser.GetMealPlanBreakfast()
+                self.lunchMeals = refreshedUser.GetMealPlanLunch()
+                self.dinnerMeals = refreshedUser.GetMealPlanDinner()
+                self.tableView.reloadData()
+                self.refreshControl.endRefreshing()
+            }
         }
-        
-        breakfastMeals = user.GetMealPlanBreakfast()
-        lunchMeals = user.GetMealPlanLunch()
-        dinnerMeals = user.GetMealPlanDinner()
-        refreshControl.endRefreshing()
     }
     
     override func didReceiveMemoryWarning() {
